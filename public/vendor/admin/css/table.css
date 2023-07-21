@@ -1,0 +1,99 @@
+/* .paging_full_numbers a.paginate_button {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_active {
+    color: #000 !important;
+}
+.paginate_button.page-item.active a.pagelink{
+    color: #000 !important;
+} */
+/* .paging_full_numbers a.paginate_button:hover {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:active {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:focus {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:visited {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:link {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:visited {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:active {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:focus {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:hover {
+    color: #000 !important;
+}
+.paging_full_numbers a.paginate_button:active {
+    color: #000 !important;
+} */
+.page-item.active .page-link {
+    color: #fff !important;
+    background-color: #1b4e87 !important;
+    border-color: #1b4e87 !important;
+}
+.page-link {
+    color: #1b4e87 !important;
+    border: 1px solid #7c9ec0;
+}
+.page-link:hover {
+    color: #fff !important;
+    background-color: #1b4e87 !important;
+    border-color: #1b4e87 !important;
+}
+.btn.btn-primary {
+    color: #fff !important;
+    background-color: #1b4e87 !important;
+    border-color: #1b4e87 !important;
+}
+.select2-container--bootstrap4 .select2-results__option--highlighted, 
+.select2-container--bootstrap4 .select2-results__option--highlighted.select2-results__option[aria-selected="true"] {
+    background-color: #1b4e87 !important;
+    color: #fff !important;
+}
+
+.btn-img {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #000;
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+    height: 38px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;    
+    touch-action: manipulation;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;    
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    -webkit-writing-mode: horizontal-tb !important;
+    background-color: buttonface;
+    -webkit-rtl-ordering: logical;
+    cursor: default;
+}
