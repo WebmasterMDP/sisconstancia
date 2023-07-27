@@ -41,8 +41,8 @@
                 </span>
             @enderror
         </div> -->
-
-        {{-- Email field --}}
+    
+        {{-- Username field --}}
         <div class="input-group mb-3">
             <input type="username" name="username" class="form-control @error('username') is-invalid @enderror"
                    value="{{ old('username') }}" placeholder="Ingrese username" autofocus>
@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            @error('email')
+            @error('username')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -102,7 +102,7 @@
 @stop
 
 @section('auth_footer')
-    {{-- Password reset link --}}
+    <!-- {{-- Password reset link --}}
     @if($password_reset_url)
         <p class="my-0">
             <a href="{{ $password_reset_url }}">
@@ -118,5 +118,5 @@
                 {{ __('adminlte::adminlte.register_a_new_membership') }}
             </a>
         </p>
-    @endif
+    @endif -->
 @stop

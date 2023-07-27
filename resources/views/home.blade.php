@@ -14,4 +14,13 @@
 @stop
 
 @section('js')
+@if(session('pass') == 'ok')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Contraseña cambiada correctamente',
+        'success'
+        )
+    </script>
+@endif
 @stop

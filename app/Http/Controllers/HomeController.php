@@ -37,4 +37,9 @@ class HomeController extends Controller
     {
         return view('modulo5');
     }
+
+    public function changepass()
+    {
+        return view('changepassword');
+    }
 }

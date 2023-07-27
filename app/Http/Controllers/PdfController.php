@@ -2,26 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class PdfController extends Controller
 {
-    protected $fpdf;
- 
-    public function __construct()
-    {
-        $this->fpdf = new Fpdf;
+    public function index()
+    {     
+        /* $showDatosLicencia = Licencia::where('id', $id)->first(); */
+        
+        return view('pdf/pdf'/* , compact('showDatosLicencia') */);
     }
 
-    public function index() 
+    public function show()
+    {      
+        return view('pdf/qr');
+    }
+    public function watch()
     {
-    	$this->fpdf->SetFont('Arial', 'B', 15);
-        $this->fpdf->AddPage();
-        $this->fpdf->Text(10, 10, "Hello World!");       
-         
-        $this->fpdf->Output();
-
-        exit;
+        return view('sweet');
     }
 }

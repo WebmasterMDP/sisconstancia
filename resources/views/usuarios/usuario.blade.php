@@ -29,7 +29,7 @@
                                             <th>CORREO</th>
                                             <th>ROL</th>
                                             <th>ESTADO</th>
-                                            <!-- <th>EDITAR</th> -->
+                                            <th>EDITAR</th>
                                             <th>ELIMINAR</th>
                                         </tr>
                                     </thead>
@@ -41,20 +41,25 @@
                                             <td>{{ $dataUser->username }}</td>
                                             <!-- <td>{{ $dataUser->numdoc }}</td> -->
                                             <td>{{ $dataUser->email }}</td>
-                                            <td>{{ $dataUser->rol }}</td>
+                                            @if($dataUser->rol == 'stuser'|| $dataUser->rol == 'user')
+                                                <td><span class="badge bg-secondary">Usuario</span></td>
+                                            @else
+                                                <td><span class="badge bg-info">Admin</span></td>
+                                            @endif
+
                                             @if($dataUser->estado == 1)
                                                 <td><span class="badge bg-success">Activo</span></td>
                                             @else
                                                 <td><span class="badge bg-danger">Anulado</span></td>
                                             @endif
-                                            <!-- <td>
+                                            <td>
                                                 <form class="" id="editar" method="get" action="{{ url('/userEdit/'.$dataUser->id) }}">
                                                     @csrf
                                                     <button class="btn btn-warning" title="Editar" onclick="userEdit()" type="submit">
                                                     <i class="fas fa-edit"></i>
                                                     </button>
                                                 </form>
-                                            </td> -->
+                                            </td>
                                             <td>
                                                 <form class="formDelete" id="delete" method="post" onclick="userDelete()" action="{{ url('/userDelete/'.$dataUser->id) }}">
                                                     @csrf
@@ -146,8 +151,8 @@
                                                     <i class="fas fa-id-card text-dark"></i>
                                                 </div>
                                             </x-slot>
-                                            <option>usuario</option>
-                                            <option>admin</option>
+                                            <option value="stuser" >usuario</option>
+                                            <option value="stadmin" >admin</option>
                                         </x-adminlte-select>
                                     </div>
                                 </div>
@@ -210,8 +215,8 @@ function userDelete() {
 @if(session('user') == 'ok')
     <script>
         Swal.fire(
-        'Eliminado!',
-        'El usuario se eliminó.',
+        'Exito!',
+        'Usuario creado correctamente.',
         'success'
         )
     </script>

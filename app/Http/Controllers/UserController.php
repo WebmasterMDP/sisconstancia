@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
         $dataUsers = User::all();
-        return view('modulo1', compact('dataUsers'));
+        return view('usuarios/usuario', compact('dataUsers'));
     }
     
     public function create(Request $request)
@@ -34,7 +37,18 @@ class UserController extends Controller
         
         }else{
             try{
-                $user = new User();
+
+                User::create([
+                    'name'      =>$request->name,
+                    'numdoc'    =>$request->numdoc,
+                    'username'  =>$request->numdoc,
+                    'estado'    =>'1',
+                    'password'  =>Hash::make($request->numdoc),
+                    'email'     =>$request->email,
+                    'rol'       =>$request->rol,
+                ])->assignRole($request->rol);
+
+                /* $user = new User();
                 $user->name = $request->name;
                 $user->numdoc = $request->numdoc;
                 $user->username = $request->numdoc;
@@ -42,7 +56,7 @@ class UserController extends Controller
                 $user->password = Hash::make($request->numdoc);
                 $user->email = $request->email;
                 $user->rol = $request->rol;
-                $user->save();
+                $user->save(); */
 
             return redirect()->back()->with('user', 'ok');
 
@@ -77,7 +91,6 @@ class UserController extends Controller
     {
         //
     }
-
     
     public function destroy($id)
     {
@@ -89,5 +102,48 @@ class UserController extends Controller
         }catch(\Exception $e){
             return redirect()->back()->with('user', 'error');
         } */
+    }
+
+    public function changepass(Request $request)
+    {
+        $user = auth()->user();
+
+        $validate = Validator::make($request->all(), [
+            'password' => 'required',
+            'first' => 'required',
+            'newpass' => 'required',
+        ],[
+            'required' => 'Ingrese datos solicitados',
+        ]);
+
+        if($validate->fails()){
+            return back()->withErrors($validate->errors())->withInput()->with('pass', 'miss');
+        }else{
+            if ($request->first == $request->newpass){
+                if(Hash::check($request->password, $user->password)){
+                    if($user->hasRole('stadmin')){
+                        try{
+                            $user->update(['password' => Hash::make($request->newpass)]);
+                            $user->roles()->sync('admin');
+                            return redirect()->route('home')->with('pass', 'ok');
+                        }catch(\Exception $e){
+                            return redirect()->back()->with('pass', 'error');
+                        }
+                    }else{
+                        try{
+                            $user->update(['password' => Hash::make($request->newpass)]);
+                            $user->roles()->sync('user');
+                            return redirect()->route('home')->with('pass', 'ok');
+                        }catch(\Exception $e){
+                            return redirect()->back()->with('pass', 'error');
+                        }
+                    }
+                }else{
+                    return redirect()->back()->with('pass', 'fail');
+                }
+            }else{
+                return redirect()->back()->with('pass', 'nomatch');
+            }
+        }
     }
 }

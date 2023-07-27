@@ -324,18 +324,19 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ], */
-        /*  [
-            'text' => 'change_password',
+         [
+            'text' => 'Cambiar contraseña',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ], */
+            'can'  => 'home.password',
+        ],
         [
             'text'    => 'modulo1',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
                     'text' => 'level_one',
-                    'url'  => 'modulo1',
+                    'url'  => 'usuario',
                 ],
             ],
         ],
@@ -491,7 +492,6 @@ return [
                     'asset' => true,
                     'location' => 'https://cdn.datatables.net/v/bs5/dt-1.13.4/b-2.3.6/b-html5-2.3.6/datatables.min.js',
                 ], */
-
             ],
         ],
         'Select2' => [
