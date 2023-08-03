@@ -16,8 +16,9 @@ class PdfController extends Controller
     }
 
     public function show()
-    {      
-        return view('pdf/qr');
+    {         
+        return view('pdf/pdf1'/* , compact('showDatosLicencia') */);
+        
     }
     public function watch()
     {

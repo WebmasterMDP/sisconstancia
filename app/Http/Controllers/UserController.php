@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUsers = User::all();
-        return view('usuarios/usuario', compact('dataUsers'));
+        return view('Administracion/usuarios/index', compact('dataUsers'));
     }
     
     public function create(Request $request)
@@ -33,7 +33,7 @@ class UserController extends Controller
 
         if($validate->fails()){
 
-            return back()->withErrors($validate->errors())->withInput()->with('user', 'miss');
+            return back()->withErrors($validate->errors())->withInput()->with('user', 'empty');
         
         }else{
             try{
@@ -67,7 +67,6 @@ class UserController extends Controller
             }
         }
     }
-
     
     public function store(Request $request)
     {
@@ -82,67 +81,129 @@ class UserController extends Controller
 
     
     public function edit($id)
-    {
-        //
+    { 
+        $user = User::find($id);
+        $roles = Role::all();
+        try{
+            return view('Administracion/usuarios/editar', compact('user', 'roles'));
+        }catch(\Exception $e){
+            return redirect()->back()->with('user', 'error');
+        }
     }
 
     
     public function update(Request $request, $id)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'name' => 'required',
+            'numdoc' => 'required',
+            'email' => 'required',
+            'rol' => 'required',
+            'estado' => 'required',
+        ],[
+            'required' => 'Ingrese datos solicitados',
+            'numdoc.min' => 'Ingrese 8 carateres como mínimo',
+            'numdoc.max' => 'Ingrese 8 carateres como maximo',
+        ]);
+
+        if($validate->fails()){
+            return back()->with('user', 'empty');
+        }else{
+            try{
+                $user = User::find($id);
+                $user->update([
+                    'name'      =>$request->name,
+                    'numdoc'    =>$request->numdoc,
+                    'username'  =>$request->numdoc,
+                    'estado'    =>$request->estado,
+                    'email'     =>$request->email,
+                    'rol'       =>$request->rol,
+                ]);
+                $user->syncRoles($request->rol);
+                return redirect()->route('user.index')->with('user', 'update');
+            }catch(\Exception $e){
+                return redirect()->back()->with('user', 'error');
+            }
+        }
     }
     
     public function destroy($id)
     {
         var_dump($id);
-        /* try{
+        try{
             $user = User::find($id);
             $user->delete();
             return redirect()->back()->with('user', 'ok');
         }catch(\Exception $e){
             return redirect()->back()->with('user', 'error');
-        } */
+        }
     }
 
-    public function changepass(Request $request)
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+
+        if($user->hasRole('admin') || $user->hasRole('2')){
+
+            try{
+            /* var_dump($user->numdoc); */
+            $user->password = Hash::make($user->numdoc);
+            $user->syncRoles('admin');
+            $user->save();
+
+            return redirect()->route('user.index')->with('user', 'reset');
+
+            } catch (\Throwable $th) {
+
+                return redirect()->route('user.index')->with('user', 'error');
+            }
+
+        }else{
+            try{
+            /* var_dump($user->numdoc); */
+            $user->password = Hash::make($user->numdoc);
+            $user->syncRoles('user');
+            $user->save();
+
+            return redirect()->route('user.index')->with('user', 'reset');
+            } catch (\Throwable $th) {
+                return redirect()->route('user.index')->with('user', 'error');
+            }
+        }
+
+    }
+
+    public function updatepass(Request $request)
     {
         $user = auth()->user();
 
         $validate = Validator::make($request->all(), [
-            'password' => 'required',
-            'first' => 'required',
-            'newpass' => 'required',
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'new_password_confirmation' => 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
         ]);
 
         if($validate->fails()){
-            return back()->withErrors($validate->errors())->withInput()->with('pass', 'miss');
+            return redirect()->back()->with('password', 'empty');
         }else{
-            if ($request->first == $request->newpass){
-                if(Hash::check($request->password, $user->password)){
-                    if($user->hasRole('stadmin')){
+            if(Hash::check($request->old_password, $user->password)){
+                if($request->new_password == $request->new_password_confirmation){
                         try{
-                            $user->update(['password' => Hash::make($request->newpass)]);
-                            $user->roles()->sync('admin');
-                            return redirect()->route('home')->with('pass', 'ok');
+                            $user->update(['password' => Hash::make($request->new_password)]);
+                            return redirect()->route('profile')->with('password', 'ok');
+                            /* var_dump('ok'); */
                         }catch(\Exception $e){
-                            return redirect()->back()->with('pass', 'error');
-                        }
-                    }else{
-                        try{
-                            $user->update(['password' => Hash::make($request->newpass)]);
-                            $user->roles()->sync('user');
-                            return redirect()->route('home')->with('pass', 'ok');
-                        }catch(\Exception $e){
-                            return redirect()->back()->with('pass', 'error');
-                        }
+                            return redirect()->route('profile')->with('password', 'fail');
+                            /* return getMessage($e); */
+                            /* var_dump('error'); */
                     }
                 }else{
-                    return redirect()->back()->with('pass', 'fail');
+                    return redirect()->back()->with('password', 'nomatch');
                 }
             }else{
-                return redirect()->back()->with('pass', 'nomatch');
+                return redirect()->back()->with('password', 'incorrect');
             }
         }
     }

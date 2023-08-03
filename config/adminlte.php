@@ -134,7 +134,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -318,47 +318,85 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ], */
-        /* ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ], */
-         [
-            'text' => 'Cambiar contraseña',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-            'can'  => 'home.password',
-        ],
-        [
-            'text'    => 'modulo1',
+            'text'    => 'Modulo de Admin',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Lista de Usuarios',
                     'url'  => 'usuario',
                 ],
             ],
         ],
         [
-            'text'    => 'modulo2',
+            'text'    => 'Modulo1',
             'icon'    => 'far fa-circle',
-            'url'  => 'modulo2',
+            'submenu' => [
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'modulo1/form',
+                ],
+                [
+                    'text' => 'Lista',
+                    'url'  => 'modulo1/lista',
+                ],
+            ],
         ],
         [
-            'text'    => 'modulo3',
+            'text'    => 'Modulo2',
             'icon'    => 'far fa-circle',
-            'url'  => 'modulo3',
+            'submenu' => [
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'modulo2/form',
+                ],
+                [
+                    'text' => 'Lista',
+                    'url'  => 'modulo2/lista',
+                ],
+            ],
         ],
         [
-            'text'    => 'modulo4',
+            'text'    => 'Modulo3',
             'icon'    => 'far fa-circle',
-            'url'  => 'modulo4',
+            'submenu' => [
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'modulo3/form',
+                ],
+                [
+                    'text' => 'Lista',
+                    'url'  => 'modulo3/lista',
+                ],
+            ],
         ],
         [
-            'text'    => 'modulo5',
+            'text'    => 'Modulo4',
             'icon'    => 'far fa-circle',
-            'url'  => 'modulo5',
+            'submenu' => [
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'modulo4/form',
+                ],
+                [
+                    'text' => 'Lista',
+                    'url'  => 'modulo4/lista',
+                ],
+            ],
+        ],
+        [
+            'text'    => 'Modulo5',
+            'icon'    => 'far fa-circle',
+            'submenu' => [
+                [
+                    'text' => 'Agregar',
+                    'url'  => 'modulo5/form',
+                ],
+                [
+                    'text' => 'Lista',
+                    'url'  => 'modulo5/lista',
+                ],
+            ],
         ],
         /* ['header' => 'labels'],
         [

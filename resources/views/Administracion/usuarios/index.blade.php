@@ -31,6 +31,7 @@
                                             <th>ESTADO</th>
                                             <th>EDITAR</th>
                                             <th>ELIMINAR</th>
+                                            <th>RESTABLECER CONTRASEÑA</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,23 +49,31 @@
                                             @endif
 
                                             @if($dataUser->estado == 1)
-                                                <td><span class="badge bg-success">Activo</span></td>
+                                                <td><span class="badge bg-success">Habilitado</span></td>
                                             @else
-                                                <td><span class="badge bg-danger">Anulado</span></td>
+                                                <td><span class="badge bg-danger">Deshabilitado</span></td>
                                             @endif
                                             <td>
-                                                <form class="" id="editar" method="get" action="{{ url('/userEdit/'.$dataUser->id) }}">
+                                                <form class="" id="editar" method="" action="{{ url('/user/edit/'.$dataUser->id) }}">
                                                     @csrf
-                                                    <button class="btn btn-warning" title="Editar" onclick="userEdit()" type="submit">
+                                                    <button class="btn btn-warning" title="Editar" type="submit">
                                                     <i class="fas fa-edit"></i>
                                                     </button>
                                                 </form>
                                             </td>
                                             <td>
-                                                <form class="formDelete" id="delete" method="post" onclick="userDelete()" action="{{ url('/userDelete/'.$dataUser->id) }}">
+                                                <form class="formDelete" id="delete" method="post" onclick="userdelete()" action="{{ url('/user/delete/'.$dataUser->id) }}">
                                                     @csrf
                                                     <button class="btn btn-danger delete" id="delete" title="Borrar"  type="submit">
                                                     <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form class="" method="post" action="{{ url('/resetpass/'.$dataUser->id) }}">
+                                                    @csrf
+                                                    <button class="btn btn-info" id="delete" title="Restablecer"  type="submit">
+                                                    <i class="fas fa-key"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -151,8 +160,8 @@
                                                     <i class="fas fa-id-card text-dark"></i>
                                                 </div>
                                             </x-slot>
-                                            <option value="stuser" >usuario</option>
-                                            <option value="stadmin" >admin</option>
+                                            <option>usuario</option>
+                                            <option>admin</option>
                                         </x-adminlte-select>
                                     </div>
                                 </div>
@@ -176,7 +185,7 @@
 @section('js')
 
 <script>
-function userDelete() {
+function userdelete() {
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -232,7 +241,7 @@ function userDelete() {
     </script>
 @endif
 
-@if(session('user') == 'fail')
+@if(session('user') == 'error')
     <script>
         Swal.fire({
             icon: 'error',
@@ -242,13 +251,23 @@ function userDelete() {
     </script>
 @endif
 
-@if(session('user') == 'miss')
+@if(session('user') == 'empty')
     <script>
         Swal.fire({
             icon: 'warning',
             title:'Oops...',
             text: 'Ingrese datos solicitados',
         })
+    </script>
+@endif
+
+@if(session('user') == 'reset')
+    <script>
+        Swal.fire(
+        'Restablecido!',
+        'La contraseña se restablecio correctamente.',
+        'success'
+        )
     </script>
 @endif
 

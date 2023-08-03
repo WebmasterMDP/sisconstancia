@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -18,28 +19,61 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function modulo2()
+    public function modulo1_add()
     {
-        return view('modulo2');
+        return view('modulo1/agregar');
     }
 
-    public function modulo3()
+    public function modulo1_show()
     {
-        return view('modulo3');
+        return view('modulo1/lista');
     }
 
-    public function modulo4()
+    public function modulo2_add()
     {
-        return view('modulo4');
+        return view('modulo2/agregar');
+    }
+    public function modulo2_show()
+    {
+        return view('modulo2/lista');
     }
 
-    public function modulo5()
+    public function modulo3_add()
     {
-        return view('modulo5');
+        return view('modulo3/agregar');
     }
 
-    public function changepass()
+    public function modulo3_show()
     {
-        return view('changepassword');
+        return view('modulo3/lista');
+    }
+
+    public function modulo4_add()
+    {
+        return view('modulo4/agregar');
+    }
+
+    public function modulo4_show()
+    {
+        return view('modulo4/lista');
+    }
+
+    public function modulo5_add()
+    {
+        return view('modulo5/agregar');
+    }
+
+    public function modulo5_show()
+    {
+        return view('modulo5/lista');
+    }
+
+
+    public function profile(){       
+
+        var_dump("ok");
+        return view('profile.index', array('user' => Auth::user()) );
+ 
+      
     }
 }
