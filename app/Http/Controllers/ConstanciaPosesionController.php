@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 
 class ConstanciaPosesionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $datos = ConstanciaPosesion::all();
@@ -29,7 +25,6 @@ class ConstanciaPosesionController extends Controller
         $usuario = auth()->user()->username;
         
         $data = new ConstanciaPosesion();
-        
         $data->nombre_completo = request('name');
         $data->numdoc = request('numdoc');
         $data->num_informe = request('numInforme');
@@ -48,7 +43,6 @@ class ConstanciaPosesionController extends Controller
         $data->print = 0;
         $data->estado = 1;
         $data->save();
-
         $id = ConstanciaPosesion::latest('id')->value('id') ?? 1;
 
         $data = new Seguimiento();
