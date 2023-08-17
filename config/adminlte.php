@@ -319,17 +319,21 @@ return [
             'label_color' => 'success',
         ], */
         [
-            'text'    => 'Modulo de Admin',
+            'text'    => 'Módulo Administrador',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
                     'text' => 'Lista de Usuarios',
                     'url'  => 'usuario',
                 ],
+                [
+                    'text' => 'Movimientos',
+                    'url'  => 'seguimiento',
+                ],
             ],
         ],
         [
-            'text'    => 'Modulo1',
+            'text'    => 'Conformidad de Obras',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
@@ -343,7 +347,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Modulo2',
+            'text'    => 'Habilitación Urbana',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
@@ -357,7 +361,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Modulo3',
+            'text'    => 'Constancia de Posesión',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
@@ -371,7 +375,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Modulo4',
+            'text'    => 'Parametros Urbanísticos',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
@@ -385,7 +389,7 @@ return [
             ],
         ],
         [
-            'text'    => 'Modulo5',
+            'text'    => 'Trabajos en la Vía Pública',
             'icon'    => 'far fa-circle',
             'submenu' => [
                 [
