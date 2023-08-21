@@ -198,79 +198,15 @@
                                                                     <i class="fas fa-id-card text-dark"></i>
                                                                 </div>
                                                             </x-slot>
-                                                            @if($data->cantidad_pisos == 1)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISO</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==2)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==3)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==4)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==5)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==6)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==7)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="8">8 PISOS</option>
-                                                            @elseif($data->cantidad_pisos ==8)
-                                                                <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISOS</option>
-                                                                <option value="1">1 PISOS</option>
-                                                                <option value="2">2 PISOS</option>
-                                                                <option value="3">3 PISOS</option>
-                                                                <option value="4">4 PISOS</option>
-                                                                <option value="5">5 PISOS</option>
-                                                                <option value="6">6 PISOS</option>
-                                                                <option value="7">7 PISOS</option>
-                                                            @endif
+                                                            <option value="{{ $data->cantidad_pisos }}">{{ $data->cantidad_pisos }} PISO</option>
+                                                            <option value="1">1 PISO</option>
+                                                            <option value="2">2 PISOS</option>
+                                                            <option value="3">3 PISOS</option>
+                                                            <option value="4">4 PISOS</option>
+                                                            <option value="5">5 PISOS</option>
+                                                            <option value="6">6 PISOS</option>
+                                                            <option value="7">7 PISOS</option>
+                                                            <option value="8">8 PISOS</option>
                                                         </x-adminlte-select>  
                                                     </div>
                                                 </div>
@@ -516,7 +452,7 @@
                                     </div>
                                 </x-adminlte-card>
                                 <!-- foreach ($pisosData as $index => $piso) -->
-                                @for ($i = 0; $i < $data->cantidad_pisos; $i++)
+                                <!-- @for ($i = 0; $i < $data->cantidad_pisos; $i++)
                                     <x-adminlte-card title="PISO {{ $i + 1 }}" class="" name="formPiso{{ $i + 1 }}" id="formPiso{{ $i + 1 }}" theme="dark" icon="fas fa-id-card">
                                         <div class="col-12">
                                             <div class="row">
@@ -527,7 +463,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         @if($atributo == 'antiguedad')
-                                                                         <!-- <label for="">{{ strtoupper($atributo) }} <strong style="color:red">*</strong></label> -->
+
                                                                             <label for="">ANTIGUEDAD <strong style="color:red">*</strong></label>
                                                                         @elseif($atributo == 'muro_columna')
                                                                             <label for="">MURO Y COLUMNA <strong style="color:red">*</strong></label>
@@ -562,7 +498,7 @@
                                             </div>
                                         </div>
                                     </x-adminlte-card>
-                                @endfor
+                                @endfor -->
                                 <div id="duplicatesContainer"></div>
                             </div>
                         </div>
@@ -587,40 +523,197 @@
         <!-- /.container-fluid -->
     </section> 
 </x-adminlte-card>
+<div id="data" data-id="{{ $data->id }}"></div>
 @stop
 
 @section('css')
 @stop
 
 @section('js')
-
 <script>
-    // Función para duplicar el contenido del card según la cantidad seleccionada
-    function duplicateCards() {
+    function updateCards() {
         const cantidadPisos = parseInt(document.getElementById('cantidadPisos').value);
-        const cardTemplate = `
-        
-        `;
+        let cardsHtml = '';
 
-        let allCards = '';
-        for (let i = 1; i <= cantidadPisos; i++) {
-            const cardHtml = cardTemplate.replace(/{i}/g, i);
-            allCards += cardHtml;
-        }
+        @for ($i = 0; $i < $data->cantidad_pisos; $i++)
+            const antiguedadValue{{$i}} = @json($valoresPisos[0]['antiguedad'][$i]);
+            const muroColumnaValue{{$i}} = @json($valoresPisos[0]['muro_columna'][$i]);
+            const techosValue{{$i}} = @json($valoresPisos[0]['techos'][$i]);
+            const pisoValue{{$i}} = @json($valoresPisos[0]['piso'][$i]);
+            const puertaVentanaValue{{$i}} = @json($valoresPisos[0]['puerta_ventana'][$i]);
+            const revestimientoValue{{$i}} = @json($valoresPisos[0]['revestimiento'][$i]);
+            const banoValue{{$i}} = @json($valoresPisos[0]['bano'][$i]);
+            const instElectValue{{$i}} = @json($valoresPisos[0]['inst_elect'][$i]);
+            const areaConstruidaValue{{$i}} = @json($valoresPisos[0]['area_construida'][$i]);
 
-        document.getElementById('duplicatesContainer').innerHTML = allCards;
+            cardsHtml += `
+            <x-adminlte-card title="PISO {{$i + 1}}" class="" name="formPiso{{$i + 1}}" id="formPiso{{$i + 1}}" theme="dark" icon="fas fa-id-card">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">ANTIGUEDAD <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="antiguedad{{$i + 1}}" value="${antiguedadValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">MURO Y COLUMNA <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="muro_columna{{$i + 1}}" value="${muroColumnaValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">TECHOS <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="techos{{$i + 1}}" value="${techosValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">PISO <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="piso{{$i + 1}}" value="${pisoValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">PUERTAS Y VENTANAS <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="puerta_ventana{{$i + 1}}" value="${puertaVentanaValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">REVESTIMIENTO <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="revestimiento{{$i + 1}}" value="${revestimientoValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">BAÑO <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="bano{{$i + 1}}" value="${banoValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">INSTALACIONES ELECT. Y SANT. <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="inst_elect{{$i + 1}}" value="${instElectValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label for="">AREA CONSTRUIDA M2 <strong style="color:red">*</strong></label>
+                                    <x-adminlte-input type="text" name="area_construida{{$i + 1}}" value="${areaConstruidaValue{{$i}}}" placeholder="Complete el campo" label-class="text-lightblue">
+                                        <x-slot name="prependSlot">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-id-card text-dark"></i>
+                                            </div>
+                                        </x-slot>
+                                    </x-adminlte-input>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </x-adminlte-card>
+            `;
+        @endfor
+
+        document.getElementById('duplicatesContainer').innerHTML = cardsHtml;
     }
+    document.getElementById('cantidadPisos').addEventListener('change', updateCards);
 
-    // Escuchar el evento de cambio en el combobox y duplicar los cards cuando cambie
-    document.getElementById('cantidadPisos').addEventListener('change', duplicateCards);
-
-    // Llamar a la función inicialmente para mostrar el número predeterminado de cards
-    duplicateCards();
+    updateCards();
 </script>
 
 <script>
-    let cantidadPisos = document.getElementsByName("cantidadPisos");
+    $('#cantidadPisos').on('change', function() {
+    const nuevaCantidadPisos = $(this).val();
+    const dataId = $('#data').data('id');
+    
+    // Construir la URL de la solicitud AJAX
+    var url = "{{ route('actualizar.pisos', [':id', ':pisos']) }}";
+    url = url.replace(':id', dataId);
+    url = url.replace(':pisos', nuevaCantidadPisos);
 
-        console.log(cantidadPisos);
+            $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                nuevaCantidadPisos: nuevaCantidadPisos
+            },
+            dataType: "json", 
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    });
 </script>
+
 @stop

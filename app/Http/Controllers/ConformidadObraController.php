@@ -293,4 +293,65 @@ class ConformidadObraController extends Controller
     {
         //
     }
+
+    public function actualizarPisos($id, $pisos)
+    {
+        $usuario = auth()->user()->username;
+        $data = ConformidadObra::findOrFail($id);
+        $data->cantidad_pisos = $pisos;
+        $data->save();
+
+        $antiguedad = '';
+        $muroColumna = '';
+        $techos = '';
+        $pisos = '';
+        $puertaVentana = '';
+        $revestimiento = '';
+        $bano = '';
+        $instElect = '';
+        $areaConstruida = '';
+        
+        for ($i = 1; $i <= request('cantidadPisos'); $i++) {
+            $antiguedad .= request('antiguedad' . $i);
+            $muroColumna .= request('muro_columna' . $i);
+            $techos .= request('techos' . $i);
+            $pisos .= request('piso' . $i);
+            $puertaVentana .= request('puerta_ventana' . $i);
+            $revestimiento .= request('revestimiento' . $i);
+            $bano .= request('bano' . $i);
+            $instElect .= request('inst_elect' . $i);
+            $areaConstruida .= request('area_construida' . $i);
+            
+            if ($i < request('cantidadPisos')) {
+                $antiguedad .= '-';
+                $muroColumna .= '-';
+                $techos .= '-';
+                $pisos .= '-';
+                $puertaVentana .= '-';
+                $revestimiento .= '-';
+                $bano .= '-';
+                $instElect .= '-';
+                $areaConstruida .= '-';
+            }
+        }
+        
+        $piso = Piso::where(['expediente_conformidad' => request('expediente')])->first();
+        $piso->expediente_conformidad = request('expediente');
+        $piso->antiguedad = $antiguedad;
+        $piso->muro_columna = $muroColumna;
+        $piso->techos = $techos;
+        $piso->piso = $pisos;
+        $piso->puerta_ventana = $puertaVentana;
+        $piso->revestimiento = $revestimiento;
+        $piso->bano = $bano;
+        $piso->inst_elect = $instElect;
+        $piso->area_construida = $areaConstruida;
+        $piso->user = $usuario;
+        $piso->estado = 1;
+        $piso->observaciones = 'Nuevo Tramite';
+        $piso->save();
+
+        return response()->json(['success' => true]);
+        
+    }
 }

@@ -95,3 +95,7 @@ Route::get('hu/fpdf/{id}', [HabilitacionUrbController::class, 'pdf'])->name('pdf
 Route::get('cp/fpdf/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
 Route::get('pu/fpdf/{id}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{id}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
+
+Route::post('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarPisos'])->name('actualizar.pisos');
+/* 
+Route::post('/actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarCantidadPisos'])->name('actualizar.pisos'); */
