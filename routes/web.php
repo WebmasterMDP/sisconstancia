@@ -59,8 +59,8 @@ Route::post('/pisos/store/', [PisoController::class, 'store'])->name('piso.store
 Route::get('/pisos/edit/{id}', [ConformidadObraController::class, 'edit'])->name('piso.edit');
 Route::post('/pisos/update/{id}', [ConformidadObraController::class, 'update'])->name('piso.update');
 Route::delete('/pisos/delete/{id}', [ConformidadObraController::class, 'destroy'])->name('piso.destroy');
-
  */
+
 Route::get('/modulo2/lista', [HabilitacionUrbController::class, 'index'])->name('habilitacion.index');
 Route::get('/modulo2/form', [HabilitacionUrbController::class, 'create'])->name('habilitacion.create');
 Route::post('/habilitacion/urb', [HabilitacionUrbController::class, 'store'])->name('habilitacion.store');
