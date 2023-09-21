@@ -176,7 +176,7 @@ $pdf->SetFont('Arial', 'B',7);
 $pdf->Cell(53,0,utf8_decode('Área de Tratamiento Normativo'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('IV'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''. $showData->area_tratamiento),0,0,'L');
 $pdf->Ln(5);
 
 $pdf->Cell(5);
@@ -184,56 +184,60 @@ $pdf->SetFont('Arial', 'B',7);
 $pdf->Cell(53,0,utf8_decode('Zonificación'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('RDM (Residencial de Densidad Media)'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''. $showData->zonificacion),0,0,'L');
 $pdf->Ln(5);
 
-$pdf->Cell(5);
-$pdf->SetFont('Arial', 'B',7);
-$pdf->Cell(53,0,utf8_decode('Uso de suelo permisible y compatibles'),0,0,'L');
-$pdf->SetFont('Arial', '',7);
-$pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(60,0,utf8_decode('Vivienda unifamiliar, comercio vecinal y zonal'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residenciales y multifamiliares'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residencial o condominios'),0,0,'L');
-$pdf->Ln(5);
+foreach ($infTecnica as $data) {
+    foreach (['vivienda', 'residencial', 'condominio'] as $attribute) {
+        $data->$attribute = explode(':', $data->$attribute);
+    }
+}
 
-$pdf->Cell(5);
-$pdf->SetFont('Arial', 'B',7);
-$pdf->Cell(53,0,utf8_decode('Porcentaje mínimo de área libre'),0,0,'L');
-$pdf->SetFont('Arial', '',7);
-$pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(60,0,utf8_decode('Vivienda unifamiliar, comercio vecinal y zonal'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('30%'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residenciales y multifamiliares'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('50%'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residencial o condominios'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('70%'),0,0,'L');
-$pdf->Ln(5);
+$titulos = ['Uso de suelo permisible y compatibles', 'Porcentaje mínimo de área libre', 'Altura máxima', 'Área de lote normativo'];
 
-$pdf->Cell(5);
+foreach ($infTecnica as $data) {
+    $maxValues = max(
+        count($data->vivienda),
+        count($data->residencial),
+        count($data->condominio),
+    );
+
+    for ($i = 0; $i < $maxValues; $i++) {
+        $pdf->Cell(5);
+        $pdf->SetFont('Arial', 'B',7);
+        $pdf->Cell(53,0,utf8_decode(''.$titulos[$i]),0,0,'L');
+        $pdf->SetFont('Arial', '',7);
+        $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
+        $pdf->Cell(60,0,utf8_decode('Vivienda unifamiliar, comercio vecinal y zonal'),0,0,'L');
+        $pdf->Cell(0,0,utf8_decode(''.$data->vivienda[$i]),0,0,'L');
+        $pdf->Ln(3);
+        $pdf->Cell(76);
+        $pdf->Cell(60,0,utf8_decode('Conjunto residenciales y multifamiliares'),0,0,'L');
+        $pdf->Cell(0,0,utf8_decode(''.$data->residencial[$i]),0,0,'L');
+        $pdf->Ln(3);
+        $pdf->Cell(76);
+        $pdf->Cell(60,0,utf8_decode('Conjunto residencial o condominios'),0,0,'L');
+        $pdf->Cell(0,0,utf8_decode(''. $data->condominio[$i]),0,0,'L');
+        $pdf->Ln(5);
+    }
+}
+
+/* $pdf->Cell(5);
 $pdf->SetFont('Arial', 'B',7);
 $pdf->Cell(53,0,utf8_decode('Altura máxima'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
 $pdf->Cell(60,0,utf8_decode('Vivienda unifamiliar, comercio vecinal y zonal'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('3 pisos'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''. $showData->vivienda),0,0,'L');
 $pdf->Ln(3);
 $pdf->Cell(76);
 $pdf->Cell(60,0,utf8_decode('Conjunto residenciales y multifamiliares'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('5 pisos'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''. $showData->residencial),0,0,'L');
 $pdf->Ln(3);
 $pdf->Cell(76);
 $pdf->Cell(60,0,utf8_decode('Conjunto residencial o condominios'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('8 pisos'),0,0,'L');
-$pdf->Ln(5);
+$pdf->Cell(0,0,utf8_decode(''. $showData->condominio),0,0,'L');
+$pdf->Ln(5); */
 
 $pdf->Cell(5);
 $pdf->SetFont('Arial', 'B',7);
@@ -241,28 +245,11 @@ $pdf->Cell(53,0,utf8_decode('Retiros'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
 $pdf->Cell(60,0,utf8_decode('Frente a avenidas'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('5.00 ml'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''.$showData->frente_avenidas),0,0,'L');
 $pdf->Ln(3);
 $pdf->Cell(76);
 $pdf->Cell(60,0,utf8_decode('Frente a calles'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('3.00 ml'),0,0,'L');
-$pdf->Ln(5);
-
-$pdf->Cell(5);
-$pdf->SetFont('Arial', 'B',7);
-$pdf->Cell(53,0,utf8_decode('Área de lote normativo'),0,0,'L');
-$pdf->SetFont('Arial', '',7);
-$pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(60,0,utf8_decode('Vivienda unifamiliar, comercio vecinal y zonal'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('120 m2 unif. / 160 m2 mult.'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residenciales y multifamiliares'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('2,500 m2'),0,0,'L');
-$pdf->Ln(3);
-$pdf->Cell(76);
-$pdf->Cell(60,0,utf8_decode('Conjunto residencial o condominios'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('10,000 m2'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''.$showData->frente_calles),0,0,'L');
 $pdf->Ln(5);
 
 $pdf->Cell(5);
@@ -270,7 +257,7 @@ $pdf->SetFont('Arial', 'B',7);
 $pdf->Cell(53,0,utf8_decode('Frente de lote mínimo'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('6 ml'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''.$showData->frente_lote),0,0,'L');
 $pdf->Ln(5);
 
 $pdf->Cell(5);
@@ -278,7 +265,7 @@ $pdf->SetFont('Arial', 'B',7);
 $pdf->Cell(53,0,utf8_decode('Estacionamientos'),0,0,'L');
 $pdf->SetFont('Arial', '',7);
 $pdf->Cell(18,0,utf8_decode('--------------'),0,0,'L');
-$pdf->Cell(0,0,utf8_decode('1 estacionamiento por vivienda'),0,0,'L');
+$pdf->Cell(0,0,utf8_decode(''. $showData->estacionamiento),0,0,'L');
 $pdf->Ln(8);
 
 /* PARRAFO */

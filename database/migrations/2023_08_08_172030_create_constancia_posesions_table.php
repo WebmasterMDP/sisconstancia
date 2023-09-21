@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('num_informe');
             $table->string('num_expediente');
             $table->string('fecha_expediente');
+            $table->string('fecha_ingreso');
             $table->string('ubicacion');
             $table->string('partner');
             $table->string('dni_partner');

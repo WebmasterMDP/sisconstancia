@@ -12,8 +12,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    Campos obligatorios ('<strong style="color:red">*</strong>') 
+                <div class="col-md-12">Campos obligatorios ('<strong style="color:red">*</strong>')
                 </div>
                 <div class="col-12">
                     <form action="{{ route('via.pub.store')}}" method="POST" autocomplete="off">
@@ -118,69 +117,89 @@
                                     </div>               
                                 </x-adminlte-card>
                                 <x-adminlte-card title="INFORMACION DEL PREDIO" class="" theme="dark" icon="fas fa-id-card">
-                                    <div class="col-12">                    
-                                        <div class="row ">
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- CONCEPTO DE SERVICIO --}} 
-                                                        <label for="">CONCEPTO DE SERVICIO <strong style="color:red">*</strong> </label>                                      
-                                                        <x-adminlte-input type="text" name="conceptoServicio" id="conceptoServicio" required placeholder="Ingresar servicio" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-calendar text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>  
+                                    <div class="row">
+                                        <div class="col-12">                                       
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label for="">CONCEPTO DE SERVICIO<strong style="color:red">*</strong> </label>                                   
+                                                            <x-adminlte-input type="text" name="conceptoServicio" id="conceptoServicio" required placeholder="Ingresar servicio" label-class="text-lightblue">
+                                                                <x-slot name="prependSlot">
+                                                                    <div class="input-group-text">
+                                                                        <i class="fas fa-id-card text-dark"></i>
+                                                                    </div>
+                                                                </x-slot>
+                                                            </x-adminlte-input>  
+                                                        </div>
+                                                    </div>
+                                                </div>   
+                                                <div class="col-md-9">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- UBICACIÓN --}}
+                                                            <label for="">UBICACIÓN <strong style="color:red">*</strong> </label>                                    
+                                                            <x-adminlte-input type="text" name="ubicacion" id="ubicacion" required placeholder="Ingrese ubicación" label-class="text-lightblue">
+                                                                <x-slot name="prependSlot">
+                                                                    <div class="input-group-text">
+                                                                        <i class="fas fa-id-card text-dark"></i>
+                                                                    </div>
+                                                                </x-slot>
+                                                            </x-adminlte-input>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- FECHA DE INSTALACIÓN --}} 
+                                                            <label for="">FECHA DE INSTALACIÓN <strong style="color:red">*</strong> </label>                                      
+                                                            <x-adminlte-input type="date" name="fechaInstalacion" id="fechaInstalacion" required label-class="text-lightblue">
+                                                                <x-slot name="prependSlot">
+                                                                    <div class="input-group-text">
+                                                                        <i class="fas fa-id-card text-dark"></i>
+                                                                    </div>
+                                                                </x-slot>
+                                                            </x-adminlte-input>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- OTROGADO POR --}}
+                                                            <label for="">OTROGADO POR <strong style="color:red">*</strong> </label>                                    
+                                                            <x-adminlte-input type="text" name="proveedorServicio" id="proveedorServicio" required placeholder="Ingresar dirección" label-class="text-lightblue">
+                                                                <x-slot name="prependSlot">
+                                                                    <div class="input-group-text">
+                                                                        <i class="fas fa-id-card text-dark"></i>
+                                                                    </div>
+                                                                </x-slot>
+                                                            </x-adminlte-input>  
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- UBICACIÓN --}}
-                                                        <label for="">UBICACIÓN <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="text" name="ubicacion" id="ubicacion" required placeholder="Ingrese ubicación" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>  
+                                        </div>
+                                        <div class="col-12">                                       
+                                            <div class="row ">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            {{-- CONCEPTO DE SERVICIO --}} 
+                                                            <label for="">CONCEPTO DE SERVICIO <strong style="color:red">*</strong> </label>
+                                                            <x-adminlte-input type="text" name="conceptoServicio" id="conceptoServicio" required placeholder="Ingresar servicio" label-class="text-lightblue">
+                                                                <x-slot name="prependSlot">
+                                                                    <div class="input-group-text">
+                                                                        <i class="fas fa-calendar text-dark"></i>
+                                                                    </div>
+                                                                </x-slot>
+                                                            </x-adminlte-input>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- FECHA DE INSTALACIÓN --}} 
-                                                        <label for="">FECHA DE INSTALACIÓN <strong style="color:red">*</strong> </label>                                      
-                                                        <x-adminlte-input type="date" name="fechaInstalacion" id="fechaInstalacion" required label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- OTROGADO POR --}}
-                                                        <label for="">OTROGADO POR <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="text" name="proveedorServicio" id="proveedorServicio" required placeholder="Ingresar dirección" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>       
+                                        </div>
                                     </div>
                                 </x-adminlte-card>
                                 <input type="hidden" id="estado" name="estado" value="1">
@@ -193,19 +212,20 @@
                                     <button class="btn btn-primary" name="btnRegistrar" id="btnRegistrar" type="submit">
                                         <i class="fas fa-check-double"></i>
                                         Registrar
-                                    </button>                                                                       
-                                </div>                                       
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                    <!-- /.card-body -->
                     </form>
-                    <!-- /.form -->          
+                <!-- /.form -->
                 </div>
-                <!-- /.col -->
+            <!-- /.col -->
             </div>
-            <!-- /.row -->
+        <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-    </section> 
+    <!-- /.container-fluid -->
+    </section>
 </x-adminlte-card>
 @stop
 

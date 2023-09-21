@@ -621,8 +621,38 @@
 
 @section('js')
 
+@if(session('data') == 'miss')
+    <script>
+        Swal.fire(
+        'Campos incompletos!',
+        'No procedio la solicitud',
+        'warning'
+        )
+    </script>
+@endif
+
+@if(session('error') == 'fail')
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title:'Ups...',
+            text: 'Algo ocurrio mal!',
+            footer: '<a href="https://munipachacamac.com/">Oficina de Gobierno Digital</a>'
+        })  
+    </script>
+@endif
+
+@if(session('reason') == 'miss')
+    <script>
+        Swal.fire(
+            'No ingreso motivo!',
+            'No procedio la solicitud',
+            'warning'
+        )
+    </script>
+@endif
+
 <script>
-    // Función para duplicar el contenido del card según la cantidad seleccionada
     function duplicateCards() {
         const cantidadPisos = parseInt(document.getElementById('cantidadPisos').value);
         const cardTemplate = `

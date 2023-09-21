@@ -104,21 +104,6 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Nombre y Apellido --}}
-                                        <label for="">Nombre y Apellido</label>
-                                        <x-adminlte-input type="text" required name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>  
-                                    </div>
-                                </div>
-                            </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -131,6 +116,21 @@
                                                 </div>
                                             </x-slot>
                                         </x-adminlte-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- Nombre y Apellido --}}
+                                        <label for="">Nombre y Apellido</label>
+                                        <x-adminlte-input type="text" required name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>  
                                     </div>
                                 </div>
                             </div>
@@ -160,8 +160,8 @@
                                                     <i class="fas fa-id-card text-dark"></i>
                                                 </div>
                                             </x-slot>
-                                            <option>usuario</option>
-                                            <option>admin</option>
+                                            <option value="user">usuario</option>
+                                            <option value="admin">admin</option>
                                         </x-adminlte-select>
                                     </div>
                                 </div>

@@ -140,10 +140,10 @@ $pdf->Cell(26,15,utf8_decode('VISTO:'),0,0,'R');
 $pdf->Ln(10);
 
 $pdf->SetFont('Arial', '',8.2);
-$pdf->MultiCell(0,3.5,utf8_decode('             El Expediente Nº '.$showData->num_expediente.' de fecha '.$fecha_expediente.', seguido por la Sr. '.$showData->nombre_completo.'  identificado con DNI N° '.$showData->numdoc.', quien solicita la autorización de trabajos en la vía pública con el fin de ejecutar la dotación de instalaciones domiciliarias de '.$showData->concepto_servicio.', según lo otorgado por '.$showData->proveedor_servicio.' con fecha '.$fecha_instalacion.', para el predio ubicado en '.$showData->ubicacion.'. Se Procede a:'),0,'J',false);
+$pdf->MultiCell(0,3.5,utf8_decode('             El Expediente Nº '.$showData->num_expediente.' de fecha '.$fecha_expediente.', seguido por la Sr. '.$showData->nombre_completo.'  identificado con DNI N° '.$showData->numdoc.', quien solicita la autorización de trabajos en la vía pública con el fin de ejecutar la dotación de instalaciones domiciliarias de '.$showData->concepto_servicio.', según lo otorgado por '.$showData->proveedor_servicio.' con fecha '.$fecha_instalacion.', para el predio ubicado en '.$showData->ubicacion.', departamento y provincia Lima se procede a:'),0,'J',false);
 $pdf->Ln(5);
 
-$pdf->MultiCell(0,3.5,utf8_decode('               Habiendo realizado el pago correspondiente a los derechos administrativos de acuerdo con el comprobante Nº '.$showData->comprobante.', y efectuado el informe N.º '.$showData->num_informe.', se procede a:'),0,'J',false);
+$pdf->MultiCell(0,3.5,utf8_decode('               Habiendo realizado el pago correspondiente a los derechos administrativos de acuerdo con el comprobante Nº '.$showData->comprobante.', y efectuado el informe del personal tecnico N.º '.$showData->num_informe.', se procede a:'),0,'J',false);
 $pdf->Ln(0.1);
 
 /* PARRAFO */

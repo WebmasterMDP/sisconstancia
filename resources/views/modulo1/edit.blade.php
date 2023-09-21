@@ -42,7 +42,7 @@
                                                     <div class="col-md-12">
                                                         {{-- EXPEDIENTE --}} 
                                                         <label for="">EXPEDIENTE <strong style="color:red">*</strong> </label>                                      
-                                                        <x-adminlte-input type="text" name="expediente" id="expediente" value="{{ $data->expediente }}" required placeholder="Ingrese n° de expediente" label-class="text-lightblue">
+                                                        <x-adminlte-input type="text" name="expediente" id="expediente" value="{{ $data->expediente }}" required placeholder="Ingrese n° de expediente" readonly="readonly" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -700,14 +700,14 @@
     url = url.replace(':pisos', nuevaCantidadPisos);
 
             $.ajax({
-            type: "POST",
+            type: "GET",
             url: url,
             data: {
                 nuevaCantidadPisos: nuevaCantidadPisos
             },
             dataType: "json", 
             success: function(response) {
-                console.log(response);
+                $('#duplicatesContainer').html(response.html);
             },
             error: function(error) {
                 console.error(error);

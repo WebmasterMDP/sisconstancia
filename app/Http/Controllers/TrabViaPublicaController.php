@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TrabViaPublica;
 use App\Models\Seguimiento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TrabViaPublicaController extends Controller
 {
@@ -22,40 +23,64 @@ class TrabViaPublicaController extends Controller
 
     public function store(Request $request)
     {
-        $usuario = auth()->user()->username;
+
+        $validate = Validator::make($request->all(),
+        [
+            'name' => 'required',
+            'numDoc'=> 'required',
+            'expediente'=> 'required',
+            'fechaExpediente'=> 'required',
+            'numInforme'=> 'required',
+            'comprobante'=> 'required',
+
+            'conceptoServicio'=> 'required',
+            'ubicacion'=> 'required',
+            'fechaInstalacion'=> 'required',
+            'proveedorServicio'=> 'required',
+        ],[
+            'required' => 'Ingrese datos solicitados',
+        ]);
+
+        if($validate->fails()){
+
+            return back()->with();
+
+        }else{
+
+            $usuario = auth()->user()->username;
         
-        $data = new TrabViaPublica();
-        $data->nombre_completo = request('name');
-        $data->numdoc = request('numDoc');
-        $data->num_expediente = request('expediente');
-        $data->fecha_expediente = request('fechaExpediente');
-        $data->num_informe = request('numInforme');
-        $data->comprobante = request('comprobante');
+            $data = new TrabViaPublica();
+            $data->nombre_completo = request('name');
+            $data->numdoc = request('numDoc');
+            $data->num_expediente = request('expediente');
+            $data->fecha_expediente = request('fechaExpediente');
+            $data->num_informe = request('numInforme');
+            $data->comprobante = request('comprobante');
+            $data->concepto_servicio = request('conceptoServicio');
+            $data->ubicacion = request('ubicacion');
+            $data->fecha_instalacion = request('fechaInstalacion');
+            $data->proveedor_servicio = request('proveedorServicio');
+            $data->user = $usuario;
+            $data->print = 0;
+            $data->estado = 1;
+            $data->save();
 
-        $data->concepto_servicio = request('conceptoServicio');
-        $data->ubicacion = request('ubicacion');
-        $data->fecha_instalacion = request('fechaInstalacion');
-        $data->proveedor_servicio = request('proveedorServicio');
+            $id = TrabViaPublica::latest('id')->value('id') ?? 1;
+            $data = new Seguimiento();
+            $data->id_tramite = $id;
+            $data->tipo_tramite = 'Trabajo en Via Publica';
+            $data->print = 0;
+            $data->estado = 1;
+            $data->fecha = date('d-m-Y');
+            $data->hora = date('H:i:s');
+            $data->user = $usuario;
+            $data->observacion = 'Nuevo Tramite';
+            $data->save();
 
-        $data->user = $usuario;
-        $data->print = 0;
-        $data->estado = 1;
-        $data->save();
+            return redirect()->route('via.pub.index')->with('create', 'ok');
 
-        $id = TrabViaPublica::latest('id')->value('id') ?? 1;
+        }
 
-        $data = new Seguimiento();
-        $data->id_tramite = $id;
-        $data->tipo_tramite = 'Trabajo en Via Publica';
-        $data->print = 0;
-        $data->estado = 1;
-        $data->fecha = date('d-m-Y');
-        $data->hora = date('H:i:s');
-        $data->user = $usuario;
-        $data->observacion = 'Nuevo Tramite';
-        $data->save();
-
-        return redirect()->route('via.pub.index');
     }
 
     public function pdf($id)
@@ -66,7 +91,6 @@ class TrabViaPublicaController extends Controller
 
     public function show(TrabViaPublica $trabViaPublica)
     {
-        
     }
 
     public function edit($id)

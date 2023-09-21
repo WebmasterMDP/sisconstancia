@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'password'  =>bcrypt('admin123')
         ])->assignRole('superadmin');
 
-        User::create([
+        /* User::create([
             'name'      =>'PRUEBA',
             'username'  =>'admin',
             'numdoc' =>'12345678',
@@ -33,6 +33,6 @@ class UserSeeder extends Seeder
             'estado'    =>'1',
             'email'     =>'1@MDP.com',
             'password'  =>bcrypt('12345678')
-        ])->assignRole('stuser');
+        ])->assignRole('stuser'); */
     }
 }

@@ -126,7 +126,7 @@ $pdf->SetFont('Arial','BU',14);
 
 $pdf->Cell(NULL,21,utf8_decode('RESOLUCIÓN DE CONFORMIDAD DE OBRA'),0,0,'C');
 $pdf->Ln(4);
-$pdf->Cell(NULL,23,utf8_decode('N° 0007-2023-MDP/GDU-SGPUCIPHU'),0,0,'C');
+$pdf->Cell(NULL,23,utf8_decode('N° '.$showData->num_resolucion.'-MDP/GDU-SGPUCOPHU'),0,0,'C');
 
 /* $pdf->Ln(3); */
 $pdf->Ln(15);
@@ -145,7 +145,7 @@ $pdf->Cell(0,15,utf8_decode($showData->fecha_expediente),0,0,'L');
 $pdf->Ln(7);
 
 /* SUBTITULO */
-$pdf->Cell(1,15,utf8_decode('La Subgerencia de Obras Privadas y Control Urbano,'),0,0,'L');
+$pdf->Cell(1,15,utf8_decode('Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas'),0,0,'L');
 $pdf->Ln(7);
 $pdf->SetFont('Arial', 'B',9);
 $pdf->Cell(1,15,utf8_decode('Certifica:'),0,0,'L');
@@ -153,21 +153,22 @@ $pdf->Ln(12);
 
 /* PARRAFO */
 $pdf->SetFont('Arial', null,10);
-$pdf->Write(5, utf8_decode('Que de conformidad con la Inspección Ocular realizado por el Personal Técnico de la Subgerencia de Obras Privadas y Control Urbano al predio de'));
+$pdf->Write(5, utf8_decode('Que de conformidad con la Inspección Ocular realizado por el Personal Técnico de la Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas al predio de.'));
 /* $pdf->MultiCell(0, 4, utf8_decode('Que de conformidad con la Inspección Ocular realizado por el Personal Técnico de la Subgerencia de Obras Privadas y Control Urbano al predio de') ,0 ,'J', false); */
 $pdf->SetFont('Arial', 'B',10);
 $pdf->Write(5, utf8_decode(' '.$showData->propietario));
 $pdf->SetFont('Arial', null,10);
-$pdf->Write(5, utf8_decode(' Ubicado en '));
+$pdf->Write(5, utf8_decode(', ubicado en '));
 $pdf->SetFont('Arial', 'B',10);
 $pdf->Write(5, utf8_decode($showData->ubicacion));
 $pdf->SetFont('Arial', null,10);
 $pdf->Write(5, utf8_decode(' de este distrito se encuentra concluida de Conformidad a:'));
 $pdf->Ln(8);
 
-$pdf->Cell(63, 5, utf8_decode('N° de Licencia: '.$showData->num_licencia), 1, 0, 'L', 0);
-$pdf->Cell(63, 5, utf8_decode('N° de Expediente: '.$showData->expediente), 1, 0, 'L', 0);
-$pdf->Cell(63, 5, utf8_decode('Monto: '.$showData->valor_obra), 1, 0, 'L', 0);
+$pdf->SetFont('Arial', null,8);
+$pdf->Cell(75, 5, utf8_decode('N° de Licencia de Edificación: '.$showData->num_licencia), 1, 0, 'L', 0);
+$pdf->Cell(65, 5, utf8_decode('N° de Expediente: '.$showData->expediente), 1, 0, 'L', 0);
+$pdf->Cell(50, 5, utf8_decode('Monto: '.$showData->valor_obra), 1, 0, 'L', 0);
 $pdf->Ln(4);
 
 /* DATOS */
@@ -178,13 +179,13 @@ $pdf->Cell(50,15,utf8_decode(': '.$showData->tipo_edificacion),0,0,'L');
 $pdf->SetFont('Arial', 'B',8.5);
 $pdf->Cell(34,15,utf8_decode('Área Terreno '),0,0,'L');
 $pdf->SetFont('Arial', null,8);
-$pdf->Cell(15,15,utf8_decode(': '.$showData->area_terreno),0,0,'L');
+$pdf->Cell(15,15,utf8_decode(': '.$showData->area_terreno.' m²'),0,0,'L');
 $pdf->Ln(4);
 
 $pdf->SetFont('Arial', 'B',8.5);
 $pdf->Cell(34,15,utf8_decode('Área Construida '),0,0,'L');
 $pdf->SetFont('Arial', null,8);
-$pdf->Cell(50,15,utf8_decode(': '.$showData->area_construida),0,0,'L');
+$pdf->Cell(50,15,utf8_decode(': '.$showData->area_construida.' m²'),0,0,'L');
 $pdf->SetFont('Arial', 'B',8.5);
 $pdf->Cell(34,15,utf8_decode('Otros '),0,0,'L');
 $pdf->SetFont('Arial', null,8);
@@ -207,7 +208,7 @@ $pdf->Cell(22, 5, utf8_decode('AREA LIBRE'), 1, 0, 'C', 0);
 $pdf->Cell(19, 5, utf8_decode('DENSIDAD'), 1, 0, 'C', 0);
 $pdf->Cell(31, 5, utf8_decode('ESTACIONAMIENTO'), 1, 1, 'C', 0);
 
-$pdf->Cell(20, 5, utf8_decode('NORMATIVA'), 1, 0, 'C', 0);
+$pdf->Cell(20, 5, utf8_decode('NORMATIVO'), 1, 0, 'C', 0);
 $pdf->SetFont('Arial', '',6);
 $pdf->Cell(27, 5, utf8_decode($showData->zonificacion_normativa), 1, 0, 'C', 0);
 $pdf->Cell(18, 5, utf8_decode($showData->area_eu_normativa), 1, 0, 'C', 0);
@@ -266,37 +267,23 @@ foreach ($pisosData as $piso) {
 
     for ($i = 0; $i < $maxValues; $i++) {
         $pdf->Cell(12, 6, utf8_decode('PISO '.$i+1), 1, 0, 'C', 0);
-        $pdf->Cell(16, 6, utf8_decode($piso->antiguedad[$i].'2023'), 1, 0, 'C', 0);
-        $pdf->Cell(22, 6, utf8_decode($piso->muro_columna[$i].'C'), 1, 0, 'C', 0);
-        $pdf->Cell(12, 6, utf8_decode($piso->techos[$i].'C'), 1, 0, 'C', 0);
-        $pdf->Cell(9, 6, utf8_decode($piso->piso[$i].'D'), 1, 0, 'C', 0);
-        $pdf->Cell(27, 6, utf8_decode($piso->puerta_ventana[$i].'D'), 1, 0, 'C', 0);
-        $pdf->Cell(19, 6, utf8_decode($piso->revestimiento[$i].'F'), 1, 0, 'C', 0);
-        $pdf->Cell(9, 6, utf8_decode($piso->bano[$i].'D'), 1, 0, 'C', 0);
-        $pdf->Cell(37, 6, utf8_decode($piso->inst_elect[$i].'D'), 1, 0, 'C', 0);
-        $pdf->Cell(27, 6, utf8_decode($piso->area_construida[$i].'334.80'), 1, 1, 'C', 0);
+        $pdf->Cell(16, 6, utf8_decode($piso->antiguedad[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(22, 6, utf8_decode($piso->muro_columna[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(12, 6, utf8_decode($piso->techos[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(9, 6, utf8_decode($piso->piso[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(27, 6, utf8_decode($piso->puerta_ventana[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(19, 6, utf8_decode($piso->revestimiento[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(9, 6, utf8_decode($piso->bano[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(37, 6, utf8_decode($piso->inst_elect[$i].''), 1, 0, 'C', 0);
+        $pdf->Cell(27, 6, utf8_decode($piso->area_construida[$i].''), 1, 1, 'C', 0);
     }
-
 }
-/* foreach($pisosData as $piso)
-{
-    $pdf->Cell(12, 7, utf8_decode($piso->piso.' PISO'), 1, 0, 'C', 0);
-    $pdf->Cell(16, 7, utf8_decode($piso->antiguedad.'2023'), 1, 0, 'C', 0);
-    $pdf->Cell(22, 7, utf8_decode($piso->muro_columna.'C'), 1, 0, 'C', 0);
-    $pdf->Cell(12, 7, utf8_decode($piso->techos.'C'), 1, 0, 'C', 0);
-    $pdf->Cell(9, 7, utf8_decode($piso->piso.'D'), 1, 0, 'C', 0);
-    $pdf->Cell(27, 7, utf8_decode($piso->puerta_ventana.'D'), 1, 0, 'C', 0);
-    $pdf->Cell(19, 7, utf8_decode($piso->revestimiento.'F'), 1, 0, 'C', 0);
-    $pdf->Cell(9, 7, utf8_decode($piso->bano.'D'), 1, 0, 'C', 0);
-    $pdf->Cell(37, 7, utf8_decode($piso->inst_elect.'D'), 1, 0, 'C', 0);
-    $pdf->Cell(27, 7, utf8_decode($piso->area_construida.'334.80'), 1, 1, 'C', 0);
-} */
 
 $pdf->Ln(4);
 
 /* SEGUNDO PARRAFO */
 $pdf->SetFont('Arial', null,9);
-$pdf->MultiCell(0, 4, utf8_decode('Se expide esta Resolución de acuerdo al D.S. 006-2017-VIV, Ley 29090 y modificatorias.') ,0 ,'J', false);
+$pdf->MultiCell(0, 4, utf8_decode('Se expide esta Resolución de acuerdo al TUO de la Ley N° 29090 o aprobado con el D.S. 029-2019-VIVIENDA.') ,0 ,'J', false);
 
 /* SEGUNDO SUBTITULO */
 $pdf->SetFont('Arial', 'UB', 9);

@@ -23,49 +23,31 @@ class PDF extends FPDF
         $this->Cell(1);
         // Título
 
-        /* $this->Cell(112,15,'MUNICIPALIDAD DISTRITAL DE',0,0,'R');
-        $this->Ln(3);
-        $this->SetFont('Arial','B',13);
-        $this->Cell(114,15,'PACHACAMAC',0,0,'R');
-        $this->Ln(8);
-        
-        $this->SetFont('Arial','',6);
-        $this->Ln(3);
-        $this->Cell(NULL,0, utf8_decode('Año de la Unidad, la Paz y el Desarrollo'),0,0,'C');
-        $this->Ln(5);
-        $this->SetFont('Arial','B',6);
-        $this->Cell(NULL,0,'GERENCIA DE DESARROLLO URBANO',0,0,'C');
-        $this->Ln(3);
-        $this->Cell(NULL,0,'SUBGERENCIA PLANEAMIENTO URBANO, CATASTRO, OBRAS PRIVADAS Y HABILITACIONES URBANAS',0,0,'C');
-        $this->Ln(3);
-        $this->SetFont('Arial','B',6);
-        $this->Cell(NULL,0,utf8_decode('(LEY 29090)'),0,0,'C');
-       
-        $this->Ln(3);
-        $this->SetFont('Arial', 'B',6);
-        $this->Cell(166,0,utf8_decode('Expediente: '),0,0,'R');
-        $this->SetFont('Arial', null,6);
-        $this->Cell(20,0,utf8_decode('11494-2023'),0,0,'R');
+        $this->Image('vendor/adminlte/dist/img/escudo.png',10,8,20);
 
+        $this->SetFont('Arial',null,16);
+
+        $this->Cell(20);
+
+        $this->Cell(15,7,'MUNICIPALIDAD DE',0,0,'L');
         $this->Ln(3);
-        $this->SetFont('Arial', 'B',6);
-        $this->Cell(166,0,utf8_decode('Fecha de Expedición: '),0,0,'R');
-        $this->SetFont('Arial', null,6);
-        $this->Cell(20,0,utf8_decode('26/07/2019'),0,0,'R');
+        $this->SetFont('Arial','B',11);
+        $this->Cell(240,0,utf8_decode('SUB GERENCIA DE PLANEAMIENTO'),0,0,'C');
+        $this->Ln(1);
+        $this->Cell(240,7,utf8_decode('URBANO, CATASTRO, OBRAS PRIVADAS'),0,0,'C');
+        $this->Ln(1);
+        $this->Cell(240,14,utf8_decode('Y HABILITACIONES URBANAS'),0,0,'C');
+        $this->Ln(1);
+        $this->Cell(20);
+        $this->SetFont('Arial','B',21);
+        $this->Cell(25,7,utf8_decode('PACHACÁMAC'),0,0,'L');
+        $this->Ln(6);
         
-        $this->Ln(3);
-        $this->SetFont('Arial', 'B',6);
-        $this->Cell(166,0,utf8_decode('Fecha de Vencimiento: '),0,0,'R');
-        $this->SetFont('Arial', null,6);
-        $this->Cell(20,0,utf8_decode('26/07/2022'),0,0,'R');
-        
-        $this->Ln(4);
-        $this->SetFont('Arial','B',10);
-        $this->Cell(NULL,0,utf8_decode('RESOLUCION   DE  LICENCIA DE HABILITACIÓN URBANA'),0,0,'C');
-        $this->Ln(4);
-        $this->Cell(NULL,0,utf8_decode('N° 061-2019-SGOPR-GDU/ML.'),0,0,'C'); */
-        
-        $this->Ln(25);
+        $this->Ln(6);
+        $this->Cell(7);
+        $this->SetFont('Arial',null,10);
+        $this->Cell(25,7,utf8_decode('"Año de la Unidad, la Paz y el Desarrollo"'),0,0,'L');
+        $this->Ln(7);
     }
 
         function LoadData($file)
@@ -204,10 +186,10 @@ $pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente constancia, no es 
 $pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente constancia, tendrá validez hasta el '.$fecha_validez));
 $pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('El posesionario es el único que puede tramitar la solicitud de Servicios Básicos.'));
 $pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('No renovable.'));
-$pdf->Ln(20);
+$pdf->Ln(7);
 
-$hoy = utf8_decode(date("d-m-Y", strtotime(date("Y-m-d")))); 
-$fecha_hoy = utf8_decode(strftime("%d de %B %Y.", strtotime($hoy))) ;
+$ingreso = utf8_decode(date("d-m-Y", strtotime($showData->fecha_ingreso))); 
+$fecha_hoy = utf8_decode(strftime("%d de %B %Y.", strtotime($ingreso))) ;
 $pdf->Cell(0,20,utf8_decode('Pachacácmac, '.$fecha_hoy),0,0,'R');
 $pdf->Output();
 exit;
