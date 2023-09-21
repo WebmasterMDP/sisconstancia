@@ -59,7 +59,7 @@
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE EMISIÓN --}}
                                                         <label for="">FECHA DE EMISIÓN <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="date" name="fechaEmision" id="fechaEmision" value="<?php echo $today->format('Y-m-d'); ?>" required label-class="text-lightblue">
+                                                        <x-adminlte-input type="date" name="fechaEmision" id="fechaEmision" value="<?php echo $today->format('Y-m-d'); ?>" readonly="readonly" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -99,12 +99,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php $fechaactual = date('Y-m-d');
+                                            $nuevafecha = strtotime ('+3 year' , strtotime($fechaactual)); 
+                                            $nuevafecha = date ('Y-m-d',$nuevafecha); 
+                                            ?>
                                             <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE VENCIMIENTO --}}
                                                         <label for="">FECHA DE VENCIMIENTO <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="date" name="fechaVencimiento" id="fechaVencimiento" required label-class="text-lightblue">
+                                                        <x-adminlte-input type="date" name="fechaVencimiento" id="fechaVencimiento" value="<?php echo $nuevafecha; ?>" readonly="readonly" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -255,126 +259,289 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- AREA BRUTA DEL TERRENO --}}
-                                                        <label for="">ÁREA BRUTA DEL TERRENO <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaTerrenoBruto" id="areaTerrenoBruto" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
+
+                                            <x-adminlte-card title="ÁREA m²" class="" theme="dark" icon="fas fa-id-card">
+                                                <div class="col-12">                    
+                                                    <div class="row ">
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- AREA BRUTA DEL TERRENO --}}
+                                                                    <label for="">ÁREA BRUTA DEL TERRENO <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaTerrenoBruto1" id="areaTerrenoBruto1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
                                                                 </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA ÚTIL DE LOTES --}}
+                                                                    <label for="">ÁREA ÚTIL DE LOTES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaUtil1" id="areaUtil1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE VÍAS --}}
+                                                                    <label for="">ÁREA DE VÍAS <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaVias1" id="areaVias1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES RECREACIÓN PÚBLICA --}}
+                                                                    <label for="">ÁREA DE APORTES RECREACIÓN PÚBLICA <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaRecreacion1" id="areaRecreacion1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES PARA MINISTERIO DE EDUCACIÓN --}}
+                                                                    <label for="">ÁREA DE APORTES PARA MINISTERIO DE EDUCACIÓN <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaMinisterio1" id="areaMinisterio1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES PARA OTROS FINES --}}
+                                                                    <label for="">ÁREA DE APORTES PARA OTROS FINES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaFines1" id="areaFines1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA APORTES PARA PARQUES ZONALES --}}
+                                                                    <label for="">ÁREA APORTES PARA PARQUES ZONALES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaParques1" id="areaParques1" required placeholder="Ingrese calculo a m²" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA PARA EQUIPAMIENTO URBANO --}}
+                                                                    <label for="">ÁREA PARA EQUIPAMIENTO URBANO <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaEquipamiento1" id="areaEquipamiento1" required placeholder="Ingrese calculo a m² " label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- OTROS --}}
+                                                                    <label for="">OTROS <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="otros1" id="otros1" required placeholder="Ingrese calculo a m² " label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA VÍA METROPOLITANA --}}
-                                                        <label for="">ÁREA VÍA METROPOLITANA <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaViaMetro" id="areaViaMetro" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
+                                            </x-adminlte-card>
+                                            <x-adminlte-card title="PORCENTAJE %" class="" theme="dark" icon="fas fa-id-card">
+                                                <div class="col-12">                    
+                                                    <div class="row ">
+                                                    <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- AREA BRUTA DEL TERRENO --}}
+                                                                    <label for="">ÁREA BRUTA DEL TERRENO <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaTerrenoBruto2" id="areaTerrenoBruto2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
                                                                 </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA ÚTIL DE LOTES --}}
+                                                                    <label for="">ÁREA ÚTIL DE LOTES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaUtil2" id="areaUtil2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE VÍAS --}}
+                                                                    <label for="">ÁREA DE VÍAS <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaVias2" id="areaVias2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES RECREACIÓN PÚBLICA --}}
+                                                                    <label for="">ÁREA DE APORTES RECREACIÓN PÚBLICA <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaRecreacion2" id="areaRecreacion2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES PARA MINISTERIO DE EDUCACIÓN --}}
+                                                                    <label for="">ÁREA DE APORTES PARA MINISTERIO DE EDUCACIÓN <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaMinisterio2" id="areaMinisterio2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA DE APORTES PARA OTROS FINES --}}
+                                                                    <label for="">ÁREA DE APORTES PARA OTROS FINES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaFines2" id="areaFines2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA APORTES PARA PARQUES ZONALES --}}
+                                                                    <label for="">ÁREA APORTES PARA PARQUES ZONALES <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaParques2" id="areaParques2" required placeholder="Ingrese calculo a %" label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- ÁREA PARA EQUIPAMIENTO URBANO --}}
+                                                                    <label for="">ÁREA PARA EQUIPAMIENTO URBANO <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="areaEquipamiento2" id="areaEquipamiento2" required placeholder="Ingrese calculo a % " label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    {{-- OTROS --}}
+                                                                    <label for="">OTROS <strong style="color:red">*</strong> </label>
+                                                                    <x-adminlte-input type="text" name="otros2" id="otros2" required placeholder="Ingrese calculo a % " label-class="text-lightblue">
+                                                                        <x-slot name="prependSlot">
+                                                                            <div class="input-group-text">
+                                                                                <i class="fas fa-id-card text-dark"></i>
+                                                                            </div>
+                                                                        </x-slot>
+                                                                    </x-adminlte-input>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA AFECTA A APORTES --}}
-                                                        <label for="">ÁREA AFECTA A APORTES <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaAfectaAporte" id="areaAfectaAporte" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- PARQUES ZONALES SERPAR --}}
-                                                        <label for="">PARQUES ZONALES SERPAR <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="parqueZonal" id="parqueZonal" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- SERVICIOS PÚBLICOS COMPLEMENTARIOS --}}
-                                                        <label for="">SERVICIOS PÚBLICOS COMPLEMENTARIOS <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="serviciosPublico" id="serviciosPublico" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA DE SERVICIOS --}}
-                                                        <label for="">ÁREA DE SERVICIOS <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaServicio" id="areaServicio" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA VENDIBLE --}}
-                                                        <label for="">ÁREA VENDIBLE <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaVendible" id="areaVendible" required placeholder="Ingrese calculo a M²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA DE CIRCULACIÓN --}}
-                                                        <label for="">ÁREA DE CIRCULACIÓN <strong style="color:red">*</strong> </label>
-                                                        <x-adminlte-input type="text" name="areaCirculacion" id="areaCirculacion" required placeholder="Ingrese calculo a M² " label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </x-adminlte-card>
                                         </div>       
                                     </div>
                                 </x-adminlte-card>
@@ -406,4 +573,7 @@
 @stop
 
 @section('js')
+
+
+
 @stop

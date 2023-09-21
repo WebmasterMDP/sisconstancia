@@ -131,4 +131,26 @@
 @stop
 
 @section('js')
+
+
+@if(session('data') == 'success')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Se registro correctamente',
+        'success'
+        )
+    </script>
+@endif
+
+@if(session('print') == 'ok')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Se habilito la impresión',
+        'success'
+        )
+    </script>
+@endif
+
 @stop

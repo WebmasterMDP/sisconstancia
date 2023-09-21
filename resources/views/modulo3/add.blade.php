@@ -83,13 +83,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php $today = new DateTime(); ?>
                                             <div class="col-md-4">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE EXPEDIENTE --}}
                                                         <label for="">FECHA DE EXPEDIENTE <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="date" name="fechaExpediente" id="fechaExpediente" value="<?php echo $today->format('Y-m-d'); ?>" required label-class="text-lightblue">
+                                                        <x-adminlte-input type="date" name="fechaExpediente" id="fechaExpediente" required label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -99,8 +98,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-md-12">
+                                            <div class="col-md-8">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- UBICACIÓN --}} 
@@ -109,6 +107,22 @@
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-calendar text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-adminlte-input>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php $today = new DateTime(); ?>
+                                            <div class="col-md-4">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- FECHA DE INGRESO --}}
+                                                        <label for="">FECHA DE INGRESO <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-input type="date" name="fechaIngreso" id="fechaIngreso" value="<?php echo $today->format('Y-m-d'); ?>" required readonly="readonly" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
                                                                 </div>
                                                             </x-slot>
                                                         </x-adminlte-input>  
@@ -211,12 +225,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php $fechaactual = date('Y-m-d');
+                                            $nuevafecha = strtotime ('+1 year' , strtotime($fechaactual)); //Se añade un año mas
+                                            $nuevafecha = date ('Y-m-d',$nuevafecha); 
+                                            ?>
                                             <div class="col-md-4">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE VALIDEZ --}}
                                                         <label for="">FECHA DE VALIDEZ</label>
-                                                        <x-adminlte-input type="date" name="fechaValidez" id="fechaValidez" placeholder="Ingrese fecha" label-class="text-lightblue">
+                                                        <x-adminlte-input type="date" name="fechaValidez" id="fechaValidez" value="<?php echo $nuevafecha; ?>" readonly="readonly" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>

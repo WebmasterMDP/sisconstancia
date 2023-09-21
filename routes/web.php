@@ -33,7 +33,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 /* USUARIO */
 Route::get('/usuario', [UserController::class, 'index'])->name('user.index');
-Route::get('/usuario/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/usuario/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
 Route::post('/user/update{id}', [UserController::class, 'update'])->name('user.update');
@@ -96,6 +96,8 @@ Route::get('cp/fpdf/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('
 Route::get('pu/fpdf/{id}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{id}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
 
-Route::post('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarPisos'])->name('actualizar.pisos');
+Route::get('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarPisos'])->name('actualizar.pisos');
 /* 
 Route::post('/actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarCantidadPisos'])->name('actualizar.pisos'); */
+
+Route::get('licencias/getSunatDatos/{ruc}', [ParametrosUrbController::class, 'getSunatDatos'])->name('getSunatDatos');

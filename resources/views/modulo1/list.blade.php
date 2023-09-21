@@ -137,4 +137,55 @@
 @stop
 
 @section('js')
+
+@if(session('data') == 'success')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Se registro correctamente',
+        'success'
+        )
+    </script>
+@endif
+
+@if(session('print') == 'ok')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Se habilito la impresión',
+        'success'
+        )
+    </script>
+@endif
+
+@if(session('anular') == 'ok')
+    <script>
+        Swal.fire(
+        'Exito!',
+        'Se anulo correctamente',
+        'success'
+        )
+    </script>
+@endif
+
+@if(session('error') == 'fail')
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title:'Ups...',
+            text: 'Algo ocurrio mal!',
+            footer: '<a href="https://munipachacamac.com/">Oficina de Gobierno Digital</a>'
+        })  
+    </script>
+@endif
+
+@if(session('reason') == 'miss')
+    <script>
+        Swal.fire(
+            'No ingreso motivo!',
+            'No procedio la solicitud',
+            'warning'
+        )
+    </script>
+@endif
 @stop

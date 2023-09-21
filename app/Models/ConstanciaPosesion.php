@@ -16,6 +16,7 @@ class ConstanciaPosesion extends Model
         'num_informe',
         'num_expediente',
         'fecha_expediente',
+        'fecha_ingreso',
         'ubicacion',
         'partner',
         'dni_partner',

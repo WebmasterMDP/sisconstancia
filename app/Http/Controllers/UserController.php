@@ -36,7 +36,6 @@ class UserController extends Controller
             return back()->withErrors($validate->errors())->withInput()->with('user', 'empty');
         
         }else{
-            try{
 
                 User::create([
                     'name'      =>$request->name,
@@ -60,11 +59,11 @@ class UserController extends Controller
 
             return redirect()->back()->with('user', 'ok');
 
-            }catch(\Exception $e){      
+            /* }catch(\Exception $e){      
 
                 return redirect()->back()->with('user', 'error');
 
-            }
+            } */
         }
     }
     
