@@ -46,6 +46,7 @@
                                             <th>PDF</th>
                                             <th>EDITAR</th>
                                             <th>ELIMINAR</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -53,19 +54,26 @@
                                             @foreach ($datos as $dato)
                                             <tr>
                                                 <td>{{ $dato->id }}</td>
-                                                <td>{{ $dato->nombre_completo }}</td>
+                                                <td>{{ $dato->codConstancia }}</td>
+                                                <td>{{ $dato->nombreCompleto }}</td>
                                                 <td>{{ $dato->numdoc }}</td>
-                                                <td>{{ $dato->num_informe }}</td>
-                                                <td>{{ $dato->num_expediente }}</td>
-                                                <td>{{ $dato->fecha_expediente }}</td>
+                                                <td>{{ $dato->numInforme }}</td>
+                                                <td>{{ $dato->fechaInforme }}</td>
+                                                <td>{{ $dato->numExpediente }}</td>
+                                                <td>{{ $dato->fechaExpediente }}</td>
+                                                <td>{{ $dato->lote }}</td>
+                                                <td>{{ $dato->manzana }}</td>
                                                 <td>{{ $dato->ubicacion }}</td>
-                                                <td>{{ $dato->partner }}</td>
-                                                <td>{{ $dato->dni_partner }}</td>
-                                                <td>{{ $dato->area_predio }}</td>
-                                                <td>{{ $dato->plano_visado }}</td>
-                                                <td>{{ $dato->num_resolucion }}</td>
-                                                <td>{{ $dato->num_ordenanza }}</td>
-                                                <td>{{ $dato->fecha_validez }}</td>
+                                                <td>{{ $dato->areaPredio }}</td>
+                                                <td>{{ $dato->periodo }}</td>
+                                                @if ($dato->estadoCivil == 's')
+                                                    <td><span class="badge badge-secondary">no figura</span></td>
+                                                    <td><span class="badge badge-secondary">no figura</span></td>
+                                                @else
+                                                    <td>{{ $dato->partner }}</td>
+                                                    <td>{{ $dato->dniPartner }}</td>
+                                                @endif
+
                                                 @if ($dato->estado == 1)
                                                     <td><span class="badge badge-success">Activo</span></td>
                                                 @else

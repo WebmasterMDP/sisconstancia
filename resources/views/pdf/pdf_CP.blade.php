@@ -120,16 +120,16 @@ class PDF extends FPDF
     function Footer()
     {
 
-        $this->Image('vendor/adminlte/dist/img/footer.png',10,250,190);
+        /* $this->Image('vendor/adminlte/dist/img/footer.png',10,250,190); */
         // Posición: a 1,5 cm del final
         $this->SetY(-20);
         // Arial italic 8
         $this->SetFont('Arial','IU',8);
         // Número de página
-        $this->Cell(0, 1, utf8_decode('                                                                                                              '),0,0,'C');
-        $this->Ln(3);
-        $this->SetFont('Arial','I',8);
-        $this->Cell(0, 1, utf8_decode('Sello y Firma del Funcionario Municipal que Otorga la Licencia'),0,0,'C');
+        /* $this->Cell(0, 1, utf8_decode('                                                                                                              '),0,0,'C'); */
+        /* $this->Ln(3); */
+        /* $this->SetFont('Arial','I',8);
+        $this->Cell(0, 1, utf8_decode('Sello y Firma del Funcionario Municipal que Otorga la Licencia'),0,0,'C'); */
     }
 }
 
@@ -142,51 +142,52 @@ setlocale(LC_TIME, "spanish");
 $expediente = utf8_decode(date("d-m-Y", strtotime($showData->fecha_expediente)));
 $fecha_expediente = utf8_decode(strftime("%d de %B %Y", strtotime($expediente)));
 
-$pdf->SetMargins(30 , 0);
-$pdf->SetFont('Arial', null,9.5);
-$pdf->Ln(3);
+$pdf->SetMargins(27 , 0);
 $pdf->Cell(21);
-$pdf->Write(5, utf8_decode('Visto el Expediente Nº '.$showData->num_expediente.' de fecha: '.$fecha_expediente.'.
-Organizado por '.$showData->nombre_completo.', identificado (a) con DNI N° '.$showData->numdoc.', quien solicita la Constancia de Posesión del Terreno Ubicado en la '.$showData->ubicacion.',  Distrito de Pachacámac, Provincia y Departamento de Lima; de conformidad con el informe Nº '.$showData->num_informe.'.'));
 
-$pdf->Image('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://192.168.30.13/pdf/public/pdf/_token', 170,5,30, 0, 'PNG');
+$pdf->Image('https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=https://catastro.munipachacamac.gob.pe/sisConstancia/public/cp/fpdf/'.$showData->id.'/', 170,5,30, 0, 'PNG');
 
 /* PARRAFO */
 $pdf->Ln(6);
 $pdf->SetFont('Arial', null,9);
-$pdf->Ln(8);
 
-$pdf->MultiCell(0,3,utf8_decode('La Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas de la Municipalidad Distrital de Pachacámac, otorga:'),0,'C',false);
-$pdf->Ln(7);
-$pdf->SetFont('Arial', 'B',25);
-$pdf->MultiCell(0,3,utf8_decode('CONSTANCIA DE POSESIÓN'),0,'C',false);
-$pdf->Ln(7);
 $pdf->SetFont('Arial', 'B',12);
-$pdf->MultiCell(0,3,utf8_decode('CON FINES PARA  TRAMITE DE SERVICIOS BÁSICOS'),0,'C',false);
-$pdf->Ln(7);
-$pdf->SetFont('Arial', 'BU',12);
-$pdf->MultiCell(0,3,utf8_decode('N° '.$showData->num_informe.'-2023-MDP/GDU/SGPUCOPHU'),0,'C',false);
+$pdf->MultiCell(0,3,utf8_decode('CONSTANCIA DE POSESIÓN'),0,'C',false);
+$pdf->Ln(4);
+$pdf->SetFont('Arial', 'B',12);
+$pdf->MultiCell(0,3,utf8_decode('PARA SERVICIOS BÁSICOS'),0,'C',false);
+$pdf->Ln(8);
+$pdf->SetFont('Arial', 'BU',15);
+$pdf->MultiCell(0,3,utf8_decode('N° '.$showData->id.'-2023-MDP/GDU/SGPUCOPHU'),0,'C',false);
 
 /* DATOS */
-$pdf->SetFont('Arial', null,9.7);
+$pdf->SetFont('Arial', 'B',10);
 $pdf->Ln(7);
-$pdf->MultiCell(0,5,utf8_decode('A favor de '.$showData->nombre_completo.', identificado (a) con DNI N° '.$showData->numdoc.' y '.$showData->partner.', identificado (a) con DNI N° '.$showData->dni_partner.'; acreditando que ejerce POSESIÓN, sobre el predio ubicado en la '.$showData->ubicacion.', Jurisdicción del Distrito de Pachacámac, Provincia y Departamento de Lima. El predio cuenta con un área de '.$showData->area_predio.' metros cuadrados, según plano visado Nº '.$showData->plano_visado.' con Resolución Gerencial Nº '.$showData->num_resolucion.'.'),0,'J',false);
+$pdf->Cell(0,5,utf8_decode('Expediente: N° '.$showData->num_expediente),0,0,'R');
+$pdf->Ln(7);
+$pdf->Cell(0,5,utf8_decode('Fecha Expediente: '.$fecha_expediente),0,0,'R');
+$pdf->Ln(7);
+$pdf->SetFont('Arial', null,10);
+$pdf->MultiCell(0,5,utf8_decode('La Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas de la Gerencia de Desarrollo Urbano de la Municipalidad Distrital de Pachacamac, hace constar:'),0,'J',false);
+$pdf->Ln(7);
+$pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombre_completo.', identificado con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->area_predio.' m², el cual se encuentra ubicado en el lote xx Mz xx de la Asociación de Vivienda '.$showData->ubicacion.', en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
+$pdf->Ln(7);
+$pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->num_informe.'-2023/MDP- GDU-SGPUCOPHU-TC, de '.$fecha_informe.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
+$pdf->Ln(7);
+$pdf->MultiCell(0,5,utf8_decode('Que, por tales razones anteriormente expuestas se expide la presente CONSTANCIA DE POSESIÓN, únicamente para solicitar el otorgamiento de los SERVICIOS BASICOS, a que se refiere el Artículo Nº 24 de la Ley Nº 28687 "Ley de Desarrollo y Complementaria de Formalización de la Propiedad Informal, Acceso al suelo y Dotación de Servicios Básicos"; articulo 27 y 28 del Decreto Supremo N° 017-2006-VIVIENDA y la Ordenanza N° 313-2023-MDP/C, respectivamente.'),0,'J',false);
 
-$pdf->SetFont('Arial', null,9.5);
 $pdf->Ln(7);
-$pdf->MultiCell(0,5,utf8_decode('Se otorga la presente Constancia de Posesión para fines del Otorgamiento de SERVICIOS BÁSICOS a que se refiere el artículo 24 de la Ley N° 28687 "Ley de Desarrollo y Complementarias de Formalización de la Propiedad Informal, Acceso al suelo y Dotados de Servicios Básicos", el mismo que no constituye reconocimiento alguno que afecta el derecho de propiedad de su titular.'),0,'J',false);
+$pdf->SetFont('Arial', 'BU',10);
+$pdf->Cell(0,5,utf8_decode('Observaciones:'),0,0,'L');
+$pdf->SetFont('Arial', null,10);
 $pdf->Ln(7);
-$pdf->MultiCell(0,5,utf8_decode('La presente Constancia de Posesión se emite de acuerdo a la Ordenanza Municipal '.$showData->num_ordenanza.' - 2023, Ordenanza para la Expedición de la Constancia de Posesión para los Servicios Básicos.'),0,'J',false);
-
-$validez = utf8_decode(date("d-m-Y", strtotime($showData->fecha_validez))); 
-$fecha_validez = utf8_decode(strftime("%d de %B %Y.", strtotime($validez))) ;
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La Presente Constancia de Posesión tendrá vigencia hasta la efectiva instalación de los servicios básicos.'));
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La Presente Constancia de Posesión, quedará NULO DE PLENO DERECHO, en caso de existir algún problema administrativo y/o legal.'));
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente constancia, no es válida para contrato de compra-venta y/o transferencia de posesión'));
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente constancia, tendrá validez hasta el '.$fecha_validez));
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('El posesionario es el único que puede tramitar la solicitud de Servicios Básicos.'));
-$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('No renovable.'));
-$pdf->Ln(7);
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente constancia de posesión tendrá vigencia solamente hasta la fecha de la efectiva instalación, reposición o nueva conexión de los servicios básicos y elementales en el inmueble descrito en la presente.'));
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente Constancia de Posesión no constituye de ninguna manera y de ningún modo reconocimiento expreso ni tácito de algún derecho de propiedad sobre dicho predio, ni afecta en lo absoluto el legítimo derecho de propiedad que pudiera existir sobre el mencionado lote.'));
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente Constancia de Posesión, quedará nula de pleno derecho, de existir algún problema administrativo y/o legal.'));
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('La presente Constancia de Posesión, no es válida para contrato de compra-venta y/o transferencia de posesión. '));
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('El posesionario es el único que puede tramitar la solicitud de servicios básicos.'));
+$pdf->MultiCellBlt(154, 4, chr(149), utf8_decode('Este documento tiene carácter de intransferible. '));
+$pdf->Ln(3);
 
 $ingreso = utf8_decode(date("d-m-Y", strtotime($showData->fecha_ingreso))); 
 $fecha_hoy = utf8_decode(strftime("%d de %B %Y.", strtotime($ingreso))) ;

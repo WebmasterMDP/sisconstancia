@@ -23,7 +23,7 @@
                                 <x-adminlte-card title="DATOS" class="" theme="dark" icon="fas fa-id-card">
                                     <div class="col-12">                                       
                                         <div class="row ">
-                                            <div class="col-md-8">
+                                            <div class="col-md-9">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- NOMBRES Y APELLIDOS --}}
@@ -38,7 +38,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- DNI --}}
@@ -53,7 +53,43 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- ESTADO CIVIL --}}
+                                                        <label for="">ESTADO CIVIL <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-select type="text" name="estadoCivil" id="estadoCivil" required  placeholder="Ingresar dni" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                            <option>--Seleccione--</option>
+                                                            <option value="s">Soltero</option>
+                                                            <option value="c">Casado/Conviviente</option>
+                                                        </x-adminlte-select>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- ZONA --}}
+                                                        <label for="">ZONA <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-select type="text" name="zona" id="zona" required  placeholder="Ingresar dni" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                            <option>--Seleccione--</option>
+                                                            <option value="s">Soltero</option>
+                                                            <option value="c">Casado/Conviviente</option>
+                                                        </x-adminlte-select>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- N° DE INFORME --}} 
@@ -68,7 +104,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- EXPEDIENTE --}}
@@ -83,7 +119,52 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- LOTE --}}
+                                                        <label for="">LOTE <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-input type="text" name="lote" id="lote" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-adminlte-input>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- MANZANA --}}
+                                                        <label for="">MANZANA <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-input type="text" name="manzana" id="manzana" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-adminlte-input>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- FECHA DE INFORME --}}
+                                                        <label for="">FECHA DE INFORME <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-input type="date" name="fechaInforme" id="fechaInforme" required label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-adminlte-input>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE EXPEDIENTE --}}
@@ -98,7 +179,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- UBICACIÓN --}} 
@@ -113,8 +194,23 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        {{-- ÁREA DEL PREDIO --}}
+                                                        <label for="">ÁREA DEL PREDIO <strong style="color:red">*</strong> </label>                                    
+                                                        <x-adminlte-input type="text" name="areaPredio" id="areaPredio" required placeholder="Ingrese área en m²" label-class="text-lightblue">
+                                                            <x-slot name="prependSlot">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-id-card text-dark"></i>
+                                                                </div>
+                                                            </x-slot>
+                                                        </x-adminlte-input>  
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <?php $today = new DateTime(); ?>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- FECHA DE INGRESO --}}
@@ -129,7 +225,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-8 civil">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- ACOMPAÑANTE --}}
@@ -144,7 +240,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 civil">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{--  DNI ACOMPAÑANTE --}}
@@ -162,93 +258,10 @@
                                         </div>       
                                     </div>               
                                 </x-adminlte-card>
-                                <x-adminlte-card title="LOCAL" class="" theme="dark" icon="fas fa-id-card">
-                                    <div class="col-12">                    
-                                        <div class="row ">
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- ÁREA DEL PREDIO --}}
-                                                        <label for="">ÁREA DEL PREDIO <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="text" name="areaPredio" id="areaPredio" required placeholder="Ingrese área en m²" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- PLANO VISADO --}}
-                                                        <label for="">PLANO VISADO <strong style="color:red">*</strong> </label>  
-                                                        <x-adminlte-input type="text" name="planoVisado" id="planoVisado" required placeholder="Ingrese n° plano" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-map-pin text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- N° RESOLUCIÓN --}}
-                                                        <label for="">N° RESOLUCIÓN <strong style="color:red">*</strong> </label>  
-                                                        <x-adminlte-input type="text" name="numResolucion" id="numResolucion" required placeholder="Ingrese resolución" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- N° ORDENANZA --}}
-                                                        <label for="">N° ORDENANZA <strong style="color:red">*</strong> </label>  
-                                                        <x-adminlte-input type="text" name="numOrdenanza" id="numOrdenanza" required placeholder="Ingrese n° ordenanza" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php $fechaactual = date('Y-m-d');
-                                            $nuevafecha = strtotime ('+1 year' , strtotime($fechaactual)); //Se añade un año mas
-                                            $nuevafecha = date ('Y-m-d',$nuevafecha); 
-                                            ?>
-                                            <div class="col-md-4">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        {{-- FECHA DE VALIDEZ --}}
-                                                        <label for="">FECHA DE VALIDEZ</label>
-                                                        <x-adminlte-input type="date" name="fechaValidez" id="fechaValidez" value="<?php echo $nuevafecha; ?>" readonly="readonly" label-class="text-lightblue">
-                                                            <x-slot name="prependSlot">
-                                                                <div class="input-group-text">
-                                                                    <i class="fas fa-id-card text-dark"></i>
-                                                                </div>
-                                                            </x-slot>
-                                                        </x-adminlte-input>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>       
-                                    </div>
-                                </x-adminlte-card>
                             </div>
                         </div>
+                        <input type="hidden" id="estado" name="estado" value="1">
+                        <input type="hidden" id="print" name="print" value="0">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -275,4 +288,23 @@
 @stop
 
 @section('js')
+
+<script>
+    $(document).ready(function(){
+
+        $('#estadoCivil').on('change',function(){
+            if($(this).val() === "s")
+            {
+                $('#partner').val("-");
+                $("#dniPartner").val("00000000");
+                $('.civil').hide();
+            }else{
+                $('#partner').val("");
+                $("#dniPartner").val("");
+                $('.civil').show();
+            }
+        })
+    });
+</script>
+
 @stop

@@ -25,29 +25,20 @@ class ConstanciaPosesionController extends Controller
     {
         $validate = Validator::make($request->all(),
         [
-            'denominacion' => 'required',
-            'expediente' => 'required',
-            'fechaEmision' => 'required',
-            'zonificacion' => 'required',
-            'planoAprobado' => 'required',
-            'numResolucion' => 'required',
-            'fechaVencimiento' => 'required',
-            'propietario' => 'required',
-            'responsableObra' => 'required',
-            'departamento' => 'required',
-            'provincia' => 'required',
-            'distrito' => 'required',
-            'ubanizacionOtro' => 'required',
-            'uc' => 'required',
-            'lote' => 'required',
-            'areaTerrenoBruto' => 'required',
-            'areaViaMetro' => 'required',
-            'areaAfectaAporte' => 'required',
-            'parqueZonal' => 'required',
-            'serviciosPublico' => 'required',
-            'areaServicio' => 'required',
-            'areaVendible' => 'required',
-            'areaCirculacion' => 'required',
+            'name'=> 'required',
+            'numdoc'=> 'required',
+            'numInforme'=> 'required',
+            'expediente'=> 'required',
+            'fechaExpediente'=> 'required',
+            'fechaIngreso'=> 'required',
+            'ubicacion'=> 'required',
+            'partner'=> 'required',
+            'dniPartner'=> 'required',
+            'areaPredio'=> 'required',
+            'planoVisado'=> 'required',
+            'numResolucion'=> 'required',
+            'numOrdenanza'=> 'required',
+            'fechaValidez'=> 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
         ]);
@@ -58,8 +49,65 @@ class ConstanciaPosesionController extends Controller
 
         }else{
         
-            $usuario = auth()->user()->username;
-            $data = new ConstanciaPosesion();
+            try {
+                $datosConstancia = $request->except('btnRegistrar','_token');
+                $consultaCodigoAnt = ConstanciaPosesion::select('id','codConstancia','periodo')                                            
+                                                        ->orderBy('id', 'desc')
+                                                        ->first();
+                $token = Str::random(60);
+                $generarCodigoLicencia = ($consultaCodigoAnt->id) + 1;
+
+
+                if(empty($consultaCodigoAnt) || empty($consultaCodigoAnt->id) || empty($consultaCodigoAnt->periodo)) {
+    
+                    $codConstancia = array('codConstancia' => '0001-'.date('Y'),
+                                    'periodo' => date('Y'),
+                                    '_token' => $token,
+                                    'usuario' => Auth::user()->username); 
+                    $registroLicencia = array_merge($codConstancia, $datosConstancia);            
+                    
+                }else {
+                    if ($consultaCodigoAnt->periodo != date('Y') ) {
+                        $codConstancia = array('codConstancia' => '0001-'.date('Y') ,
+                                    'periodo' =>  date('Y'),
+                                    '_token' => $token.''.$generarCodigoLicencia,
+                                    'usuario' => Auth::user()->username); 
+                        $registroLicencia = array_merge($codConstancia, $datosLicencia);
+                    
+                    }else {
+                        /* $codLicencia = array('codLicencia' => '000'.$consultaCodigoAnt->id+(1).'-'.$consultaCodigoAnt->periodo,
+                                        'periodo' => date('Y'));*/  
+                        /* $generarCodigoLicencia = substr($consultaCodigoAnt->codLicencia, 2) + 1; */
+                        // $generarCodigoLicencia = substr($consultaCodigoAnt->codLicencia, 0, 4) + 1;
+                        $codConstancia = array('codConstancia' => '000'.$generarCodigoLicencia.'-'.$consultaCodigoAnt->periodo,
+                                            'periodo' => date('Y'),
+                                            '_token' => $token.''.$generarCodigoLicencia,
+                                            'usuario' => Auth::user()->username);
+    
+                        $registroLicencia = array_merge($codLicencia, $datosLicencia);               
+                    }           
+                    
+                }
+                Seguimiento::create([
+                    'id_tramite' => $generarCodigoLicencia,
+                    'estado' => '1',
+                    'print' => '0',
+                    'observacion' => 'Nuevo Tramite',
+                    'tipo_tramite' => 'Constancia de Posesion',
+                    'usuario' => $registroLicencia['usuario'],
+                    'fecha' => date('d-m-Y'),
+                    'hora' => date('H:i:s'),
+                ]);
+                /* Licencia::insert($registroLicencia); */
+                ConstanciaPosesion::create($registroLicencia);
+                return redirect()->route('constancia.index')->with('create', 'ok'); 
+                /* return back()->with('licencia', 'ok'); */
+    
+            } catch (\Throwable $th) {
+                return redirect('constancia.index')->with('error', $th->getMessage());
+                /* return redirect('licencias/show')->with('licencia', 'error'); */
+            }
+            /* $data = new ConstanciaPosesion();
             $data->nombre_completo = request('name');
             $data->numdoc = request('numdoc');
             $data->num_informe = request('numInforme');
@@ -73,26 +121,9 @@ class ConstanciaPosesionController extends Controller
             $data->plano_visado = request('planoVisado');
             $data->num_resolucion = request('numResolucion');
             $data->num_ordenanza = request('numOrdenanza');
-            $data->fecha_validez = request('fechaValidez');
-
-            $data->user = $usuario;
-            $data->print = 0;
-            $data->estado = 1;
-            $data->save();
-            $id = ConstanciaPosesion::latest('id')->value('id') ?? 1;
-
-            $data = new Seguimiento();
-            $data->id_tramite = $id;
-            $data->tipo_tramite = 'Constancia de Posesion';
-            $data->print = 0;
-            $data->estado = 1;
-            $data->fecha = date('d-m-Y');
-            $data->hora = date('H:i:s');
-            $data->user = $usuario;
-            $data->observacion = 'Nuevo Tramite';
-            $data->save();
+            $data->fecha_validez = request('fechaValidez'); */
+            /* $data->save(); */
             
-            return redirect()->route('constancia.list')->with('create', 'ok');
         }
     }
 
