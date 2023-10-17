@@ -29,22 +29,10 @@
                                     <thead class="text-center text-nowrap bg-dark">
                                         <tr>
                                             <th>N°</th>
-                                            <th>CODIGO CONSTANCIA</th>
                                             <th>NOMBRE</th>
-                                            <th>DNI</th>
-                                            <th>N° INFORME</th>
-                                            <th>FECHA DE INFORME</th>
-                                            <th>N° EXPEDIENTE</th>
-                                            <th>FECHA DE EXPEDIENTE</th>
-                                            <th>LOTE</th>
-                                            <th>MANZANA</th>
-                                            <th>UBICACIÓN</th>
-                                            <th>ÁREA DEL PREDIO</th>
-                                            <th>PERIODO</th>                     
-                                            <th>ACOMPAÑANTE</th>
-                                            <th>DNI ACOMPAÑANTE</th>       
-                                            <th>ESTADO</th>
-                                            <th>PDF</th>
+                                            <th>ZONA</th>
+                                            <th>OBSERVACIÓN</th>
+                                            <th>USUARIO</th>
                                             <th>EDITAR</th>
                                             <th>ELIMINAR</th>
                                         </tr>
@@ -54,43 +42,17 @@
                                             @foreach ($datos as $dato)
                                             <tr>
                                                 <td>{{ $dato->id }}</td>
-                                                <td>{{ $dato->codConstancia }}</td>
-                                                <td>{{ $dato->nombreCompleto }}</td>
-                                                <td>{{ $dato->numdoc }}</td>
-                                                <td>{{ $dato->numInforme }}</td>
-                                                <td>{{ $dato->fechaInforme }}</td>
-                                                <td>{{ $dato->numExpediente }}</td>
-                                                <td>{{ $dato->fechaExpediente }}</td>
-                                                <td>{{ $dato->lote }}</td>
-                                                <td>{{ $dato->manzana }}</td>
-                                                <td>{{ $dato->ubicacion }}</td>
-                                                <td>{{ $dato->areaPredio }}</td>
-                                                <td>{{ $dato->periodo }}</td>
-                                                @if ($dato->estadoCivil == 's')
-                                                    <td><span class="badge badge-secondary">no figura</span></td>
-                                                    <td><span class="badge badge-secondary">no figura</span></td>
-                                                @else
-                                                    <td>{{ $dato->partner }}</td>
-                                                    <td>{{ $dato->dniPartner }}</td>
-                                                @endif
-
-                                                @if ($dato->estado == 1)
-                                                    <td><span class="badge badge-success">Activo</span></td>
-                                                @else
-                                                    <td><span class="badge badge-danger">Inactivo</span></td>
-                                                @endif
+                                                <td>{{ $dato->nombreUbicacion }}</td>
+                                                <td>{{ $dato->zona }}</td>
+                                                <td>{{ $dato->observacion }}</td>
+                                                <td>{{ $dato->usuario }}</td>
                                                 <td>
-                                                    <a href="{{ url('ConstanciaPosesion/'.$dato->_token) }}" data-href="" class="btn btn-info btn-print" data-placement="top"  title="Imprimir">
-                                                        <span class="fas fa-print"></span>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('constancia.edit', $dato->id) }}" class="btn btn-warning btn-sm">
+                                                    <a href="{{ route('ubicacion.edit', $dato->id) }}" class="btn btn-warning btn-sm">
                                                         <i class="fas fa-edit"></i>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ route('constancia.destroy', $dato->id) }}" method="POST">
+                                                    <form action="{{ route('ubicacion.destroy', $dato->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm">

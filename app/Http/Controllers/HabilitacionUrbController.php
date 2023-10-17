@@ -19,12 +19,10 @@ class HabilitacionUrbController extends Controller
     public function create()
     {
         return view('modulo2/add');
-
     }
 
     public function store(Request $request)
     {
-
         $validate = Validator::make($request->all(),
         [
             'denominacion' => 'required',

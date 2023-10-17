@@ -28,7 +28,7 @@
                                                     <div class="col-md-12">
                                                         {{-- NOMBRES Y APELLIDOS --}}
                                                         <label for="">NOMBRES Y APELLIDOS <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="text" name="name" id="name" required  placeholder="Ingresar nombres y apellidos" label-class="text-lightblue">
+                                                        <x-adminlte-input type="text" name="nombreCompleto" id="nombreCompleto" required  placeholder="Ingresar nombres y apellidos" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -109,7 +109,7 @@
                                                     <div class="col-md-12">
                                                         {{-- EXPEDIENTE --}}
                                                         <label for="">EXPEDIENTE <strong style="color:red">*</strong> </label>                                    
-                                                        <x-adminlte-input type="text" name="expediente" id="expediente" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
+                                                        <x-adminlte-input type="text" name="numExpediente" id="numExpediente" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
                                                             <x-slot name="prependSlot">
                                                                 <div class="input-group-text">
                                                                     <i class="fas fa-id-card text-dark"></i>
@@ -225,7 +225,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-8 civil">
+                                            <div class="col-md-9 civil">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{-- ACOMPAÑANTE --}}
@@ -240,7 +240,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 civil">
+                                            <div class="col-md-3 civil">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         {{--  DNI ACOMPAÑANTE --}}

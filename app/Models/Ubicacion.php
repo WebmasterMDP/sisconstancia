@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Seguimiento extends Model
+class Ubicacion extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_tramite',
-        'tipo_tramite',
-        'estado',
-        'print',
+        'nombreUbicacion',
+        'zona',
         'observacion',
-        'user',
-        'fecha',
-        'hora',
+        'usuario',
     ];
 }

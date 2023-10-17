@@ -6,6 +6,8 @@ use App\Models\ConstanciaPosesion;
 use App\Models\Seguimiento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ConstanciaPosesionController extends Controller
 {
@@ -25,20 +27,21 @@ class ConstanciaPosesionController extends Controller
     {
         $validate = Validator::make($request->all(),
         [
-            'name'=> 'required',
+            'nombreCompleto'=> 'required',
             'numdoc'=> 'required',
             'numInforme'=> 'required',
-            'expediente'=> 'required',
+            'zona'=> 'required',
+            'estadoCivil'=> 'required',
+            'fechaInforme'=> 'required',
+            'numExpediente'=> 'required',
             'fechaExpediente'=> 'required',
             'fechaIngreso'=> 'required',
+            'lote'=> 'required',
+            'manzana'=> 'required',
             'ubicacion'=> 'required',
             'partner'=> 'required',
             'dniPartner'=> 'required',
             'areaPredio'=> 'required',
-            'planoVisado'=> 'required',
-            'numResolucion'=> 'required',
-            'numOrdenanza'=> 'required',
-            'fechaValidez'=> 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
         ]);
@@ -57,13 +60,12 @@ class ConstanciaPosesionController extends Controller
                 $token = Str::random(60);
                 $generarCodigoLicencia = ($consultaCodigoAnt->id) + 1;
 
-
                 if(empty($consultaCodigoAnt) || empty($consultaCodigoAnt->id) || empty($consultaCodigoAnt->periodo)) {
     
                     $codConstancia = array('codConstancia' => '0001-'.date('Y'),
                                     'periodo' => date('Y'),
                                     '_token' => $token,
-                                    'usuario' => Auth::user()->username); 
+                                    'user' => Auth::user()->username); 
                     $registroLicencia = array_merge($codConstancia, $datosConstancia);            
                     
                 }else {
@@ -71,8 +73,8 @@ class ConstanciaPosesionController extends Controller
                         $codConstancia = array('codConstancia' => '0001-'.date('Y') ,
                                     'periodo' =>  date('Y'),
                                     '_token' => $token.''.$generarCodigoLicencia,
-                                    'usuario' => Auth::user()->username); 
-                        $registroLicencia = array_merge($codConstancia, $datosLicencia);
+                                    'user' => Auth::user()->username); 
+                        $registroLicencia = array_merge($codConstancia, $datosConstancia);
                     
                     }else {
                         /* $codLicencia = array('codLicencia' => '000'.$consultaCodigoAnt->id+(1).'-'.$consultaCodigoAnt->periodo,
@@ -82,9 +84,9 @@ class ConstanciaPosesionController extends Controller
                         $codConstancia = array('codConstancia' => '000'.$generarCodigoLicencia.'-'.$consultaCodigoAnt->periodo,
                                             'periodo' => date('Y'),
                                             '_token' => $token.''.$generarCodigoLicencia,
-                                            'usuario' => Auth::user()->username);
+                                            'user' => Auth::user()->username);
     
-                        $registroLicencia = array_merge($codLicencia, $datosLicencia);               
+                        $registroLicencia = array_merge($codConstancia, $datosConstancia);               
                     }           
                     
                 }
@@ -94,7 +96,7 @@ class ConstanciaPosesionController extends Controller
                     'print' => '0',
                     'observacion' => 'Nuevo Tramite',
                     'tipo_tramite' => 'Constancia de Posesion',
-                    'usuario' => $registroLicencia['usuario'],
+                    'user' => $registroLicencia['user'],
                     'fecha' => date('d-m-Y'),
                     'hora' => date('H:i:s'),
                 ]);
@@ -104,25 +106,9 @@ class ConstanciaPosesionController extends Controller
                 /* return back()->with('licencia', 'ok'); */
     
             } catch (\Throwable $th) {
-                return redirect('constancia.index')->with('error', $th->getMessage());
+                return redirect()->route('constancia.index')->with('error', $th->getMessage());
                 /* return redirect('licencias/show')->with('licencia', 'error'); */
             }
-            /* $data = new ConstanciaPosesion();
-            $data->nombre_completo = request('name');
-            $data->numdoc = request('numdoc');
-            $data->num_informe = request('numInforme');
-            $data->num_expediente = request('expediente');
-            $data->fecha_expediente = request('fechaExpediente');
-            $data->fecha_ingreso = request('fechaIngreso');
-            $data->ubicacion = request('ubicacion');
-            $data->partner = request('partner');
-            $data->dni_partner = request('dniPartner');
-            $data->area_predio = request('areaPredio');
-            $data->plano_visado = request('planoVisado');
-            $data->num_resolucion = request('numResolucion');
-            $data->num_ordenanza = request('numOrdenanza');
-            $data->fecha_validez = request('fechaValidez'); */
-            /* $data->save(); */
             
         }
     }
@@ -132,9 +118,10 @@ class ConstanciaPosesionController extends Controller
 
     }
 
-    public function pdf($id)
+    public function pdf($token)
     {
-        $showData = ConstanciaPosesion::findOrFail($id);
+        
+        $showData = ConstanciaPosesion::select('*')->where('_token',$token)->first();
         return view('pdf/pdf_CP', compact('showData'));
     }
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\TrabViaPublicaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\PisoController;
+use App\Http\Controllers\UbicacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,8 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit'
 Route::post('/user/update{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::get('/seguimiento', [SeguimientoController::class, 'index'])->name('siguimiento.index');
+Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index');
+Route::get('ubicacion/edit', [UbicacionController::class, 'edit'])->name('ubicacion.edit');
 
 /* CONTRASEÑA */
 Route::post('resetpass/{id}', [UserController::class, 'resetPassword'])->name('user.resetpass');
@@ -90,11 +93,11 @@ Route::post('/modulo5/update/{id}', [TrabViaPublicaController::class, 'update'])
 Route::delete('/modulo5/delete/{id}', [TrabViaPublicaController::class, 'destroy'])->name('via.pub.destroy');
 
 /* PDF'S */
-Route::get('co/fpdf/{id}', [ConformidadObraController::class, 'pdf'])->name('pdf.co');
-Route::get('hu/fpdf/{id}', [HabilitacionUrbController::class, 'pdf'])->name('pdf.hu');
-Route::get('cp/fpdf/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
-Route::get('pu/fpdf/{id}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
-Route::get('tvp/fpdf/{id}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
+Route::get('co/fpdf/{token}', [ConformidadObraController::class, 'pdf'])->name('pdf.co');
+Route::get('hu/fpdf/{token}', [HabilitacionUrbController::class, 'pdf'])->name('pdf.hu');
+Route::get('ConstanciaPosesion/{token}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
+Route::get('pu/fpdf/{token}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
+Route::get('tvp/fpdf/{token}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
 
 Route::get('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarPisos'])->name('actualizar.pisos');
 /* 

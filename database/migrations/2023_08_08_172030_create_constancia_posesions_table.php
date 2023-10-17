@@ -15,22 +15,25 @@ return new class extends Migration
     {
         Schema::create('constancia_posesions', function (Blueprint $table) {
             $table->id();
-
-            $table->string('nombre_completo');
+            
+            $table->string('codConstancia');
+            $table->string('nombreCompleto');
             $table->string('numdoc');
-            $table->string('num_informe');
-            $table->string('num_expediente');
-            $table->string('fecha_expediente');
-            $table->string('fecha_ingreso');
-            $table->string('ubicacion');
+            $table->string('numInforme');
+            $table->string('fechaInforme');
+            $table->string('numExpediente');
+            $table->string('fechaExpediente');
+            $table->string('fechaIngreso');
             $table->string('partner');
-            $table->string('dni_partner');
-            $table->string('area_predio');
-            $table->string('plano_visado');
-            $table->string('num_resolucion');
-            $table->string('num_ordenanza');
-            $table->string('fecha_validez');
+            $table->string('dniPartner');
+            $table->string('areaPredio');
+            $table->string('lote');
+            $table->string('manzana');
+            $table->string('zona');
+            $table->string('ubicacion');
 
+            $table->string('periodo');
+            $table->string('_token');
             $table->string('user');
             $table->string('print');
             $table->string('estado');
