@@ -13,5 +13,11 @@
         "postcss": "^8.1.14",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "datatables.net-buttons-dt": "^2.4.2",
+        "datatables.net-dt": "^1.13.6",
+        "jszip": "^3.10.1",
+        "pdfmake": "^0.2.7"
     }
 }

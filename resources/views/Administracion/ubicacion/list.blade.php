@@ -16,7 +16,7 @@
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="#" data-href="" class="btn btn-success" data-toggle="modal" data-target="#addUbicacion" data-placement="top" title="Agregar Ubicacion">
+                                <a href="#" data-href="" class="btn btn-info" data-toggle="modal" data-target="#addUbicacion" data-placement="top" title="Agregar Ubicacion">
                                     <span class="fas fa-plus-square"></span>
                                 </a>
                                 @if (session('success'))

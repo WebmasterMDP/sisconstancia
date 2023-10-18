@@ -8,7 +8,7 @@
 @section('content')
 
 <br>
-<x-adminlte-card title="MODIFICACIONES" class="m-2" theme="dark" icon="fas fa-id-card">
+<x-adminlte-card title="MODIFICACIONES" class="m-0" theme="dark" icon="fas fa-id-card">
     <div class="col-12">                                         
         <div class="row">
             <div class="col-12">

@@ -448,15 +448,50 @@ return [
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js',
                 ],
+
+                /* CAMBIO */
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js',
+                ],
+
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js',
+                ],
+                /* HASTA AQUI */
+
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css',
                 ],
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css',
+                    'location' => '//cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css',
                 ],
                 [
                     'type' => 'css',
@@ -528,16 +563,16 @@ return [
         'Listajs' => [
             'active' => true,
             'files' => [
-                [
+                /* [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js',
-                ], 
+                ], */   
                 [
                     'type' => 'js',
                     'asset' => true,
-                    'location' => 'vendor/admin/lista.js',
-                ],                                
+                    'location' => 'vendor/admin/datatable.js',
+                ],  
             ],
         ],
     ],

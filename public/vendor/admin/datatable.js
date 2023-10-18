@@ -1,12 +1,12 @@
 $(function () {   
   $('#example2').DataTable({  
    "dom": 'Bfrtip',
-   "paging": false,
+   "paging": true,
    "lengthChange": false,
    "searching": true,      
    "ordering": true,
    "order": [[0, "asc"]],
-   "info": false,
+   "info": true,
    "autoWidth": false,
    "responsive": true,
    "paging": true,
@@ -31,6 +31,6 @@ $(function () {
    },
    "with-buttons": true,
    "buttons":
-    [ { "extend": "excel", "text": '<i class="far fa-file-excel"></i> Excel', "titleAttr": "Exportar Excel", "className": "btn-success mt-1" }/* , { "extend": "", "text": '<i class="far fa-plus-square"></i> Agregar', "titleAttr": "Agregar", "className": "btn-info m-1" } */ ],
+    [ { "extend": "excel", "text": '<i class="fas fa-file-excel"></i>', "titleAttr": "Exportar Excel", "className": "btn-success mt-1" }/* , { "extend": "", "text": '<i class="far fa-plus-square"></i> Agregar', "titleAttr": "Agregar", "className": "btn-info m-1" } */ ],
 })
 });
