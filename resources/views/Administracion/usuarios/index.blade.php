@@ -15,18 +15,18 @@
                     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12">
-                                <a href="#" data-href="" class="btn btn-info" data-toggle="modal" data-target="#addUser" data-placement="top" title="Agregar Usuario">
-                                    <span class="fas fa-plus-square">Agregar</span>
+                                <a href="#" data-href="" class="btn btn-success" data-toggle="modal" data-target="#addUser" data-placement="top" title="Agregar Usuario">
+                                    <span class="fas fa-plus-square"></span>
                                 </a>
                                 <br>
-                                <table id="example2" class="table table-bordered table-striped dataTable dtr-inline collapsed" aria-describedby="example1_info">
-                                    <thead class="text-center text-nowrap bg-dark ">
-                                        <tr>
+                                <table id="example2" class="text-center table align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                                    <thead class="bg-gray">
+                                        <tr >
                                             <th>ID</th>
-                                            <th>NOMBRE</th>
-                                            <th>USERNAME</th>
+                                            <th style="width: 20%">NOMBRE</th>
+                                            <th style="width: 10%">USERNAME</th>
                                             <!-- <th>DOC. NAC. DE IDENTIDAD</th> -->
-                                            <th>CORREO</th>
+                                            <th style="width: 15%">CORREO</th>
                                             <th>ROL</th>
                                             <th>ESTADO</th>
                                             <th>EDITAR</th>
@@ -34,14 +34,14 @@
                                             <th>RESTABLECER CONTRASEÑA</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="">
                                         @foreach($dataUsers as $dataUser)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $dataUser->id }}</td>
-                                            <td>{{ $dataUser->name }}</td>
+                                            <td class="text-left">{{ $dataUser->name }}</td>
                                             <td>{{ $dataUser->username }}</td>
                                             <!-- <td>{{ $dataUser->numdoc }}</td> -->
-                                            <td>{{ $dataUser->email }}</td>
+                                            <td class="text-left">{{ $dataUser->email }}</td>
                                             @if($dataUser->rol == 'stuser'|| $dataUser->rol == 'user')
                                                 <td><span class="badge bg-secondary">Usuario</span></td>
                                             @else

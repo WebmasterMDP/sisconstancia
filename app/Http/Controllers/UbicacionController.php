@@ -11,7 +11,7 @@ class UbicacionController extends Controller
     public function index()
     {
         $datos = Ubicacion::all();
-        return view('ubicacion/list', compact('datos'));
+        return view('administracion/ubicacion/list', compact('datos'));
     }
 
     public function create()
@@ -32,7 +32,7 @@ class UbicacionController extends Controller
     public function edit(Ubicacion $ubicacion)
     {
         $datos = Ubicacion::findorFail($ubicacion->id);
-        return view('ubicacion/edit', compact('datos'));
+        return view('administracion/ubicacion/edit', compact('datos'));
     }
 
     public function update(Request $request, Ubicacion $ubicacion)

@@ -24,9 +24,13 @@ use App\Http\Controllers\UbicacionController;
 |
 */
 Auth::routes();
+/* Route::get('/', function () {
+    return view('auth.login'); 
+}); */
+
 Route::get('/', function () {
     return view('auth.login'); 
-});
+})->name('login');
 /* Route::get('/', 'HomeController@home');
  */
 

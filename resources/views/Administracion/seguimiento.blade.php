@@ -17,8 +17,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <br>
-                                <table id="example2" class="table table-bordered table-striped dataTable dtr-inline collapsed" aria-describedby="example1">
-                                    <thead class="text-center text-nowrap bg-dark ">
+                                <table id="example2" class="text-center table align-middle dataTable dtr-inline collapsed" aria-describedby="example1">
+                                    <thead class="text-center text-nowrap bg-gray ">
                                         <tr>
                                             <th>ID</th>
                                             <th>N° TRAMITE</th>
