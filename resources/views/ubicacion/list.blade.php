@@ -77,6 +77,87 @@
         </div>
     </div>
 </x-adminlte-card>
+
+
+<div class="modal fade show" id="addSector" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">REGISTRAR SECTOR</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="{{ url('licencias/sector') }}" method="POST" autocomplete="off">
+            @csrf
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- INGRESE SECTOR --}}
+                                        <label for="">ZONA</label>                                       
+                                        <x-adminlte-select type="number" name="zona" id="zona" required placeholder="Ingrese zona" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-id-card text-dark"></i>
+                                                </div>
+                                            </x-slot>
+
+                                            <option value="-">-</option>
+                                            <option value="1">1</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+
+                                        </x-adminlte-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- CODSECTOR --}}
+                                        <label for="">COD SECTOR</label>
+                                        <x-adminlte-input type="text" required name="codSector" id="codSector" placeholder="Ingrese Cod. Sector" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- INGRESE SECTOR --}}
+                                        <label for="">INGRESE SECTOR</label>                                       
+                                        <x-adminlte-input type="text" required name="nombre" id="nombre" placeholder="Ingrese Sector" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 @stop
 
 @section('css')

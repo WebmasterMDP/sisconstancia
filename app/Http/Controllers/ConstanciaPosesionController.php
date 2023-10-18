@@ -78,7 +78,7 @@ class ConstanciaPosesionController extends Controller
                     
                     }else {
                         /* $codLicencia = array('codLicencia' => '000'.$consultaCodigoAnt->id+(1).'-'.$consultaCodigoAnt->periodo,
-                                        'periodo' => date('Y'));*/  
+                                        'periodo' => date('Y'));*/
                         /* $generarCodigoLicencia = substr($consultaCodigoAnt->codLicencia, 2) + 1; */
                         // $generarCodigoLicencia = substr($consultaCodigoAnt->codLicencia, 0, 4) + 1;
                         $codConstancia = array('codConstancia' => '000'.$generarCodigoLicencia.'-'.$consultaCodigoAnt->periodo,
@@ -109,7 +109,6 @@ class ConstanciaPosesionController extends Controller
                 return redirect()->route('constancia.index')->with('error', $th->getMessage());
                 /* return redirect('licencias/show')->with('licencia', 'error'); */
             }
-            
         }
     }
 
