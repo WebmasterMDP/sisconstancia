@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index()
     {
         $dataUsers = User::all();
+        
         return view('Administracion/usuarios/index', compact('dataUsers'));
     }
     
@@ -206,4 +207,11 @@ class UserController extends Controller
             }
         }
     }
+
+    public function user($id){
+        /* $response = User::findorFail($id); */
+        $response = User::where('id', $id)->first();
+        return $response;
+    }
+
 }

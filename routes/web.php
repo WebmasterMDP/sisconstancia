@@ -24,13 +24,13 @@ use App\Http\Controllers\UbicacionController;
 |
 */
 Auth::routes();
-/* Route::get('/', function () {
-    return view('auth.login'); 
-}); */
-
 Route::get('/', function () {
     return view('auth.login'); 
-})->name('login');
+});
+
+/* Route::get('/', function () {
+    return view('auth.login'); 
+})->name('login'); */
 /* Route::get('/', 'HomeController@home');
  */
 
@@ -108,3 +108,5 @@ Route::get('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, '
 Route::post('/actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, 'actualizarCantidadPisos'])->name('actualizar.pisos'); */
 
 Route::get('licencias/getSunatDatos/{ruc}', [ParametrosUrbController::class, 'getSunatDatos'])->name('getSunatDatos');
+
+Route::get('user/{id}', [UserController::class, 'user'])->name('user');

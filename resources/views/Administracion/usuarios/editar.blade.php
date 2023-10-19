@@ -19,7 +19,7 @@
         <div class="modal-body">
             <div class="card-body">
                 <div class="row ">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- Nombre y Apellido --}}
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- ROL --}}
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="row">
                             <div class="col-md-12">
                                 {{-- ESTADO --}}

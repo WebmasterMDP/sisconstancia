@@ -54,12 +54,16 @@
                                                 <td><span class="badge bg-danger">Deshabilitado</span></td>
                                             @endif
                                             <td>
-                                                <form class="" id="editar" method="" action="{{ url('/user/edit/'.$dataUser->id) }}">
+                                            <input type="hidden" name="idCod" id="idCod" value="{{ $dataUser->id }}">
+                                                <a name="edit" id="edit" data-href="" class="edit btn btn-warning" data-toggle="modal" data-target="#editUser" data-placement="top" title="Editar Usuario">
+                                                    <span class="fas fa-edit"></span>
+                                                </a>
+                                                <!-- <form class="" id="editar" method="" action="{{ url('/user/edit/'.$dataUser->id) }}">
                                                     @csrf
                                                     <button class="btn btn-warning" title="Editar" type="submit">
                                                     <i class="fas fa-edit"></i>
                                                     </button>
-                                                </form>
+                                                </form> -->
                                             </td>
                                             <td>
                                                 <form class="formDelete" id="delete" method="post" onclick="userdelete()" action="{{ url('/user/delete/'.$dataUser->id) }}">
@@ -90,11 +94,116 @@
     </div>
 </x-adminlte-card>
 
-<div class="modal fade show" id="addUser" aria-modal="true" role="dialog">
+<div class="modal fade show" id="editUser" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">REGISTRAR USUARIO</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form action="{{ url('/user/update') }}" method="POST" autocomplete="off">
+                @csrf
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- Nombre y Apellido --}}
+                                        <label for="">NOMBRES Y APELLIDOS <strong style="color:red">*</strong></label>
+                                        <x-adminlte-input type="text" required value="" name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- DNI --}}
+                                        <label for="">DOC. NAC. IDENTIDAD <strong style="color:red">*</strong> </label>                                       
+                                        <x-adminlte-input type="text" required value="" name="numdoc" id="numdoc" placeholder="Ingrese dni" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- Correo --}}
+                                        <label for="">CORREO <strong style="color:red">*</strong> </label>                                       
+                                        <x-adminlte-input type="text" required value="" name="email" id="email" placeholder="Ingrese Giro" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- ROL --}}
+                                        <label for="">ROL <strong style="color:red">*</strong></label>  
+                                        <x-adminlte-select type="text" required name="rol" id="rol" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-id-card text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                            
+                                            
+                                        </x-adminlte-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- ESTADO --}}
+                                        <label for="">ESTADO <strong style="color:red">*</strong></label>  
+                                        <x-adminlte-select type="text" required name="estado" id="estado" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-id-card text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                            
+                                        </x-adminlte-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" onclick="javascript:window.history.back();" >Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </form>
+</div>
+
+
+<div class="modal fade show" id="addUser" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">CREANDO USUARIO</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -104,6 +213,21 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- Nombre y Apellido --}}
+                                        <label for="">Nombre y Apellido</label>
+                                        <x-adminlte-input type="text" required name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>  
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -116,21 +240,6 @@
                                                 </div>
                                             </x-slot>
                                         </x-adminlte-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Nombre y Apellido --}}
-                                        <label for="">Nombre y Apellido</label>
-                                        <x-adminlte-input type="text" required name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>  
                                     </div>
                                 </div>
                             </div>
@@ -149,7 +258,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- ROL --}}
@@ -177,6 +286,7 @@
         </div>
     </div>
 </div>
+
 @stop
 
 @section('css')
@@ -185,6 +295,25 @@
 @section('js')
 
 <script>
+
+$("#edit").on('click',function() {
+    var id = $('#idCod').val();
+    var url = "{{ route('user', ':id') }}";                
+    url = url.replace(':id', id);
+
+    $.ajax({
+    type: "GET",
+    url: url,
+    dataType: "json",
+    success: function (response) {
+        console.log(response);
+        }
+    });
+});
+
+
+
+
 function userdelete() {
     event.preventDefault();
     const swalWithBootstrapButtons = Swal.mixin({
