@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ubicacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UbicacionController extends Controller
 {
@@ -16,12 +17,19 @@ class UbicacionController extends Controller
 
     public function create()
     {
-        
+        //
     }
 
     public function store(Request $request)
     {
-        //
+        $datos = new Ubicacion();
+        $datos->zona = $request->zona;
+        $datos->nombreUbicacion = $request->nombreUbicacion;
+        $datos->observacion = 'CREADO';
+        $datos->usuario = Auth::user()->name;
+
+        $datos->save();
+        return redirect()->route('ubicacion.index')->with('ubicacion','create');
     }
 
     public function show(Ubicacion $ubicacion)
@@ -35,13 +43,28 @@ class UbicacionController extends Controller
         return view('administracion/ubicacion/edit', compact('datos'));
     }
 
-    public function update(Request $request, Ubicacion $ubicacion)
+    public function update($id, Request $request)
     {
-        //
+        $datos = Ubicacion::findorFail($id);
+        $datos->zona = $request->zonaUpdate;
+        $datos->nombreUbicacion = $request->nameUpdate;
+        $datos->observacion = 'ACTUALIZADO';
+        $datos->usuario = Auth::user()->name;
+
+        $datos->save();
+        return redirect()->route('ubicacion.index')->with('ubicacion','update');
     }
 
-    public function destroy(Ubicacion $ubicacion)
+    public function destroy($id)
     {
-        //
+        $datos = Ubicacion::findorFail($id);
+        $datos->delete();
+        return redirect()->route('ubicacion.index')->with('ubicacion','delete');
+    }
+
+    public function getSector($zona){
+        $response = Ubicacion::where(['zona' => $zona])
+                    ->get();
+        return $response;
     }
 }

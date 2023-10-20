@@ -109,4 +109,10 @@ Route::post('/actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class,
 
 Route::get('licencias/getSunatDatos/{ruc}', [ParametrosUrbController::class, 'getSunatDatos'])->name('getSunatDatos');
 
-Route::get('user/{id}', [UserController::class, 'user'])->name('user');
+/* UBICACION */
+Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index');
+Route::post('ubicacion/create', [UbicacionController::class, 'store'])->name('ubicacion.store');
+Route::post('ubicacion/update/{id}', [UbicacionController::class, 'update'])->name('ubicacion.update');
+Route::delete('ubicacion/destroy/{id}', [UbicacionController::class, 'destroy'])->name('ubicacion.destroy');
+
+Route::get('ubicacion/getSector/{zona}', [UbicacionController::class, 'getSector'])->name('getSector');

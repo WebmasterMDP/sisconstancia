@@ -82,8 +82,12 @@
                                                             </div>
                                                         </x-slot>
                                                         <option>--Seleccione--</option>
-                                                        <option value="s">Soltero</option>
-                                                        <option value="c">Casado/Conviviente</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="RE">RETAMAL</option>
                                                     </x-adminlte-select>  
                                                 </div>
                                             </div>
@@ -183,13 +187,13 @@
                                                 <div class="col-md-12">
                                                     {{-- UBICACIÓN --}} 
                                                     <label for="">UBICACIÓN <strong style="color:red">*</strong> </label>                                      
-                                                    <x-adminlte-input type="text" name="ubicacion" id="ubicacion" required placeholder="Ingrese ubicación" label-class="text-lightblue">
+                                                    <x-adminlte-select type="text" name="ubicacion" id="ubicacion" required placeholder="Ingrese ubicación" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-calendar text-dark"></i>
                                                             </div>
                                                         </x-slot>
-                                                    </x-adminlte-input>  
+                                                    </x-adminlte-select>  
                                                 </div>
                                             </div>
                                         </div>
@@ -286,6 +290,32 @@
 @stop
 
 @section('js')
+
+<script>
+    $("#zona").on("change", function(){
+        
+        $("#ubicacion").html("");
+        var zona = $("#zona").val();
+        var url = "{{ route('getSector', ':zona') }}";                
+        url = url.replace(':zona', zona);
+        /* console.log(url); */
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (response) {
+                /* console.log(response['0'].nombre); */
+                response.forEach(element => {
+                    $("#ubicacion").append("<option value='"+element.nombreUbicacion+"'>"+element.nombreUbicacion+"</option>");
+                })
+
+                /* $("#cSect").val(element.codSector);
+                console.log(response['0'].codSector); */
+            /* $("#cSect").val(element.cod); */
+            }
+        });
+    });
+</script>
 
 <script>
     $(document).ready(function(){

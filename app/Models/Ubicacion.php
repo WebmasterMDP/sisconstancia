@@ -11,7 +11,6 @@ class Ubicacion extends Model
     protected $fillable = [
         'nombreUbicacion',
         'zona',
-        'observacion',
         'usuario',
     ];
 }
