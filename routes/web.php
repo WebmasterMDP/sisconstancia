@@ -31,17 +31,17 @@ Route::get('/', function () {
 /* Route::get('/', function () {
     return view('auth.login'); 
 })->name('login'); */
-/* Route::get('/', 'HomeController@home');
- */
+
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 /* USUARIO */
 Route::get('/usuario', [UserController::class, 'index'])->name('user.index');
 Route::post('/usuario/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-Route::post('/user/update{id}', [UserController::class, 'update'])->name('user.update');
+Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::get('/seguimiento', [SeguimientoController::class, 'index'])->name('siguimiento.index');
 Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index');

@@ -19,8 +19,8 @@
                                     <span class="fas fa-plus-square"></span>
                                 </a>
                                 <br>
-                                <table id="example2" class="text-center table align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
-                                    <thead class="bg-gray">
+                                <table id="example2" class="table table-hover align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                                    <thead class="text-center px-4 py-4 text-nowrap bg-gray">
                                         <tr >
                                             <th>ID</th>
                                             <th style="width: 20%">NOMBRE</th>
@@ -54,21 +54,17 @@
                                                 <td><span class="badge bg-danger">Deshabilitado</span></td>
                                             @endif
                                             <td>
-                                            <input type="hidden" name="idCod" id="idCod" value="{{ $dataUser->id }}">
-                                                <a name="edit" id="edit" data-href="" class="edit btn btn-warning" data-toggle="modal" data-target="#editUser" data-placement="top" title="Editar Usuario">
-                                                    <span class="fas fa-edit"></span>
-                                                </a>
-                                                <!-- <form class="" id="editar" method="" action="{{ url('/user/edit/'.$dataUser->id) }}">
-                                                    @csrf
-                                                    <button class="btn btn-warning" title="Editar" type="submit">
+                                                <buttom name="edit" id="edit" data-href="" class="btn btn-warning" data-toggle="modal" data-target="#editUser{{ $dataUser->id }}" data-placement="top" title="Editar Usuario">
                                                     <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </form> -->
+                                                </buttom>
                                             </td>
+                                            @include('Administracion.usuarios.modalEditar')
+
                                             <td>
-                                                <form class="formDelete" id="delete" method="post" onclick="userdelete()" action="{{ url('/user/delete/'.$dataUser->id) }}">
+                                                <form class="formDelete" method="post" action="{{ url('/user/delete/'.$dataUser->id) }}">
                                                     @csrf
-                                                    <button class="btn btn-danger delete" id="delete" title="Borrar"  type="submit">
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" title="Borrar" type="submit">
                                                     <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -76,7 +72,7 @@
                                             <td>
                                                 <form class="" method="post" action="{{ url('/resetpass/'.$dataUser->id) }}">
                                                     @csrf
-                                                    <button class="btn btn-info" id="delete" title="Restablecer"  type="submit">
+                                                    <button class="btn btn-info" title="Restablecer" type="submit">
                                                     <i class="fas fa-key"></i>
                                                     </button>
                                                 </form>
@@ -94,198 +90,7 @@
     </div>
 </x-adminlte-card>
 
-<div class="modal fade show" id="editUser" aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">REGISTRAR USUARIO</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="{{ url('/user/update') }}" method="POST" autocomplete="off">
-                @csrf
-                <div class="modal-body">
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Nombre y Apellido --}}
-                                        <label for="">NOMBRES Y APELLIDOS <strong style="color:red">*</strong></label>
-                                        <x-adminlte-input type="text" required value="" name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>  
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- DNI --}}
-                                        <label for="">DOC. NAC. IDENTIDAD <strong style="color:red">*</strong> </label>                                       
-                                        <x-adminlte-input type="text" required value="" name="numdoc" id="numdoc" placeholder="Ingrese dni" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Correo --}}
-                                        <label for="">CORREO <strong style="color:red">*</strong> </label>                                       
-                                        <x-adminlte-input type="text" required value="" name="email" id="email" placeholder="Ingrese Giro" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- ROL --}}
-                                        <label for="">ROL <strong style="color:red">*</strong></label>  
-                                        <x-adminlte-select type="text" required name="rol" id="rol" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-id-card text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                            
-                                            
-                                        </x-adminlte-select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- ESTADO --}}
-                                        <label for="">ESTADO <strong style="color:red">*</strong></label>  
-                                        <x-adminlte-select type="text" required name="estado" id="estado" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-id-card text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                            
-                                        </x-adminlte-select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-            <button type="button" class="btn btn-default" onclick="javascript:window.history.back();" >Cerrar</button>
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </div>
-    </form>
-</div>
-
-
-<div class="modal fade show" id="addUser" aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">CREANDO USUARIO</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="{{ url('usuario/create') }}" method="POST" autocomplete="off">
-            @csrf
-                <div class="modal-body">
-                    <div class="card-body">
-                        <div class="row ">
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Nombre y Apellido --}}
-                                        <label for="">Nombre y Apellido</label>
-                                        <x-adminlte-input type="text" required name="name" id="name" placeholder="Ingrese nombre" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>  
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- DNI --}}
-                                        <label for="">Doc. Nac. Identidad</label>                                       
-                                        <x-adminlte-input type="text" required name="numdoc" id="numdoc" placeholder="Ingrese dni" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- Correo --}}
-                                        <label for="">Correo</label>                                       
-                                        <x-adminlte-input type="text" required name="email" id="email" placeholder="Ingrese Giro" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- ROL --}}
-                                        <label for="">ROL <strong style="color:red">*</strong></label>  
-                                        <x-adminlte-select type="text" required name="rol" id="rol" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-id-card text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                            <option value="user">usuario</option>
-                                            <option value="admin">admin</option>
-                                        </x-adminlte-select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+@include('Administracion.usuarios.modalCreate')
 
 @stop
 
@@ -295,59 +100,35 @@
 @section('js')
 
 <script>
-
-$("#edit").on('click',function() {
-    var id = $('#idCod').val();
-    var url = "{{ route('user', ':id') }}";                
-    url = url.replace(':id', id);
-
-    $.ajax({
-    type: "GET",
-    url: url,
-    dataType: "json",
-    success: function (response) {
-        console.log(response);
+$('.formDelete').submit(function(e){
+    e.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success m-2',
+            cancelButton: 'btn btn-danger m-2'
+        },
+        buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: 'Se eliminará definitivamente',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'El usuario sigue activo',
+                'error'
+            );
         }
     });
 });
-
-
-
-
-function userdelete() {
-    event.preventDefault();
-    const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-success m-2',
-        cancelButton: 'btn btn-danger m-2'
-    },
-    buttonsStyling: false
-    })
-
-    swalWithBootstrapButtons.fire({
-    title: '¿Estas seguro?',
-    text: "Se eliminará definitavemnte",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonText: 'Si, eliminar',
-    cancelButtonText: 'No, cancelar',
-    reverseButtons: true
-    }).then((result) => {
-    if (result.isConfirmed) {
-        console.log('hola');
-        /* $(this).submit(); */
-        document.getElementById("delete").submit();
-    } else if (
-        result.dismiss === Swal.DismissReason.cancel
-    ) {
-        swalWithBootstrapButtons.fire(
-        'Cancelado',
-        'El usuario sigue activo',
-        'error'
-        )
-    }
-    })
-}
 </script>
 
 @if(session('user') == 'ok')
@@ -377,6 +158,16 @@ function userdelete() {
             title:'Oops...',
             text: 'Fallo el proceso',
         })  
+    </script>
+@endif
+
+@if(session('user') == 'delete')
+    <script>
+        Swal.fire(
+        'Eliminado!',
+        'El usuario se elimino correctamente.',
+        'success'
+        )
     </script>
 @endif
 

@@ -28,8 +28,8 @@
                                         <strong>{{ session('error') }}</strong>
                                     </div>
                                 @endif
-                                <table id="example2" class="text-center table align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
-                                    <thead class="text-center text-nowrap bg-gray">
+                                <table id="example2" class="table table-hover align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                                    <thead class="text-center px-4 py-4 text-nowrap bg-gray">
                                         <tr>
                                             <th>N°</th>
                                             <th>NOMBRE</th>
@@ -95,11 +95,11 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- INGRESE SECTOR --}}
-                                        <label for="">ZONA</label>                                       
+                                        <label>ZONA</label>                                       
                                         <x-adminlte-select type="number" name="zona" id="zona" required placeholder="Ingrese zona" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
@@ -117,26 +117,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{-- CODSECTOR --}}
-                                        <label for="">COD SECTOR</label>
-                                        <x-adminlte-input type="text" required name="codSector" id="codSector" placeholder="Ingrese Cod. Sector" label-class="text-lightblue">
-                                            <x-slot name="prependSlot">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-user text-dark"></i>
-                                                </div>
-                                            </x-slot>
-                                        </x-adminlte-input>  
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- INGRESE SECTOR --}}
-                                        <label for="">INGRESE SECTOR</label>                                       
+                                        <label>INGRESE SECTOR</label>                                       
                                         <x-adminlte-input type="text" required name="nombre" id="nombre" placeholder="Ingrese Sector" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">

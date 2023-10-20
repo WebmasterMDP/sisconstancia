@@ -48,7 +48,7 @@ class ConstanciaPosesionController extends Controller
 
         if($validate->fails()){
 
-            return redirect()->route('constancia.create')->with('data', 'miss');
+            return redirect()->route('constancia.create')->with('constancia', 'miss');
 
         }else{
         
@@ -102,7 +102,7 @@ class ConstanciaPosesionController extends Controller
                 ]);
                 /* Licencia::insert($registroLicencia); */
                 ConstanciaPosesion::create($registroLicencia);
-                return redirect()->route('constancia.index')->with('create', 'ok'); 
+                return redirect()->route('constancia.index')->with('constancia', 'create'); 
                 /* return back()->with('licencia', 'ok'); */
     
             } catch (\Throwable $th) {
@@ -155,6 +155,6 @@ class ConstanciaPosesionController extends Controller
     {
         $data = ConstanciaPosesion::findOrFail($id);
         $data->delete();
-        return redirect()->route('constancia.index');
+        return redirect()->route('constancia.index')->with('constancia', 'disabled');
     }
 }

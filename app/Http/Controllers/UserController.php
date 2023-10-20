@@ -22,10 +22,10 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'numdoc' => 'required',
-            'email' => 'required',
-            'rol' => 'required',
+            'nameCreate' => 'required',
+            'numdocCreate' => 'required',
+            'emailCreate' => 'required',
+            'rolCreate' => 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
             'numdoc.min' => 'Ingrese 8 carateres como mínimo',
@@ -39,14 +39,14 @@ class UserController extends Controller
         }else{
 
                 User::create([
-                    'name'      =>$request->name,
-                    'numdoc'    =>$request->numdoc,
-                    'username'  =>$request->numdoc,
+                    'name'      =>$request->nameCreate,
+                    'numdoc'    =>$request->numdocCreate,
+                    'username'  =>$request->numdocCreate,
                     'estado'    =>'1',
-                    'password'  =>Hash::make($request->numdoc),
-                    'email'     =>$request->email,
-                    'rol'       =>$request->rol,
-                ])->assignRole($request->rol);
+                    'password'  =>Hash::make($request->numdocCreate),
+                    'email'     =>$request->emailCreate,
+                    'rol'       =>$request->rolCreate,
+                ])->assignRole($request->rolCreate);
 
                 /* $user = new User();
                 $user->name = $request->name;
@@ -92,14 +92,26 @@ class UserController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
+        /* $user = User::find($id);
+        $user->update([
+            'name'      =>$request->name,
+            'numdoc'    =>$request->numdoc,
+            'username'  =>$request->numdoc,
+            'estado'    =>$request->estado,
+            'email'     =>$request->email,
+            'rol'       =>$request->rol,
+        ]);
+        $user->syncRoles($request->rol);
+        return redirect()->route('user.index')->with('user', 'update'); */
+
         $validate = Validator::make($request->all(), [
-            'name' => 'required',
-            'numdoc' => 'required',
-            'email' => 'required',
-            'rol' => 'required',
-            'estado' => 'required',
+            'nameUpdate' => 'required',
+            'numdocUpdate' => 'required',
+            'emailUpdate' => 'required',
+            'rolUpdate' => 'required',
+            'estadoUpdate' => 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
             'numdoc.min' => 'Ingrese 8 carateres como mínimo',
@@ -112,12 +124,12 @@ class UserController extends Controller
             try{
                 $user = User::find($id);
                 $user->update([
-                    'name'      =>$request->name,
-                    'numdoc'    =>$request->numdoc,
-                    'username'  =>$request->numdoc,
-                    'estado'    =>$request->estado,
-                    'email'     =>$request->email,
-                    'rol'       =>$request->rol,
+                    'name'      =>$request->nameUpdate,
+                    'numdoc'    =>$request->numdocUpdate,
+                    'username'  =>$request->numdocUpdate,
+                    'estado'    =>$request->estadoUpdate,
+                    'email'     =>$request->emailUpdate,
+                    'rol'       =>$request->rolUpdate,
                 ]);
                 $user->syncRoles($request->rol);
                 return redirect()->route('user.index')->with('user', 'update');
@@ -133,7 +145,7 @@ class UserController extends Controller
         try{
             $user = User::find($id);
             $user->delete();
-            return redirect()->back()->with('user', 'ok');
+            return redirect()->back()->with('user', 'delete');
         }catch(\Exception $e){
             return redirect()->back()->with('user', 'error');
         }

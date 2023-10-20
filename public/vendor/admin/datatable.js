@@ -1,5 +1,5 @@
 $(function () {   
-  $('#example2').DataTable({  
+  $('#example2').DataTable({
    "dom": 'Bfrtip',
    "paging": true,
    "lengthChange": false,
@@ -32,5 +32,5 @@ $(function () {
    "with-buttons": true,
    "buttons":
     [ { "extend": "excel", "text": '<i class="fas fa-file-excel"></i>', "titleAttr": "Exportar Excel", "className": "btn-success mt-1" }/* , { "extend": "", "text": '<i class="far fa-plus-square"></i> Agregar', "titleAttr": "Agregar", "className": "btn-info m-1" } */ ],
-})
+  })
 });

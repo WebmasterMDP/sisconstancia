@@ -292,6 +292,7 @@ return [
         [
             'text'    => 'Módulo Administrador',
             'icon'    => 'far fa-circle',
+            'can'     => 'user.index',
             'submenu' => [
                 [
                     'text' => 'Lista de Usuarios',
@@ -310,6 +311,7 @@ return [
         [
             'text'    => 'Conformidad de Obras',
             'icon'    => 'far fa-circle',
+            'can'     => 'conformidad.index',
             'submenu' => [
                 [
                     'text' => 'Agregar',
@@ -324,6 +326,7 @@ return [
         [
             'text'    => 'Habilitación Urbana',
             'icon'    => 'far fa-circle',
+            'can'     => 'habilitacion.index',
             'submenu' => [
                 [
                     'text' => 'Agregar',
@@ -338,6 +341,7 @@ return [
         [
             'text'    => 'Constancia de Posesión',
             'icon'    => 'far fa-circle',
+            'can'     => 'constancia.index',
             'submenu' => [
                 [
                     'text' => 'Agregar',
@@ -352,6 +356,7 @@ return [
         [
             'text'    => 'Parametros Urbanísticos',
             'icon'    => 'far fa-circle',
+            'can'     => 'parametro.index',
             'submenu' => [
                 [
                     'text' => 'Agregar',
@@ -366,6 +371,7 @@ return [
         [
             'text'    => 'Trabajos en la Vía Pública',
             'icon'    => 'far fa-circle',
+            'can'     => 'via.pub.index',
             'submenu' => [
                 [
                     'text' => 'Agregar',
@@ -443,11 +449,11 @@ return [
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js',
                 ],
-                [
+                /* [
                     'type' => 'js',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap4.min.js',
-                ],
+                ], */
 
                 /* CAMBIO */
                 [
@@ -486,18 +492,35 @@ return [
                 [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css',
+                    'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
                 ],
-                [
+                /* [
                     'type' => 'css',
                     'asset' => true,
-                    'location' => '//cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css',
-                ],
+                    'location' => '//cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css',
+                ], */
                 [
                     'type' => 'css',
                     'asset' => true,
                     'location' => '//cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css',
                 ],
+                
+                /* [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css',
+                ], */
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css',
+                ],
+                /* [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '//cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap4.min.css',
+                ], */
+
                 /* [
                     'type' => 'css',
                     'asset' => true,
@@ -567,7 +590,7 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js',
-                ], */   
+                ], */
                 [
                     'type' => 'js',
                     'asset' => true,

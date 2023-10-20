@@ -24,28 +24,29 @@
                                     <strong>{{ session('error') }}</strong>
                                 </div>
                             @endif
-                            <table id="example2" class="table align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
-                                <thead class="text-center px-4 py-4 text-nowrap bg-gray">
+                            <table id="example2" class="table table-hover align-middle dataTable dtr-inline collapsed" aria-describedby="example1_info">
+                                <thead class="text-center px-2 py-2 text-nowrap bg-gray">
                                     <tr>
                                         <th>N°</th>
                                         <th>CODIGO CONSTANCIA</th>
                                         <th style="width: 10%">NOMBRE</th>
                                         <th>DNI</th>
+                                        <th>UBICACIÓN</th>
+                                        <th>ESTADO</th>
+                                        <th>PDF</th>
+                                        <th>EDITAR</th>
+                                        <th>ELIMINAR</th>
                                         <th>N° INFORME</th>
                                         <th>FECHA DE INFORME</th>
                                         <th>N° EXPEDIENTE</th>
                                         <th>FECHA DE EXPEDIENTE</th>
                                         <th>LOTE</th>
                                         <th>MANZANA</th>
-                                        <th>UBICACIÓN</th>
                                         <th>ÁREA DEL PREDIO</th>
                                         <th>PERIODO</th>                     
                                         <th>ACOMPAÑANTE</th>
                                         <th>DNI ACOMPAÑANTE</th>       
-                                        <th>ESTADO</th>
-                                        <th>PDF</th>
-                                        <th>EDITAR</th>
-                                        <th>ELIMINAR</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,22 +57,7 @@
                                             <td class="text-center">{{ $dato->codConstancia }}</td>
                                             <td>{{ $dato->nombreCompleto }}</td>
                                             <td>{{ $dato->numdoc }}</td>
-                                            <td>{{ $dato->numInforme }}</td>
-                                            <td>{{ $dato->fechaInforme }}</td>
-                                            <td>{{ $dato->numExpediente }}</td>
-                                            <td>{{ $dato->fechaExpediente }}</td>
-                                            <td>{{ $dato->lote }}</td>
-                                            <td>{{ $dato->manzana }}</td>
                                             <td>{{ $dato->ubicacion }}</td>
-                                            <td>{{ $dato->areaPredio }}</td>
-                                            <td>{{ $dato->periodo }}</td>
-                                            @if ($dato->estadoCivil == 's')
-                                                <td><span class="badge badge-secondary">no figura</span></td>
-                                                <td><span class="badge badge-secondary">no figura</span></td>
-                                            @else
-                                                <td>{{ $dato->partner }}</td>
-                                                <td>{{ $dato->dniPartner }}</td>
-                                            @endif
 
                                             @if ($dato->estado == 1)
                                                 <td><span class="badge badge-success">Activo</span></td>
@@ -89,14 +75,31 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                <form action="{{ route('constancia.destroy', $dato->id) }}" method="POST">
+                                                <form class="registroDelete" method="post" action="{{ url('/modulo3/delete/'.$dato->id) }}">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-md" data-placement="top" title="Borrar">
-                                                        <i class="fas fa-trash-alt"></i>
+                                                    @method('delete')
+                                                    <button class="btn btn-danger" title="Borrar" type="submit">
+                                                    <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
                                             </td>
+                                            <td>{{ $dato->numInforme }}</td>
+                                            <td>{{ $dato->fechaInforme }}</td>
+                                            <td>{{ $dato->numExpediente }}</td>
+                                            <td>{{ $dato->fechaExpediente }}</td>
+                                            <td>{{ $dato->lote }}</td>
+                                            <td>{{ $dato->manzana }}</td>
+                                            <td>{{ $dato->areaPredio }}</td>
+                                            <td>{{ $dato->periodo }}</td>
+                                            @if ($dato->estadoCivil == 's')
+                                                <td><span class="badge badge-secondary">no figura</span></td>
+                                                <td><span class="badge badge-secondary">no figura</span></td>
+                                            @else
+                                                <td>{{ $dato->partner }}</td>
+                                                <td>{{ $dato->dniPartner }}</td>
+                                            @endif
+
+                                            
                                         </tr>
                                         @endforeach
                                     @else
@@ -119,8 +122,43 @@
 @stop
 
 @section('js')
+<script>
+$('.registroDelete').submit(function(e){
+    e.preventDefault();
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success m-2',
+            cancelButton: 'btn btn-danger m-2'
+        },
+        buttonsStyling: false
+    });
 
-@if(session('create') == 'ok')
+    swalWithBootstrapButtons.fire({
+        title: '¿Estás seguro?',
+        text: 'Se eliminará definitivamente',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+            /* console.log('click'); */
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+                'Cancelado',
+                'El usuario sigue activo',
+                'error'
+            );
+        }
+    });
+});
+</script>
+
+
+
+@if(session('constancia') == 'create')
     <script>
         Swal.fire(
         'Exito!',
@@ -130,11 +168,21 @@
     </script>
 @endif
 
-@if(session('print') == 'ok')
+<!-- @if(session('constancia') == 'ok')
     <script>
         Swal.fire(
         'Exito!',
         'Se habilito la impresión',
+        'success'
+        )
+    </script>
+@endif -->
+
+@if(session('constancia') == 'disabled')
+    <script>
+        Swal.fire(
+        'Anulado!',
+        'La constancia se anulo correctamente.',
         'success'
         )
     </script>
