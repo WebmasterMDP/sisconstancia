@@ -32,7 +32,7 @@
                                     <thead class="text-center px-4 py-4 text-nowrap bg-gray">
                                         <tr>
                                             <th>N°</th>
-                                            <th>NOMBRE</th>
+                                            <th style="width: 50%">NOMBRE</th>
                                             <th>ZONA</th>
                                             <th>OBSERVACIÓN</th>
                                             <th>USUARIO</th>
@@ -46,20 +46,20 @@
                                             <tr>
                                                 <td>{{ $dato->id }}</td>
                                                 <td>{{ $dato->nombreUbicacion }}</td>
-                                                <td>{{ $dato->zona }}</td>
-                                                <td>{{ $dato->observacion }}</td>
-                                                <td>{{ $dato->usuario }}</td>
-                                                <td>
+                                                <td class="text-center">{{ $dato->zona }}</td>
+                                                <td class="text-center">{{ $dato->observacion }}</td>
+                                                <td class="text-center">{{ $dato->usuario }}</td>
+                                                <td class="text-center">
                                                     <buttom name="edit" id="edit" data-href="" class="btn btn-warning" data-toggle="modal" data-target="#editUbicacion{{ $dato->id }}" data-placement="top" title="Editar Ubicación">
                                                         <i class="fas fa-edit"></i>
                                                     </buttom>
                                                 </td>
                                                 @include('Administracion.ubicacion.modalEditar')
-                                                <td>
+                                                <td class="text-center">
                                                     <form action="{{ route('ubicacion.destroy', $dato->id) }}" method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                        <button type="submit" class="btn btn-danger btn-md">
                                                             <i class="fas fa-trash-alt"></i>
                                                         </button>
                                                     </form>

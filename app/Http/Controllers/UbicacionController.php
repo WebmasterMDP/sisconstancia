@@ -27,7 +27,6 @@ class UbicacionController extends Controller
         $datos->nombreUbicacion = $request->nombreUbicacion;
         $datos->observacion = 'CREADO';
         $datos->usuario = Auth::user()->name;
-
         $datos->save();
         return redirect()->route('ubicacion.index')->with('ubicacion','create');
     }
@@ -50,15 +49,14 @@ class UbicacionController extends Controller
         $datos->nombreUbicacion = $request->nameUpdate;
         $datos->observacion = 'ACTUALIZADO';
         $datos->usuario = Auth::user()->name;
-
         $datos->save();
         return redirect()->route('ubicacion.index')->with('ubicacion','update');
     }
 
     public function destroy($id)
     {
-        $datos = Ubicacion::findorFail($id);
-        $datos->delete();
+        /* $datos = Ubicacion::findorFail($id);
+        $datos->delete(); */
         return redirect()->route('ubicacion.index')->with('ubicacion','delete');
     }
 

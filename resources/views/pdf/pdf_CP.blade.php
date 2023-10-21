@@ -43,13 +43,13 @@ class PDF extends FPDF
         $this->Cell(1);
         // Título
 
-        $this->Image('vendor/adminlte/dist/img/escudo.png',10,8,20);
+        /* $this->Image('vendor/adminlte/dist/img/escudo.png',10,8,20); */
 
         $this->SetFont('Arial',null,16);
 
         $this->Cell(20);
 
-        $this->Cell(15,7,'MUNICIPALIDAD DE',0,0,'L');
+       /*  $this->Cell(15,7,'MUNICIPALIDAD DE',0,0,'L');
         $this->Ln(3);
         $this->SetFont('Arial','B',11);
         $this->Cell(240,0,utf8_decode('SUB GERENCIA DE PLANEAMIENTO'),0,0,'C');
@@ -60,18 +60,18 @@ class PDF extends FPDF
         $this->Ln(1);
         $this->Cell(20);
         $this->SetFont('Arial','B',21);
-        $this->Cell(25,7,utf8_decode('PACHACÁMAC'),0,0,'L');
+        $this->Cell(25,7,utf8_decode('PACHACÁMAC'),0,0,'L'); */
         $this->Ln(6);
         
         $this->Ln(6);
         $this->Cell(7);
         $this->SetFont('Arial',null,10);
-        $this->Cell(25,7,utf8_decode('"Año de la Unidad, la Paz y el Desarrollo"'),0,0,'L');
+        /* $this->Cell(25,7,utf8_decode('"Año de la Unidad, la Paz y el Desarrollo"'),0,0,'L'); */
         $this->Ln(7);
     
         $this->setFont('Arial','B',50);
         $this->setTextColor(230,210,210);
-        $this->RotatedText(45, 248,'S I N   V A L O R   O F I C I A L',60);
+        /* $this->RotatedText(45, 248,'S I N   V A L O R   O F I C I A L',60); */
     }
 
     function RotatedText($x, $y, $text, $angle){
@@ -170,8 +170,10 @@ $pdf->AddPage( 'P' ,  'A4'); /* VERTICAL */
 /* $pdf->AddPage( 'L' ,  'A4'); HORIZONTAL */
 
 setlocale(LC_TIME, "spanish");
-$expediente = utf8_decode(date("d-m-Y", strtotime($showData->fechaExpediente)));
-$fechaExpediente = utf8_decode(strftime("%d de %B %Y", strtotime($expediente)));
+$expediente = utf8_decode(date("d/m/Y", strtotime($showData->fechaExpediente)));
+
+$informe = utf8_decode(date("d-m-Y", strtotime($showData->fechaInforme)));
+$fechaInforme = utf8_decode(strftime("%d de %B del %Y", strtotime($informe)));
 
 $pdf->SetMargins(27 , 0);
 $pdf->Cell(21);
@@ -192,16 +194,16 @@ $pdf->MultiCell(0,3,utf8_decode('N° '.$showData->codConstancia.'-MDP/GDU/SGPUCO
 /* DATOS */
 $pdf->SetFont('Arial', 'B',9);
 $pdf->Ln(7);
-$pdf->Cell(0,5,utf8_decode('Expediente: N° '.$showData->numExpediente),0,0,'R');
+$pdf->Cell(0,5,utf8_decode('N° Expediente: '.$showData->numExpediente.' - '.$showData->periodo),0,0,'R');
 $pdf->Ln(5);
-$pdf->Cell(0,5,utf8_decode('Fecha Expediente: '.$fechaExpediente),0,0,'R');
+$pdf->Cell(0,5,utf8_decode('Fecha Expediente: '.$expediente),0,0,'R');
 $pdf->Ln(7);
 $pdf->SetFont('Arial', null,9);
 $pdf->MultiCell(0,5,utf8_decode('La Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas de la Gerencia de Desarrollo Urbano de la Municipalidad Distrital de Pachacamac, hace constar:'),0,'J',false);
 $pdf->Ln(6);
-$pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote xx Mz xx de la Asociación de Vivienda '.$showData->ubicacion.', en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
+$pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
 $pdf->Ln(6);
-$pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->numInforme.'-2023/MDP- GDU-SGPUCOPHU-TC, de '.$showData->fechaInforme.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
+$pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->numInforme.'-2023/MDP- GDU-SGPUCOPHU-TC, '.$fechaInforme.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
 $pdf->Ln(6);
 $pdf->MultiCell(0,5,utf8_decode('Que, por tales razones anteriormente expuestas se expide la presente CONSTANCIA DE POSESIÓN, únicamente para solicitar el otorgamiento de los SERVICIOS BASICOS, a que se refiere el Artículo Nº 24 de la Ley Nº 28687 "Ley de Desarrollo y Complementaria de Formalización de la Propiedad Informal, Acceso al suelo y Dotación de Servicios Básicos"; articulo 27 y 28 del Decreto Supremo N° 017-2006-VIVIENDA y la Ordenanza N° 313-2023-MDP/C, respectivamente.'),0,'J',false);
 

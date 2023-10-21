@@ -36,7 +36,7 @@
                                         <th>PDF</th>
                                         <th>EDITAR</th>
                                         <th>ELIMINAR</th>
-                                        <th>N° INFORME</th>
+                                        <th>N° INFORME TÉCNICO</th>
                                         <th>FECHA DE INFORME</th>
                                         <th>N° EXPEDIENTE</th>
                                         <th>FECHA DE EXPEDIENTE</th>
@@ -60,21 +60,21 @@
                                             <td>{{ $dato->ubicacion }}</td>
 
                                             @if ($dato->estado == 1)
-                                                <td><span class="badge badge-success">Activo</span></td>
+                                                <td class="text-center"><span class="badge badge-success">Activo</span></td>
                                             @else
-                                                <td><span class="badge badge-danger">Inactivo</span></td>
+                                                <td class="text-center"><span class="badge badge-danger">Inactivo</span></td>
                                             @endif
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ url('ConstanciaPosesion/'.$dato->_token) }}" data-href="" class="btn btn-info btn-md" data-placement="top"  title="Imprimir">
                                                     <span class="fas fa-print"></span>
                                                 </a>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <a href="{{ route('constancia.edit', $dato->id) }}" class="btn btn-warning btn-md" data-placement="top" title="Editar">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                             </td>
-                                            <td>
+                                            <td class="text-center">
                                                 <form class="registroDelete" method="post" action="{{ url('/modulo3/delete/'.$dato->id) }}">
                                                     @csrf
                                                     @method('delete')
@@ -98,8 +98,6 @@
                                                 <td>{{ $dato->partner }}</td>
                                                 <td>{{ $dato->dniPartner }}</td>
                                             @endif
-
-                                            
                                         </tr>
                                         @endforeach
                                     @else

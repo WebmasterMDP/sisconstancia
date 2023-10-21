@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('numExpediente');
             $table->string('fechaExpediente');
             $table->string('fechaIngreso');
+            $table->string('estadoCivil');
             $table->string('partner');
             $table->string('dniPartner');
             $table->string('areaPredio');

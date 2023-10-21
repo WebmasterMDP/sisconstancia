@@ -52,23 +52,24 @@ class ConstanciaPosesionController extends Controller
 
         }else{
         
-            try {
+            /* try { */
                 $datosConstancia = $request->except('btnRegistrar','_token');
                 $consultaCodigoAnt = ConstanciaPosesion::select('id','codConstancia','periodo')                                            
                                                         ->orderBy('id', 'desc')
                                                         ->first();
                 $token = Str::random(60);
-                $generarCodigoLicencia = ($consultaCodigoAnt->id) + 1;
 
                 if(empty($consultaCodigoAnt) || empty($consultaCodigoAnt->id) || empty($consultaCodigoAnt->periodo)) {
     
                     $codConstancia = array('codConstancia' => '0001-'.date('Y'),
                                     'periodo' => date('Y'),
-                                    '_token' => $token,
+                                    '_token' => $token.'1',
                                     'user' => Auth::user()->username); 
                     $registroLicencia = array_merge($codConstancia, $datosConstancia);            
                     
                 }else {
+                    $generarCodigoLicencia = $consultaCodigoAnt->id + 1;
+
                     if ($consultaCodigoAnt->periodo != date('Y') ) {
                         $codConstancia = array('codConstancia' => '0001-'.date('Y') ,
                                     'periodo' =>  date('Y'),
@@ -91,7 +92,7 @@ class ConstanciaPosesionController extends Controller
                     
                 }
                 Seguimiento::create([
-                    'id_tramite' => $generarCodigoLicencia,
+                    'id_tramite' => $registroLicencia['codConstancia'],	
                     'estado' => '1',
                     'print' => '0',
                     'observacion' => 'Nuevo Tramite',
@@ -105,10 +106,10 @@ class ConstanciaPosesionController extends Controller
                 return redirect()->route('constancia.index')->with('constancia', 'create'); 
                 /* return back()->with('licencia', 'ok'); */
     
-            } catch (\Throwable $th) {
-                return redirect()->route('constancia.index')->with('error', $th->getMessage());
+            /* } catch (\Throwable $th) {
+                return redirect()->route('constancia.index')->with('error', $th->getMessage()); */
                 /* return redirect('licencias/show')->with('licencia', 'error'); */
-            }
+            /* } */
         }
     }
 
@@ -133,22 +134,22 @@ class ConstanciaPosesionController extends Controller
     public function update($id, Request $request)
     {
         $data = ConstanciaPosesion::findOrFail($id);
-        $data->nombre_completo = request('name');
+        $data->nombreCompleto = request('nombreCompleto');
         $data->numdoc = request('numdoc');
-        $data->num_informe = request('numInforme');
-        $data->num_expediente = request('expediente');
-        $data->fecha_expediente = request('fechaExpediente');
+        $data->numInforme = request('numInforme');
+        $data->numExpediente = request('numExpediente');
+        $data->fechaInforme = request('fechaInforme');
+        $data->fechaExpediente = request('fechaExpediente');
+        $data->zona = request('zona');
+        $data->lote = request('lote');
+        $data->manzana = request('manzana');
         $data->ubicacion = request('ubicacion');
         $data->partner = request('partner');
-        $data->dni_partner = request('dniPartner');
-        $data->area_predio = request('areaPredio');
-        $data->plano_visado = request('planoVisado');
-        $data->num_resolucion = request('numResolucion');
-        $data->num_ordenanza = request('numOrdenanza');
-        $data->fecha_validez = request('fechaValidez');
+        $data->dniPartner = request('dniPartner');
+        $data->areaPredio = request('areaPredio');
         $data->save();
 
-        return redirect()->route('constancia.index');
+        return redirect()->route('constancia.index')->with('constancia', 'update');
     }
 
     public function destroy($id)
