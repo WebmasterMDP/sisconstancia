@@ -64,7 +64,42 @@
                                             @else
                                                 <td class="text-center"><span class="badge badge-danger">Inactivo</span></td>
                                             @endif
-                                            <td class="text-center">
+
+                                                @if ($dato->print == 1 || $dato->estado != 1)
+                                                <td>
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Imprimir">
+                                                        <span class="fas fa-print"></span>
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Modificar registro">
+                                                        <span class='fas fa-edit'></span>
+                                                    </button>                        
+                                                </td>
+                                                <td>
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Anular registro">
+                                                        <span class="fas fa-ban"></span> 
+                                                    </button>
+                                                </td>                                          
+                                                @else
+                                                <td>
+                                                    <a href="#" data-href="{{ url('ConstanciaPosesion/'.$dato->id )}}[path_file]#toolbar=0" class="btn btn-info btn-print" data-id="{{ $dato->id }}" data-toggle="modal" data-target="#modalLicencia" data-placement="top"  title="Imprimir">
+                                                        <span class="fas fa-print"></span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="route('constancia.edit', $dato->id)" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modificar registro">
+                                                        <span class='fas fa-edit'></span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" data-href="{{ url('licencias/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular registro">
+                                                        <span class="fas fa-ban"></span>
+                                                    </a>
+                                                </td>
+                                                @endif
+
+                                            <!-- <td class="text-center">
                                                 <a href="{{ url('ConstanciaPosesion/'.$dato->_token) }}" data-href="" class="btn btn-info btn-md" data-placement="top"  title="Imprimir">
                                                     <span class="fas fa-print"></span>
                                                 </a>
@@ -82,7 +117,7 @@
                                                     <i class="fas fa-trash"></i>
                                                     </button>
                                                 </form>
-                                            </td>
+                                            </td> -->
                                             <td>{{ $dato->numInforme }}</td>
                                             <td>{{ $dato->fechaInforme }}</td>
                                             <td>{{ $dato->numExpediente }}</td>
@@ -113,7 +148,22 @@
             </div>
         </div>
     </div>
+
+    <x-adminlte-modal id="modalLicencia" title="Vista Previa de Licencia" size="lg" theme="dark"
+    icon="fas fa-eye">
+    <div class="modal-body">
+        <iframe id="frameLicencia" src="" width="100%" height="700px"></iframe>
+    </div>
+    
+    <img class="img-fluid" src="" alt=""> 
+    <x-slot name="footerSlot">
+        {{--  <x-adminlte-button class="mr-auto" theme="success" label="Aceptar"/> --}}
+        <x-adminlte-button theme="secondary" label="Cerrar" data-dismiss="modal"/>
+    </x-slot>
+</x-adminlte-modal>
+
 </x-adminlte-card>
+
 @stop
 
 @section('css')
@@ -152,6 +202,35 @@ $('.registroDelete').submit(function(e){
         }
     });
 });
+
+
+$('#modalLicencia').on('show.bs.modal', function(e) {
+        $('#frameLicencia').attr('src', $(e.relatedTarget).data('href'));      
+        var id = $(e.relatedTarget).data('id');
+        console.log(id);
+
+        $.ajax({
+            type: "GET",
+            url: "{{ url('ConstanciaPosesion/print')}}"+"/"+id,
+            data: {
+
+            },
+            success: function(response) {
+               
+                if(response == "ok"){
+                    
+                }else{
+                    $('.btn btn-info btn-print').attr('disabled', true);
+                }
+            }
+        });
+    });
+    $('#modalLicencia').on('hide.bs.modal', function(e) {
+        $('#frameLicencia').attr('src', '');
+       
+        window.location.href = "{{ url('/modulo3/lista')}}";
+    });
+
 </script>
 
 

@@ -118,10 +118,10 @@ class ConstanciaPosesionController extends Controller
 
     }
 
-    public function pdf($token)
+    public function pdf($id)
     {
         
-        $showData = ConstanciaPosesion::select('*')->where('_token',$token)->first();
+        $showData = ConstanciaPosesion::select('*')->where('id',$id)->first();
         return view('pdf/pdf_CP', compact('showData'));
     }
 
@@ -150,6 +150,94 @@ class ConstanciaPosesionController extends Controller
         $data->save();
 
         return redirect()->route('constancia.index')->with('constancia', 'update');
+    }
+
+    public function anulacion($id)
+    {
+        $razon = request('razon');
+        $datosConstancia = Constancia::select('codConstancia')->where('id',$id)->first();
+        if($razon == null){
+            return redirect()->route('habilitaciones')->with('reason', 'miss');
+        }else{
+            /* try{ */
+                /* Licencia::where(['id' => $id])
+                        ->update(['estado' => '0']);
+                $usuario = auth()->user()->username; */
+
+                Constancia::where(['id' => $id])
+                        ->update(['estado' => '0']);
+                $usuario = auth()->user()->username;
+
+                Seguimiento::create([
+                    'id_tramite' => $datosConstancia['codConstancia'],	
+                    'estado' => '0',
+                    'print' => '1',
+                    'observacion' => $razon,
+                    'tipo_tramite' => 'Constancia de Posesion',
+                    'user' => $usuario,
+                    'fecha' => date('d-m-Y'),
+                    'hora' => date('H:i:s'),
+                ]);
+
+                /* $seguimiento = new Seguimiento();
+                $seguimiento->licencia_id = $id;
+                $seguimiento->estado = '0';
+                $seguimiento->print = request('print');
+                $seguimiento->observacion = request('razon');
+                $seguimiento->usuario = $usuario;
+                $seguimiento->save(); */
+                
+                return redirect()->route('habilitaciones')->with('anular', 'ok');
+
+                /* } catch (\Throwable $th) {
+
+                return redirect()->route('habilitaciones')->with('error', 'fail');
+            } */
+        }
+        
+    }
+
+    public function desAnulacionPrint($id)
+    {
+        $razon = request('razon');
+        if($razon == null){
+            return redirect()->route('habilitaciones')->with('reason', 'miss');
+        }else{
+            try{
+
+                Constancia::where(['id' => $id])
+                            ->update(['estado' => '0']);
+                $usuario = auth()->user()->username;
+
+                Seguimiento::create([
+                    'id_tramite' => $datosConstancia['codConstancia'],	
+                    'estado' => '1',
+                    'print' => '0',
+                    'observacion' => $razon,
+                    'tipo_tramite' => 'Constancia de Posesion',
+                    'user' => $usuario,
+                    'fecha' => date('d-m-Y'),
+                    'hora' => date('H:i:s'),
+                ]);
+
+                /* Licencia::where(['id' => $id])
+                        ->update(['print' => '0']);
+                $usuario = auth()->user()->username;
+    
+                $seguimiento = new Seguimiento();
+                $seguimiento->licencia_id = $id;
+                $seguimiento->estado = request('estado');
+                $seguimiento->print = '0';
+                $seguimiento->observacion = request('razon');
+                $seguimiento->usuario = $usuario;
+                $seguimiento->save(); */
+
+                return redirect()->route('habilitaciones')->with('print', 'ok');
+    
+            }catch (\Throwable $th) {
+                return redirect()->route('habilitaciones')->with('error', 'fail');
+            }
+        }
     }
 
     public function destroy($id)

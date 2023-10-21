@@ -99,7 +99,10 @@ Route::delete('/modulo5/delete/{id}', [TrabViaPublicaController::class, 'destroy
 /* PDF'S */
 Route::get('co/fpdf/{token}', [ConformidadObraController::class, 'pdf'])->name('pdf.co');
 Route::get('hu/fpdf/{token}', [HabilitacionUrbController::class, 'pdf'])->name('pdf.hu');
-Route::get('ConstanciaPosesion/{token}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
+
+Route::get('ConstanciaPosesion/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
+Route::get('ConstanciaPosesion/print/{id}', [ConstanciaPosesionController::class, 'anulacionPrint'])->name('print');
+
 Route::get('pu/fpdf/{token}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{token}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
 
