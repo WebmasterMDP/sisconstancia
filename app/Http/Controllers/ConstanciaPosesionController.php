@@ -152,60 +152,43 @@ class ConstanciaPosesionController extends Controller
         return redirect()->route('constancia.index')->with('constancia', 'update');
     }
 
-    public function anulacion($id)
+    public function anulacionPrint($id)
     {
-        $razon = request('razon');
-        $datosConstancia = Constancia::select('codConstancia')->where('id',$id)->first();
-        if($razon == null){
-            return redirect()->route('habilitaciones')->with('reason', 'miss');
-        }else{
-            /* try{ */
-                /* Licencia::where(['id' => $id])
-                        ->update(['estado' => '0']);
-                $usuario = auth()->user()->username; */
+        /* $razon = request('razon'); */
+        $data = ConstanciaPosesion::findOrFail($id);
 
-                Constancia::where(['id' => $id])
-                        ->update(['estado' => '0']);
-                $usuario = auth()->user()->username;
+        /* return redirect()->route('habilitaciones')->with('reason', 'miss'); */
+            /* var_dump('no funciona anulacion'); */
 
-                Seguimiento::create([
-                    'id_tramite' => $datosConstancia['codConstancia'],	
-                    'estado' => '0',
-                    'print' => '1',
-                    'observacion' => $razon,
-                    'tipo_tramite' => 'Constancia de Posesion',
-                    'user' => $usuario,
-                    'fecha' => date('d-m-Y'),
-                    'hora' => date('H:i:s'),
-                ]);
+            ConstanciaPosesion::where(['id' => $id])
+                    ->update(['estado' => '0', 'print' => '1']);
+            $usuario = auth()->user()->username;
 
-                /* $seguimiento = new Seguimiento();
-                $seguimiento->licencia_id = $id;
-                $seguimiento->estado = '0';
-                $seguimiento->print = request('print');
-                $seguimiento->observacion = request('razon');
-                $seguimiento->usuario = $usuario;
-                $seguimiento->save(); */
-                
-                return redirect()->route('habilitaciones')->with('anular', 'ok');
-
-                /* } catch (\Throwable $th) {
-
-                return redirect()->route('habilitaciones')->with('error', 'fail');
-            } */
-        }
-        
+            Seguimiento::create([
+                'id_tramite' => $datosConstancia['codConstancia'],	
+                'estado' => '0',
+                'print' => '1',
+                'observacion' => $razon,
+                'tipo_tramite' => 'Constancia de Posesion',
+                'user' => $usuario,
+                'fecha' => date('d-m-Y'),
+                'hora' => date('H:i:s'),
+            ]);
+            
+            var_dump('funciona anulacion');
     }
 
     public function desAnulacionPrint($id)
     {
         $razon = request('razon');
         if($razon == null){
-            return redirect()->route('habilitaciones')->with('reason', 'miss');
-        }else{
-            try{
 
-                Constancia::where(['id' => $id])
+            var_dump('no funciona desanulacion');
+            /* return redirect()->route('habilitaciones')->with('reason', 'miss'); */
+        }else{
+            /* try{ */
+
+                ConstanciaPosesion::where(['id' => $id])
                             ->update(['estado' => '0']);
                 $usuario = auth()->user()->username;
 
@@ -220,23 +203,13 @@ class ConstanciaPosesionController extends Controller
                     'hora' => date('H:i:s'),
                 ]);
 
-                /* Licencia::where(['id' => $id])
-                        ->update(['print' => '0']);
-                $usuario = auth()->user()->username;
-    
-                $seguimiento = new Seguimiento();
-                $seguimiento->licencia_id = $id;
-                $seguimiento->estado = request('estado');
-                $seguimiento->print = '0';
-                $seguimiento->observacion = request('razon');
-                $seguimiento->usuario = $usuario;
-                $seguimiento->save(); */
+                var_dump('funciona');
 
-                return redirect()->route('habilitaciones')->with('print', 'ok');
+                /* return redirect()->route('habilitaciones')->with('print', 'ok'); */
     
-            }catch (\Throwable $th) {
+            /* }catch (\Throwable $th) {
                 return redirect()->route('habilitaciones')->with('error', 'fail');
-            }
+            } */
         }
     }
 

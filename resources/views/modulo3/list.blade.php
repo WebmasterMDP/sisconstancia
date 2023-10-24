@@ -43,9 +43,9 @@
                                         <th>LOTE</th>
                                         <th>MANZANA</th>
                                         <th>ÁREA DEL PREDIO</th>
-                                        <th>PERIODO</th>                     
+                                        <th>PERIODO</th>                      
                                         <th>ACOMPAÑANTE</th>
-                                        <th>DNI ACOMPAÑANTE</th>       
+                                        <th>DNI ACOMPAÑANTE</th>      
                                         
                                     </tr>
                                 </thead>

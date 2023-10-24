@@ -52,6 +52,12 @@ Route::post('resetpass/{id}', [UserController::class, 'resetPassword'])->name('u
 Route::post('updatepass', [UserController::class, 'updatepass'])->name('user.updatepass');
 Route::get('profile',[HomeController::class, 'profile'])->name('profile');
 
+Route::get('listahabilitacion', [LicenciaController::class, 'habilitacion'])->name('habilitaciones');
+Route::post('licencias/desanular/{id}', [LicenciaController::class, 'desAnulacion'])->name('desanular');
+Route::post('licencias/anular/{id}', [LicenciaController::class, 'anulacion'])->name('anular');
+Route::post('licencias/desPrint/{id}', [LicenciaController::class, 'desAnulacionPrint'])->name('desPrint');
+
+
 /* MODULOS */
 Route::get('/modulo1/lista', [ConformidadObraController::class, 'index'])->name('conformidad.index');
 Route::get('/modulo1/form', [ConformidadObraController::class, 'create'])->name('conformidad.create');
@@ -101,7 +107,11 @@ Route::get('co/fpdf/{token}', [ConformidadObraController::class, 'pdf'])->name('
 Route::get('hu/fpdf/{token}', [HabilitacionUrbController::class, 'pdf'])->name('pdf.hu');
 
 Route::get('ConstanciaPosesion/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
-Route::get('ConstanciaPosesion/print/{id}', [ConstanciaPosesionController::class, 'anulacionPrint'])->name('print');
+
+Route::get('unlockPrint/{id}', [HabilitationAdminController::class, 'unlockPrint'])->name('administrador.unlockprint');
+Route::get('lokckPrint/{id}', [HabilitationAdminController::class, 'lokckPrint'])->name('administrador.lockprint');
+Route::get('disable/{id}', [HabilitationAdminController::class, 'disable'])->name('administrador.disable');
+Route::get('enable/{id}', [HabilitationAdminController::class, 'enable'])->name('administrador.enable');
 
 Route::get('pu/fpdf/{token}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{token}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
