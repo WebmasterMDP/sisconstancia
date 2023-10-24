@@ -44,7 +44,7 @@
                                         @foreach ($datos as $dato)
                                         <tr>
                                             <td>{{ $dato->id }}</td>
-                                            <td>{{ $dato->codLicencia }}</td>
+                                            <td>{{ $dato->codConstancia }}</td>
                                             <td>{{ $dato->nombreCompleto }}</td>
                                             <td>{{ $dato->numdoc }}</td>
                                             
@@ -56,23 +56,23 @@
                                             @endif
                                             @if ( $dato->estado == 1 && $dato->print == 1)
                                                 <td>
-                                                    <button   button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Habilitar Licencia">
+                                                    <button   button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Habilitar Documento">
                                                         <span class="fas fa-check-circle"></span>
                                                     </button> 
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/desPrint/'.$dato->id) }}" data-toggle="modal" data-target="#modalDesPrint" class="btn btn-info" data-placement="top" title="Habilitar Impresion">
+                                                    <a href="#" data-href="{{ url('unlockPrint/'.$dato->id) }}" data-toggle="modal" data-target="#modalunlockPrint" class="btn btn-info" data-placement="top" title="Habilitar Impresion">
                                                         <span class="fas fa-print"></span>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/anular/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular Licencia">
+                                                    <a href="#" data-href="{{ url('disable/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular Documento">
                                                         <span class="fas fa-ban"></span>
                                                     </a>
                                                 </td>
                                             @elseif ( $dato->estado == 1 && $dato->print == 0 )
                                                 <td>
-                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Habilitar Licencia">
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Habilitar Documento">
                                                         <span class="fas fa-check-circle"></span>
                                                     </button>
                                                 </td>
@@ -82,13 +82,13 @@
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/anular/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular Licencia">
+                                                    <a href="#" data-href="{{ url('disable/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular Documento">
                                                         <span class="fas fa-ban"></span>
                                                     </a>
                                                 </td>
                                             @elseif ( $dato->estado == 0 && $dato->print == 0)
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/desanular/'.$dato->id) }}" data-toggle="modal" data-target="#modalDesanular" class="btn btn-success" data-placement="top" title="Habilitar Licencia">
+                                                    <a href="#" data-href="{{ url('enable/'.$dato->id) }}" data-toggle="modal" data-target="#modalDesanular" class="btn btn-success" data-placement="top" title="Habilitar Documento">
                                                         <span class="fas fa-check-circle"></span>
                                                     </a>
                                                 </td>
@@ -98,23 +98,23 @@
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Anular Licencia">
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Anular Documento">
                                                         <span class="fas fa-ban"></span>
                                                     </button>
                                                 </td>
                                             @elseif ( $dato->estado == 0 && $dato->print == 1 )
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/desanular/'.$dato->id) }}" data-toggle="modal" data-target="#modalDesanular" class="btn btn-success" data-placement="top" title="Habilitar Licencia">
+                                                    <a href="#" data-href="{{ url('enable/'.$dato->id) }}" data-toggle="modal" data-target="#modalDesanular" class="btn btn-success" data-placement="top" title="Habilitar Documento">
                                                         <span class="fas fa-check-circle"></span>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/desPrint/'.$dato->id) }}" class="btn btn-info" data-toggle="modal" data-target="#modalDesPrint" data-placement="top" title="Habilitar Impresion">
+                                                    <a href="#" data-href="{{ url('unlockPrint/'.$dato->id) }}" class="btn btn-info" data-toggle="modal" data-target="#modalunlockPrint" data-placement="top" title="Habilitar Impresion">
                                                         <span class="fas fa-print"></span>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Anular Licencia">
+                                                    <button href="#" class="btn btn-secondary" data-toggle="tooltip"  data-placement="top" title="Anular Documento">
                                                         <span class="fas fa-ban"></span>
                                                     </button>
                                                 </td>
@@ -158,7 +158,7 @@
         </div>
     </div>
 
-    <div class="modal" id="modalDesPrint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal" id="modalunlockPrint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -218,32 +218,32 @@
 
 @section('js')
 
-@if(session('desanular') == 'ok')
+@if(session('habAdmin') == 'enable')
     <script>
         Swal.fire(
         'Exito!',
-        'Se desanulo la licencia',
+        'Se habilito el documento',
         'success'
         )
     </script>
 @endif
 
 
-@if(session('print') == 'ok')
+@if(session('habAdmin') == 'unlockPrint')
     <script>
         Swal.fire(
         'Exito!',
         'Se habilito la impresión',
-        'success'
+        'info'
         )
     </script>
 @endif
 
-@if(session('anular') == 'ok')
+@if(session('habAdmin') == 'disable')
     <script>
         Swal.fire(
         'Exito!',
-        'Se anulo correctamente',
+        'Se deshabilito el documento',
         'success'
         )
     </script>
@@ -285,7 +285,7 @@
     });
 
 
-    $('#modalDesPrint').on('show.bs.modal', function(e) {
+    $('#modalunlockPrint').on('show.bs.modal', function(e) {
         habilitaPrint.setAttribute('action', $(e.relatedTarget).data('href'));        
            
         $('.btn-ok').on('click', function(e) {
@@ -293,7 +293,7 @@
         });
     });
    
-    $('#modalDesPrint').on('hide.bs.modal', function(e) {
+    $('#modalunlockPrint').on('hide.bs.modal', function(e) {
         habilitaPrint.setAttribute('action', '');
     });
 

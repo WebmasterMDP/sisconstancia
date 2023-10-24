@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\PisoController;
 use App\Http\Controllers\UbicacionController;
+use App\Http\Controllers\HabilitationAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,12 +52,6 @@ Route::get('ubicacion/edit', [UbicacionController::class, 'edit'])->name('ubicac
 Route::post('resetpass/{id}', [UserController::class, 'resetPassword'])->name('user.resetpass');
 Route::post('updatepass', [UserController::class, 'updatepass'])->name('user.updatepass');
 Route::get('profile',[HomeController::class, 'profile'])->name('profile');
-
-Route::get('listahabilitacion', [LicenciaController::class, 'habilitacion'])->name('habilitaciones');
-Route::post('licencias/desanular/{id}', [LicenciaController::class, 'desAnulacion'])->name('desanular');
-Route::post('licencias/anular/{id}', [LicenciaController::class, 'anulacion'])->name('anular');
-Route::post('licencias/desPrint/{id}', [LicenciaController::class, 'desAnulacionPrint'])->name('desPrint');
-
 
 /* MODULOS */
 Route::get('/modulo1/lista', [ConformidadObraController::class, 'index'])->name('conformidad.index');
@@ -108,10 +103,12 @@ Route::get('hu/fpdf/{token}', [HabilitacionUrbController::class, 'pdf'])->name('
 
 Route::get('ConstanciaPosesion/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
 
-Route::get('unlockPrint/{id}', [HabilitationAdminController::class, 'unlockPrint'])->name('administrador.unlockprint');
-Route::get('lokckPrint/{id}', [HabilitationAdminController::class, 'lokckPrint'])->name('administrador.lockprint');
-Route::get('disable/{id}', [HabilitationAdminController::class, 'disable'])->name('administrador.disable');
-Route::get('enable/{id}', [HabilitationAdminController::class, 'enable'])->name('administrador.enable');
+
+Route::get('controlEstImp', [HabilitationAdminController::class, 'index'])->name('administrador.index');
+Route::post('unlockPrint/{id}', [HabilitationAdminController::class, 'unlockPrint'])->name('administrador.unlockprint');
+Route::get('lockPrint/{id}', [HabilitationAdminController::class, 'lokckPrint'])->name('administrador.lockprint');
+Route::post('disable/{id}', [HabilitationAdminController::class, 'disable'])->name('administrador.disable');
+Route::post('enable/{id}', [HabilitationAdminController::class, 'enable'])->name('administrador.enable');
 
 Route::get('pu/fpdf/{token}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{token}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');

@@ -295,8 +295,12 @@ return [
             'can'     => 'user.index',
             'submenu' => [
                 [
-                    'text' => 'Lista de Usuarios',
+                    'text' => 'Usuarios',
                     'url'  => 'usuario',
+                ],
+                [
+                    'text' => 'Control de Estado e Impresión',
+                    'url'  => 'controlEstImp',
                 ],
                 [
                     'text' => 'Movimientos',

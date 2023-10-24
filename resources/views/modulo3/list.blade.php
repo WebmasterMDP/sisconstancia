@@ -83,7 +83,7 @@
                                                 </td>                                          
                                                 @else
                                                 <td>
-                                                    <a href="#" data-href="{{ url('ConstanciaPosesion/'.$dato->id )}}[path_file]#toolbar=0" class="btn btn-info btn-print" data-id="{{ $dato->id }}" data-toggle="modal" data-target="#modalLicencia" data-placement="top"  title="Imprimir">
+                                                    <a href="#" data-href="{{ url('ConstanciaPosesion/'.$dato->id )}}[path_file]#toolbar=0" class="btn btn-info btn-print" data-id="{{ $dato->id }}" data-toggle="modal" data-target="#modalConstancia" data-placement="top"  title="Imprimir">
                                                         <span class="fas fa-print"></span>
                                                     </a>
                                                 </td>
@@ -93,7 +93,7 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('licencias/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular registro">
+                                                    <a href="#" data-href="{{ url('disable/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular registro">
                                                         <span class="fas fa-ban"></span>
                                                     </a>
                                                 </td>
@@ -149,10 +149,10 @@
         </div>
     </div>
 
-    <x-adminlte-modal id="modalLicencia" title="Vista Previa de Licencia" size="lg" theme="dark"
+    <x-adminlte-modal id="modalConstancia" title="Vista Previa de Constancia" size="lg" theme="dark"
     icon="fas fa-eye">
     <div class="modal-body">
-        <iframe id="frameLicencia" src="" width="100%" height="700px"></iframe>
+        <iframe id="frameConstancia" src="" width="100%" height="700px"></iframe>
     </div>
     
     <img class="img-fluid" src="" alt=""> 
@@ -161,6 +161,7 @@
         <x-adminlte-button theme="secondary" label="Cerrar" data-dismiss="modal"/>
     </x-slot>
 </x-adminlte-modal>
+<input type="hidden" value="0" name=estado>
 
 </x-adminlte-card>
 
@@ -204,14 +205,14 @@ $('.registroDelete').submit(function(e){
 });
 
 
-$('#modalLicencia').on('show.bs.modal', function(e) {
-        $('#frameLicencia').attr('src', $(e.relatedTarget).data('href'));      
+$('#modalConstancia').on('show.bs.modal', function(e) {
+        $('#frameConstancia').attr('src', $(e.relatedTarget).data('href'));      
         var id = $(e.relatedTarget).data('id');
         console.log(id);
 
         $.ajax({
             type: "GET",
-            url: "{{ url('ConstanciaPosesion/print')}}"+"/"+id,
+            url: "{{ url('lockPrint')}}"+"/"+id,
             data: {
 
             },
@@ -225,8 +226,8 @@ $('#modalLicencia').on('show.bs.modal', function(e) {
             }
         });
     });
-    $('#modalLicencia').on('hide.bs.modal', function(e) {
-        $('#frameLicencia').attr('src', '');
+    $('#modalConstancia').on('hide.bs.modal', function(e) {
+        $('#frameConstancia').attr('src', '');
        
         window.location.href = "{{ url('/modulo3/lista')}}";
     });
