@@ -65,4 +65,11 @@ class UbicacionController extends Controller
                     ->get();
         return $response;
     }
+
+    public function getRegistros(){
+        $query = Ubicacion::select('*')->get();
+        echo json_encode($registros, JSON_UNESCAPED_UNICODE);
+        /* return $query->result(); */
+    }
+
 }

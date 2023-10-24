@@ -16,9 +16,8 @@
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{-- INGRESE SECTOR --}}
                                         <label>ZONA</label>                                       
-                                        <x-adminlte-select type="text" name="zona" id="zona" required placeholder="Ingrese zona" label-class="text-lightblue">
+                                        <x-adminlte-select type="text" name="zonaCreate" id="zonaCreate" required placeholder="Ingrese zona" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-id-card text-dark"></i>
@@ -38,9 +37,8 @@
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{-- INGRESE DENOMINACIÓN --}}
                                         <label>INGRESE DENOMINACIÓN</label>                                       
-                                        <x-adminlte-input type="text" required name="nombreUbicacion" id="nombreUbicacion" placeholder="Ingrese Denominacion de Asociación" label-class="text-lightblue">
+                                        <x-adminlte-input type="text" required name="nombreUbicacionCreate" id="nombreUbicacionCreate" placeholder="Ingrese Denominacion de Asociación" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user text-dark"></i>

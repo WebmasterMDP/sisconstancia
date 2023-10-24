@@ -9,14 +9,13 @@
             </div>
             <form action="{{ route('ubicacion.update', $dato->id) }}" method="post" autocomplete="off">
                 @csrf
-                
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
                             <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>N° ZONA<strong style="color:red">*</strong></label>
+                                        <!-- <label>N° ZONA<strong style="color:red">*</strong></label> -->
                                         <x-adminlte-select type="text" required value="" name="zonaUpdate" id="zonaUpdate" placeholder="Ingrese nombre" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
@@ -37,7 +36,7 @@
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <label>DENOMINACION DE ASOCIACIÓN<strong style="color:red">*</strong> </label>                                       
+                                        <!-- <label>DENOMINACION DE ASOCIACIÓN<strong style="color:red">*</strong> </label>   -->                                     
                                         <x-adminlte-input type="text" required value="{{ $dato->nombreUbicacion }}" name="nameUpdate" id="nameUpdate" placeholder="Ingrese dni" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">

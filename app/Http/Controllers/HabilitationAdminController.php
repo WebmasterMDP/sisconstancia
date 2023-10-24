@@ -21,26 +21,32 @@ class HabilitationAdminController extends Controller
         $datosConstancia = ConstanciaPosesion::findOrFail($id);
         $razon = request('razon');
 
-        /* return redirect()->route('habilitaciones')->with('reason', 'miss'); */
-            /* var_dump('no funciona anulacion'); */
+        if($razon == null){
+        return redirect()->route('administrador.index')->with('habAdmin', 'miss');
 
-            ConstanciaPosesion::where(['id' => $id])
-                    ->update(['print' => '1']);
-            $usuario = auth()->user()->username;
+        }else{
+            try {
+                /* var_dump('no funciona anulacion'); */
+                ConstanciaPosesion::where(['id' => $id])
+                        ->update(['print' => '1']);
+                $usuario = auth()->user()->username;
 
-            Seguimiento::create([
-                'id_tramite' => $datosConstancia['codConstancia'],	
-                'estado' => request('estado'),
-                'print' => '1',
-                'observacion' => $razon,
-                'tipo_tramite' => 'Constancia de Posesion',
-                'user' => $usuario,
-                'fecha' => date('d-m-Y'),
-                'hora' => date('H:i:s'),
-            ]);
-            
-            /* var_dump('funciona anulacion'); */
-            return redirect()->route('administrador.index')->with('habAdmin', 'lockPirnt');
+                Seguimiento::create([
+                    'id_tramite' => $datosConstancia['codConstancia'],	
+                    'estado' => request('estado'),
+                    'print' => '1',
+                    'observacion' => $razon,
+                    'tipo_tramite' => 'Constancia de Posesion',
+                    'user' => $usuario,
+                    'fecha' => date('d-m-Y'),
+                    'hora' => date('H:i:s'),
+                ]);
+                /* var_dump('funciona anulacion'); */
+                return redirect()->route('administrador.index')->with('habAdmin', 'lockPirnt');
+            } catch (\Throwable $th) {
+                return redirect()->route('administrador.index')->with('habAdmin', 'error');
+            }
+        }
     }
 
     public function unlockPrint($id)
@@ -73,7 +79,7 @@ class HabilitationAdminController extends Controller
                 return redirect()->route('administrador.index')->with('habAdmin', 'unlockPrint');
     
             }catch (\Throwable $th) {
-                return redirect()->route('administrador.index')->with('habAdmin', 'fail');
+                return redirect()->route('administrador.index')->with('habAdmin', 'error');
             }
         }
     }
@@ -105,7 +111,7 @@ class HabilitationAdminController extends Controller
 
                 } catch (\Throwable $th) {
 
-                return redirect()->route('administrador.index')->with('habAdmin', 'fail');
+                return redirect()->route('administrador.index')->with('habAdmin', 'error');
             }
         }
     }
@@ -136,7 +142,7 @@ class HabilitationAdminController extends Controller
                 return redirect()->route('administrador.index')->with('habAdmin', 'enable');
 
             } catch (\Throwable $th) {
-                return redirect()->route('administrador.index')->with('habAdmin', 'fail');
+                return redirect()->route('administrador.index')->with('habAdmin', 'error');
             }
         }
     }

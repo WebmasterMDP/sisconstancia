@@ -36,13 +36,13 @@
                                             <th>PDF</th>
                                             <th>EDITAR</th>
                                             <th>ANULAR</th>
-                                            <th>FECHA</th>
-                                            <th>HORA</th>
+                                            <th>FECHA DE INGRESO</th>
+                                            <th>FECHA DE MODIFICACION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($datos as $dato)
-                                        <tr>
+                                        <tr class="text-nowrap align-middle">
                                             <td>{{ $dato->id }}</td>
                                             <td>{{ $dato->codConstancia }}</td>
                                             <td>{{ $dato->nombreCompleto }}</td>
@@ -119,8 +119,8 @@
                                                     </button>
                                                 </td>
                                             @endif
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $dato->created_at }}</td>
+                                            <td>{{ $dato->updated_at }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>

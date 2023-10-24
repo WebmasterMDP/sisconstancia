@@ -246,16 +246,6 @@ $('#modalConstancia').on('show.bs.modal', function(e) {
     </script>
 @endif
 
-<!-- @if(session('constancia') == 'ok')
-    <script>
-        Swal.fire(
-        'Exito!',
-        'Se habilito la impresión',
-        'success'
-        )
-    </script>
-@endif -->
-
 @if(session('constancia') == 'disabled')
     <script>
         Swal.fire(
