@@ -26,14 +26,8 @@ use App\Http\Controllers\HabilitationAdminController;
 */
 Auth::routes();
 Route::get('/', function () {
-    return view('auth.login'); 
+    return redirect()->route('login');
 });
-
-/* Route::get('/', function () {
-    return view('auth.login'); 
-})->name('login'); */
-
-
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

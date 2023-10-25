@@ -149,6 +149,8 @@
         </div>
     </div>
 
+    <input type="hidden" value="{{$dato->estado}}" name=estado>
+
     <x-adminlte-modal id="modalConstancia" title="Vista Previa de Constancia" size="lg" theme="dark"
     icon="fas fa-eye">
     <div class="modal-body">
@@ -210,6 +212,7 @@ $('#modalConstancia').on('show.bs.modal', function(e) {
         var id = $(e.relatedTarget).data('id');
         console.log(id);
 
+        
         $.ajax({
             type: "GET",
             url: "{{ url('lockPrint')}}"+"/"+id,

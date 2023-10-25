@@ -19,33 +19,25 @@ class HabilitationAdminController extends Controller
     public function lokckPrint($id)
     {
         $datosConstancia = ConstanciaPosesion::findOrFail($id);
-        $razon = request('razon');
 
-        if($razon == null){
-        return redirect()->route('administrador.index')->with('habAdmin', 'miss');
+        try {
+            ConstanciaPosesion::where(['id' => $id])
+                    ->update(['print' => '1']);
+            $usuario = auth()->user()->username;
 
-        }else{
-            try {
-                /* var_dump('no funciona anulacion'); */
-                ConstanciaPosesion::where(['id' => $id])
-                        ->update(['print' => '1']);
-                $usuario = auth()->user()->username;
-
-                Seguimiento::create([
-                    'id_tramite' => $datosConstancia['codConstancia'],	
-                    'estado' => request('estado'),
-                    'print' => '1',
-                    'observacion' => $razon,
-                    'tipo_tramite' => 'Constancia de Posesion',
-                    'user' => $usuario,
-                    'fecha' => date('d-m-Y'),
-                    'hora' => date('H:i:s'),
-                ]);
-                /* var_dump('funciona anulacion'); */
-                return redirect()->route('administrador.index')->with('habAdmin', 'lockPirnt');
-            } catch (\Throwable $th) {
-                return redirect()->route('administrador.index')->with('habAdmin', 'error');
-            }
+            Seguimiento::create([
+                'id_tramite' => $datosConstancia['codConstancia'],	
+                'estado' => request('estado'),
+                'print' => '1',
+                'observacion' => $razon,
+                'tipo_tramite' => 'Constancia de Posesion',
+                'user' => $usuario,
+                'fecha' => date('d-m-Y'),
+                'hora' => date('H:i:s'),
+            ]);
+            return redirect()->route('administrador.index')->with('habAdmin', 'lockPirnt');
+        } catch (\Throwable $th) {
+            return redirect()->route('administrador.index')->with('habAdmin', 'error');
         }
     }
 

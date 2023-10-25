@@ -312,7 +312,7 @@ return [
                 ],
             ],
         ],
-        [
+        /* [
             'text'    => 'Conformidad de Obras',
             'icon'    => 'far fa-circle',
             'can'     => 'conformidad.index',
@@ -326,8 +326,8 @@ return [
                     'url'  => 'modulo1/lista',
                 ],
             ],
-        ],
-        [
+        ], */
+        /* [
             'text'    => 'Habilitación Urbana',
             'icon'    => 'far fa-circle',
             'can'     => 'habilitacion.index',
@@ -341,7 +341,7 @@ return [
                     'url'  => 'modulo2/lista',
                 ],
             ],
-        ],
+        ], */
         [
             'text'    => 'Constancia de Posesión',
             'icon'    => 'far fa-circle',
@@ -357,7 +357,7 @@ return [
                 ],
             ],
         ],
-        [
+        /* [
             'text'    => 'Parametros Urbanísticos',
             'icon'    => 'far fa-circle',
             'can'     => 'parametro.index',
@@ -371,8 +371,8 @@ return [
                     'url'  => 'modulo4/lista',
                 ],
             ],
-        ],
-        [
+        ], */
+        /* [
             'text'    => 'Trabajos en la Vía Pública',
             'icon'    => 'far fa-circle',
             'can'     => 'via.pub.index',
@@ -386,7 +386,7 @@ return [
                     'url'  => 'modulo5/lista',
                 ],
             ],
-        ],
+        ], */
     ],
 
     /*
