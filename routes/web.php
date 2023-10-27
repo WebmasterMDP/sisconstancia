@@ -38,8 +38,8 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit'
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::get('/seguimiento', [SeguimientoController::class, 'index'])->name('siguimiento.index');
-Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index');
-Route::get('ubicacion/edit', [UbicacionController::class, 'edit'])->name('ubicacion.edit');
+/* Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index'); */
+/* Route::get('ubicacion/edit', [UbicacionController::class, 'edit'])->name('ubicacion.edit'); */
 
 /* CONTRASEÑA */
 Route::post('resetpass/{id}', [UserController::class, 'resetPassword'])->name('user.resetpass');
@@ -61,12 +61,12 @@ Route::get('/modulo2/edit/{id}', [HabilitacionUrbController::class, 'edit'])->na
 Route::post('/modulo2/update/{id}', [HabilitacionUrbController::class, 'update'])->name('habilitacion.update');
 Route::delete('/modulo2/delete/{id}', [HabilitacionUrbController::class, 'destroy'])->name('habilitacion.destroy'); */
 
-Route::get('/modulo3/lista', [ConstanciaPosesionController::class, 'index'])->name('constancia.index')->middleware('role:user,admin,root');
-Route::get('/modulo3/form', [ConstanciaPosesionController::class, 'create'])->name('constancia.create')->middleware('role:user,admin,root');
-Route::post('/constancia/posesion', [ConstanciaPosesionController::class, 'store'])->name('constancia.store')->middleware('role:user,admin,root');
-Route::get('/modulo3/edit/{id}', [ConstanciaPosesionController::class, 'edit'])->name('constancia.edit')->middleware('role:user,admin,root');
-Route::post('/modulo3/update/{id}', [ConstanciaPosesionController::class, 'update'])->name('constancia.update')->middleware('role:user,admin,root');
-Route::delete('/modulo3/delete/{id}', [ConstanciaPosesionController::class, 'destroy'])->name('constancia.destroy')->middleware('role:user,admin,root');
+Route::get('/modulo3/lista', [ConstanciaPosesionController::class, 'index'])->name('constancia.index');
+Route::get('/modulo3/form', [ConstanciaPosesionController::class, 'create'])->name('constancia.create');
+Route::post('/constancia/posesion', [ConstanciaPosesionController::class, 'store'])->name('constancia.store');
+Route::get('/modulo3/edit/{id}', [ConstanciaPosesionController::class, 'edit'])->name('constancia.edit');
+Route::post('/modulo3/update/{id}', [ConstanciaPosesionController::class, 'update'])->name('constancia.update');
+Route::delete('/modulo3/delete/{id}', [ConstanciaPosesionController::class, 'destroy'])->name('constancia.destroy');
 
 /* Route::get('/modulo4/lista', [ParametrosUrbController::class, 'index'])->name('parametro.index');
 Route::get('/modulo4/form', [ParametrosUrbController::class, 'create'])->name('parametro.create');
@@ -87,11 +87,12 @@ Route::get('co/fpdf/{token}', [ConformidadObraController::class, 'pdf'])->name('
 Route::get('hu/fpdf/{token}', [HabilitacionUrbController::class, 'pdf'])->name('pdf.hu');
 Route::get('ConstanciaPosesion/{id}', [ConstanciaPosesionController::class, 'pdf'])->name('pdf.cp');
 
-Route::get('controlEstImp', [HabilitationAdminController::class, 'index'])->name('administrador.index')->middleware('role:admin,root');
-Route::post('unlockPrint/{id}', [HabilitationAdminController::class, 'unlockPrint'])->name('administrador.unlockprint')->middleware('role:admin,root');
-Route::get('lockPrint/{id}', [HabilitationAdminController::class, 'lokckPrint'])->name('administrador.lockprint')->middleware('role:admin,root');
-Route::post('disable/{id}', [HabilitationAdminController::class, 'disable'])->name('administrador.disable')->middleware('role:admin,root');
-Route::post('enable/{id}', [HabilitationAdminController::class, 'enable'])->name('administrador.enable')->middleware('role:admin,root');
+Route::get('controlEstImp', [HabilitationAdminController::class, 'index'])->name('administrador.index');
+Route::post('unlockPrint/{id}', [HabilitationAdminController::class, 'unlockPrint'])->name('administrador.unlockprint');
+Route::get('lockPrint/{id}', [HabilitationAdminController::class, 'lokckPrint'])->name('administrador.lockprint');
+Route::post('disable/{id}', [HabilitationAdminController::class, 'disable'])->name('administrador.disable');
+Route::get('disable/{id}', [ConstanciaPosesionController::class, 'disable'])->name('user.disable');
+Route::post('enable/{id}', [HabilitationAdminController::class, 'enable'])->name('administrador.enable');
 
 Route::get('pu/fpdf/{token}', [ParametrosUrbController::class, 'pdf'])->name('pdf.pu');
 Route::get('tvp/fpdf/{token}', [TrabViaPublicaController::class, 'pdf'])->name('pdf.tvp');
@@ -101,9 +102,9 @@ Route::get('actualizar/pisos/{id}/{pisos}', [ConformidadObraController::class, '
 Route::get('licencias/getSunatDatos/{ruc}', [ParametrosUrbController::class, 'getSunatDatos'])->name('getSunatDatos');
 
 /* UBICACION */
-Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index')->middleware('role:admin,root');
-Route::post('ubicacion/create', [UbicacionController::class, 'store'])->name('ubicacion.store')->middleware('role:admin,root');
-Route::post('ubicacion/update/{id}', [UbicacionController::class, 'update'])->name('ubicacion.update')->middleware('role:admin,root');
-Route::delete('ubicacion/destroy/{id}', [UbicacionController::class, 'destroy'])->name('ubicacion.destroy')->middleware('role:admin,root');
+Route::get('ubicacion', [UbicacionController::class, 'index'])->name('ubicacion.index');
+Route::post('ubicacion/create', [UbicacionController::class, 'store'])->name('ubicacion.store');
+Route::post('ubicacion/update/{id}', [UbicacionController::class, 'update'])->name('ubicacion.update');
+Route::delete('ubicacion/destroy/{id}', [UbicacionController::class, 'destroy'])->name('ubicacion.destroy');
 
 Route::get('ubicacion/getSector/{zona}', [UbicacionController::class, 'getSector'])->name('getSector');

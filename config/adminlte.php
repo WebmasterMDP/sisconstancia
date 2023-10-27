@@ -297,18 +297,22 @@ return [
                 [
                     'text' => 'Usuarios',
                     'url'  => 'usuario',
+                    'can'  => 'user.index',
                 ],
                 [
                     'text' => 'Control de Estado',
                     'url'  => 'controlEstImp',
+                    'can'  => 'user.index',
                 ],
                 [
                     'text' => 'Movimientos',
                     'url'  => 'seguimiento',
+                    'can'  => 'user.index',
                 ],
                 [
                     'text' => 'Ubicaciones',
                     'url'  => 'ubicacion',
+                    'can'  => 'user.index',
                 ],
             ],
         ],
@@ -350,10 +354,12 @@ return [
                 [
                     'text' => 'Registrar',
                     'url'  => 'modulo3/form',
+                    'can'  => 'constancia.index',
                 ],
                 [
                     'text' => 'Visualizar Constancias',
                     'url'  => 'modulo3/lista',
+                    'can'  => 'constancia.index',
                 ],
             ],
         ],

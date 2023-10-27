@@ -33,8 +33,8 @@
                                             <th style="width: 10%">NOMBRE</th>
                                             <th>DNI</th>
                                             <th>ESTADO</th>
-                                            <th>PDF</th>
-                                            <th>EDITAR</th>
+                                            <th>HABILITAR</th>
+                                            <th>IMPRESION</th>
                                             <th>ANULAR</th>
                                             <th>FECHA DE INGRESO</th>
                                             <th>FECHA DE MODIFICACION</th>
@@ -122,6 +122,8 @@
                                             <td>{{ $dato->created_at }}</td>
                                             <td>{{ $dato->updated_at }}</td>
                                         </tr>
+                                        <input type="hidden" value="{{$dato->estado}}" name=estado>
+                                        <input type="hidden" value="{{$dato->print}}" name=print>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -146,8 +148,6 @@
                     <div class="modal-body">
                         <p>Ingrese el motivo por el que desea habilitar el registro</p>
                         <input type="text" class="form-control" id="razon" name="razon" required placeholder="Ingrese motivo">
-                        <input type="hidden" value="{{$dato->estado}}" name=estado>
-                        <input type="hidden" value="{{$dato->print}}" name=print>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-light" data-dismiss="modal">No</a>
@@ -172,8 +172,6 @@
                     <div class="modal-body">
                         <p>Ingrese el motivo por el que desea habilitar la impresion</p>
                         <input type="text" class="form-control" id="razon" name="razon" required placeholder="Ingrese motivo">
-                        <input type="hidden" value="{{$dato->estado}}" name=estado>
-                        <input type="hidden" value="{{$dato->print}}" name=print>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-light" data-dismiss="modal">No</a>
@@ -198,8 +196,6 @@
                     <div class="modal-body">
                         <p>Ingrese el motivo por el que desea anular el registro</p>
                         <input type="text" class="form-control" id="razon" name="razon" required placeholder="Ingrese motivo">
-                        <input type="hidden" value="{{$dato->estado}}" name=estado>
-                        <input type="hidden" value="{{$dato->print}}" name=print>
                     </div>
                     <div class="modal-footer">
                         <a class="btn btn-light" data-dismiss="modal">No</a>

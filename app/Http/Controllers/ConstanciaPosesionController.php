@@ -140,6 +140,7 @@ class ConstanciaPosesionController extends Controller
         $data->numExpediente = request('numExpediente');
         $data->fechaInforme = request('fechaInforme');
         $data->fechaExpediente = request('fechaExpediente');
+        $data->estadoCivil = request('estadoCivil');
         $data->zona = request('zona');
         $data->lote = request('lote');
         $data->manzana = request('manzana');
@@ -178,40 +179,27 @@ class ConstanciaPosesionController extends Controller
             var_dump('funciona anulacion');
     }
 
-    public function desAnulacionPrint($id)
+    public function disable($id)
     {
-        $razon = request('razon');
-        if($razon == null){
+        $datosConstancia = ConstanciaPosesion::findOrFail($id);
+        ConstanciaPosesion::where(['id' => $id])
+                    ->update(['estado' => '0']);
+            $usuario = auth()->user()->username;
 
-            var_dump('no funciona desanulacion');
-            /* return redirect()->route('habilitaciones')->with('reason', 'miss'); */
-        }else{
-            /* try{ */
-
-                ConstanciaPosesion::where(['id' => $id])
-                            ->update(['estado' => '0']);
-                $usuario = auth()->user()->username;
-
-                Seguimiento::create([
-                    'id_tramite' => $datosConstancia['codConstancia'],	
-                    'estado' => '1',
-                    'print' => '0',
-                    'observacion' => $razon,
-                    'tipo_tramite' => 'Constancia de Posesion',
-                    'user' => $usuario,
-                    'fecha' => date('d-m-Y'),
-                    'hora' => date('H:i:s'),
-                ]);
-
-                var_dump('funciona');
-
-                /* return redirect()->route('habilitaciones')->with('print', 'ok'); */
-    
-            /* }catch (\Throwable $th) {
-                return redirect()->route('habilitaciones')->with('error', 'fail');
-            } */
-        }
+            Seguimiento::create([
+                'id_tramite' => $datosConstancia['codConstancia'],	
+                'estado' => '0',
+                'print' => '1',
+                'observacion' => 'ANULADO',
+                'tipo_tramite' => 'Constancia de Posesion',
+                'user' => $usuario,
+                'fecha' => date('d-m-Y'),
+                'hora' => date('H:i:s'),
+            ]);
+            
+        return redirect()->route('constancia.index')->with('habAdmin', 'disable');
     }
+
 
     public function destroy($id)
     {

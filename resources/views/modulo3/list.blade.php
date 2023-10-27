@@ -35,7 +35,7 @@
                                         <th>ESTADO</th>
                                         <th>PDF</th>
                                         <th>EDITAR</th>
-                                        <th>ELIMINAR</th>
+                                        <th>ANULAR</th>
                                         <th>N° INFORME TÉCNICO</th>
                                         <th>FECHA DE INFORME</th>
                                         <th>N° EXPEDIENTE</th>
@@ -88,15 +88,16 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="route('constancia.edit', $dato->id)" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modificar registro">
+                                                    <a href="{{route('constancia.edit', $dato->id)}}" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modificar registro">
                                                         <span class='fas fa-edit'></span>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="#" data-href="{{ url('disable/'.$dato->id) }}" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" data-placement="top" title="Anular registro">
-                                                        <span class="fas fa-ban"></span>
+                                                <a href="{{route('user.disable', $dato->id)}}" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Anular registro">
+                                                        <span class='fas fa-ban'></span>
                                                     </a>
                                                 </td>
+
                                                 @endif
 
                                             <!-- <td class="text-center">
@@ -134,6 +135,7 @@
                                                 <td>{{ $dato->dniPartner }}</td>
                                             @endif
                                         </tr>
+                                        <input type="hidden" value="{{$dato->estado}}" name=estado>
                                         @endforeach
                                     @else
                                         <tr>
@@ -149,8 +151,6 @@
         </div>
     </div>
 
-    <input type="hidden" value="{{$dato->estado}}" name=estado>
-
     <x-adminlte-modal id="modalConstancia" title="Vista Previa de Constancia" size="lg" theme="dark"
     icon="fas fa-eye">
     <div class="modal-body">
@@ -161,6 +161,7 @@
     <x-slot name="footerSlot">
         {{--  <x-adminlte-button class="mr-auto" theme="success" label="Aceptar"/> --}}
         <x-adminlte-button theme="secondary" label="Cerrar" data-dismiss="modal"/>
+        
     </x-slot>
 </x-adminlte-modal>
 <input type="hidden" value="0" name=estado>

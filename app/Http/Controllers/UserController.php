@@ -131,7 +131,7 @@ class UserController extends Controller
                     'email'     =>$request->emailUpdate,
                     'rol'       =>$request->rolUpdate,
                 ]);
-                $user->syncRoles($request->rol);
+                $user->syncRoles($request->rolUpdate);
                 return redirect()->route('user.index')->with('user', 'update');
             }catch(\Exception $e){
                 return redirect()->back()->with('user', 'error');
