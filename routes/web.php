@@ -14,6 +14,7 @@ use App\Http\Controllers\PisoController;
 use App\Http\Controllers\UbicacionController;
 use App\Http\Controllers\HabilitationAdminController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,8 @@ use App\Http\Controllers\HabilitationAdminController;
 |
 */
 Auth::routes();
-Route::view('', 'auth.login')->name('/');
+/* Route::get('/login', [HomeController::class, 'login'])->name('login'); */
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 /* USUARIO */

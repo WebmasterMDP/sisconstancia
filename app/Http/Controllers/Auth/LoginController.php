@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth; //add this line to the top of the file
 
 class LoginController extends Controller
 {
@@ -42,4 +43,21 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    /* public function authenticated($request, $user)
+    {
+        if ($user->hasRole('admin')) {
+            return redirect('/home');
+        } else if ($user->hasRole('user')) {
+            return redirect('/home');
+        } else {
+            return redirect('/login');
+        }
+    } */
 }
