@@ -14,7 +14,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $dataUsers = User::all();
+        $dataUsers = User::where('rol','!=','root')->get();
+        /* $dataUsers = User::all(); */
         
         return view('Administracion/usuarios/index', compact('dataUsers'));
     }

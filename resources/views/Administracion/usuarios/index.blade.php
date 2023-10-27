@@ -37,7 +37,7 @@
                                     <tbody class="">
                                         @foreach($dataUsers as $dataUser)
                                         <tr class="text-center">
-                                            <td>{{ $dataUser->id }}</td>
+                                            <td>{{ $dataUser->id-1 }}</td>
                                             <td class="text-left">{{ $dataUser->name }}</td>
                                             <td>{{ $dataUser->username }}</td>
                                             <!-- <td>{{ $dataUser->numdoc }}</td> -->

@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        /* User::create([
+        User::create([
             'name'      =>'root',
             'username'  =>'root',
             'numdoc' =>'00000000',
@@ -23,9 +23,9 @@ class UserSeeder extends Seeder
             'estado'    =>'1',
             'email'     =>'root@root.com',
             'password'  =>bcrypt('muniM@ster2023$')
-        ])->assignRole('root'); */
+        ])->assignRole('root');
 
-        User::create([
+        /* User::create([
             'name'      =>'root',
             'username'  =>'root',
             'numdoc' =>'00000000',
@@ -33,19 +33,19 @@ class UserSeeder extends Seeder
             'estado'    =>'1',
             'email'     =>'root@root.com',
             'password'  =>bcrypt('00000000')
-        ])->assignRole('root');
+        ])->assignRole('root'); */
 
         User::create([
-            'name'      =>'ADMIN',
-            'username'  =>'admin',
-            'numdoc' =>'12345678',
+            'name'      =>'GIANFRONCO SALVATIERRA CUBA',
+            'username'  =>'gsalvatierra',
+            'numdoc' =>'09716894',
             'rol'       =>'admin',
             'estado'    =>'1',
-            'email'     =>'admin@gmail.com',
-            'password'  =>bcrypt('12345678')
+            'email'     =>'gsalvatierrac@munipachacamac.gob.pe',
+            'password'  =>bcrypt('09716894')
         ])->assignRole('admin');
 
-        User::create([
+        /* User::create([
             'name'      =>'USUARIO',
             'username'  =>'user',
             'numdoc' =>'87654321',
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
             'estado'    =>'1',
             'email'     =>'user@gmail.com',
             'password'  =>bcrypt('87654321')
-        ])->assignRole('user');
+        ])->assignRole('user'); */
 
     }
 }
