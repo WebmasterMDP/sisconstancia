@@ -299,7 +299,7 @@ return [
                     'url'  => 'usuario',
                 ],
                 [
-                    'text' => 'Control de Estado e Impresión',
+                    'text' => 'Control de Estado',
                     'url'  => 'controlEstImp',
                 ],
                 [
@@ -348,11 +348,11 @@ return [
             'can'     => 'constancia.index',
             'submenu' => [
                 [
-                    'text' => 'Agregar',
+                    'text' => 'Registrar',
                     'url'  => 'modulo3/form',
                 ],
                 [
-                    'text' => 'Lista',
+                    'text' => 'Visualizar Constancias',
                     'url'  => 'modulo3/lista',
                 ],
             ],

@@ -16,19 +16,17 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $superadmin = Role::create(['name' => 'superadmin']);
+        $root = Role::create(['name' => 'root']);
         $admin = Role::create(['name' => 'admin']);
         $user = Role::create(['name' => 'user']);
-/*      $stadmin = Role::create(['name' => 'stadmin']);
-        $stuser = Role::create(['name' => 'stuser']); */
 
-        $permission = Permission::create(['name' => 'user.index'])->syncRoles([$admin, $superadmin]);
+        $permission = Permission::create(['name' => 'user.index'])->syncRoles([$admin, $root]);
 
-        $permission = Permission::create(['name' => 'conformidad.index'])->syncRoles([$admin, $superadmin, $user]);
-        $permission = Permission::create(['name' => 'habilitacion.index'])->syncRoles([$admin, $superadmin, $user]);
-        $permission = Permission::create(['name' => 'constancia.index'])->syncRoles([$admin, $superadmin, $user]);
-        $permission = Permission::create(['name' => 'parametro.index'])->syncRoles([$admin, $superadmin, $user]);
-        $permission = Permission::create(['name' => 'via.pub.index'])->syncRoles([$admin, $superadmin, $user]);
+        $permission = Permission::create(['name' => 'conformidad.index'])->syncRoles([$admin, $root, $user]);
+        $permission = Permission::create(['name' => 'habilitacion.index'])->syncRoles([$admin, $root, $user]);
+        $permission = Permission::create(['name' => 'constancia.index'])->syncRoles([$admin, $root, $user]);
+        $permission = Permission::create(['name' => 'parametro.index'])->syncRoles([$admin, $root, $user]);
+        $permission = Permission::create(['name' => 'via.pub.index'])->syncRoles([$admin, $root, $user]);
 
     }
 }

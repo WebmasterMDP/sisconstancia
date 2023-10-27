@@ -15,24 +15,45 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        /* User::create([
+            'name'      =>'root',
+            'username'  =>'root',
+            'numdoc' =>'00000000',
+            'rol'       =>'root',
+            'estado'    =>'1',
+            'email'     =>'root@root.com',
+            'password'  =>bcrypt('muniM@ster2023$')
+        ])->assignRole('root'); */
+
+        User::create([
+            'name'      =>'root',
+            'username'  =>'root',
+            'numdoc' =>'00000000',
+            'rol'       =>'root',
+            'estado'    =>'1',
+            'email'     =>'root@root.com',
+            'password'  =>bcrypt('00000000')
+        ])->assignRole('root');
+
         User::create([
             'name'      =>'ADMIN',
             'username'  =>'admin',
-            'numdoc' =>'00000000',
-            'rol'       =>'superadmin',
-            'estado'    =>'1',
-            'email'     =>'admin@admin.com',
-            'password'  =>bcrypt('admin123')
-        ])->assignRole('superadmin');
-
-        /* User::create([
-            'name'      =>'PRUEBA',
-            'username'  =>'admin',
             'numdoc' =>'12345678',
-            'rol'       =>'stuser',
+            'rol'       =>'admin',
             'estado'    =>'1',
-            'email'     =>'1@MDP.com',
+            'email'     =>'admin@gmail.com',
             'password'  =>bcrypt('12345678')
-        ])->assignRole('stuser'); */
+        ])->assignRole('admin');
+
+        User::create([
+            'name'      =>'USUARIO',
+            'username'  =>'user',
+            'numdoc' =>'87654321',
+            'rol'       =>'user',
+            'estado'    =>'1',
+            'email'     =>'user@gmail.com',
+            'password'  =>bcrypt('87654321')
+        ])->assignRole('user');
+
     }
 }

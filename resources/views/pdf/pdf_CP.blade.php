@@ -201,8 +201,35 @@ $pdf->Ln(7);
 $pdf->SetFont('Arial', null,9);
 $pdf->MultiCell(0,5,utf8_decode('La Subgerencia de Planeamiento Urbano, Catastro, Obras Privadas y Habilitaciones Urbanas de la Gerencia de Desarrollo Urbano de la Municipalidad Distrital de Pachacamac, hace constar:'),0,'J',false);
 $pdf->Ln(6);
-$pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
-$pdf->Ln(6);
+switch($showData->zona){
+case 'Z1':
+    $zona = 'PACHACAMAC HISTORICO';
+    break;
+case 'Z2':
+    $zona = 'PAUL POBLET LIND';
+    break;
+case 'Z3':
+    $zona = 'CENTROS POBLADOS RURALES';
+    break;
+case 'Z4':
+    $zona = 'JOSE GALVEZ';
+    break;
+case 'Z5':
+    $zona = 'QUEBRADA DE MANCHAY';
+    break;
+case 'RE':
+    $zona = 'RETAMAL';
+    break;
+}
+
+if($showData->estadoCivil == 's'){
+    $pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado(a) con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'" de la zona "'.$zona.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
+    $pdf->Ln(6);
+}else if ($showData->estadoCivil == 'c'){
+    $pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado(a) con DNI N° '.$showData->numdoc.' y '.$showData->partner.', identidicado(a) con DNI N° '.$showData->dniPartner.', ejerceN posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'" de la zona "'.$zona.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
+    $pdf->Ln(6);
+}
+
 $pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->numInforme.'-2023/MDP- GDU-SGPUCOPHU-TC, '.$fechaInforme.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
 $pdf->Ln(6);
 $pdf->MultiCell(0,5,utf8_decode('Que, por tales razones anteriormente expuestas se expide la presente CONSTANCIA DE POSESIÓN, únicamente para solicitar el otorgamiento de los SERVICIOS BASICOS, a que se refiere el Artículo Nº 24 de la Ley Nº 28687 "Ley de Desarrollo y Complementaria de Formalización de la Propiedad Informal, Acceso al suelo y Dotación de Servicios Básicos"; articulo 27 y 28 del Decreto Supremo N° 017-2006-VIVIENDA y la Ordenanza N° 313-2023-MDP/C, respectivamente.'),0,'J',false);
