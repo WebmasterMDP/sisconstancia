@@ -42,7 +42,7 @@ class UserController extends Controller
                 User::create([
                     'name'      =>$request->nameCreate,
                     'numdoc'    =>$request->numdocCreate,
-                    'username'  =>$request->numdocCreate,
+                    'username'  =>$request->usernameCreate,
                     'estado'    =>'1',
                     'password'  =>Hash::make($request->numdocCreate),
                     'email'     =>$request->emailCreate,

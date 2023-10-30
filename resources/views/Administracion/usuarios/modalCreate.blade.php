@@ -12,11 +12,11 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- Nombre y Apellido --}}
-                                        <label>Nombre y Apellido</label>
+                                        <label>Nombres y Apellidos</label>
                                         <x-adminlte-input type="text" required name="nameCreate" id="nameCreate" placeholder="Ingrese nombre" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
@@ -24,6 +24,20 @@
                                                 </div>
                                             </x-slot>
                                         </x-adminlte-input>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Nombre de Usuario</label>                                       
+                                        <x-adminlte-input type="text" required name="usernameCreate" id="usernameCreate" placeholder="Ingrese Nombre de usuario" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>
                                     </div>
                                 </div>
                             </div>

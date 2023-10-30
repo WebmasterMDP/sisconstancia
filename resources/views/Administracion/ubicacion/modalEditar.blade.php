@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">ACTUALIZACION DE UBICACION</h4>
+                <h4 class="modal-title">ACTUALIZACION DE UBICACIÓN</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- <label>N° ZONA<strong style="color:red">*</strong></label> -->
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- <label>DENOMINACION DE ASOCIACIÓN<strong style="color:red">*</strong> </label>   -->                                     

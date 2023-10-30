@@ -96,7 +96,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     {{-- N° DE INFORME --}} 
-                                                    <label>N° DE INFORME <strong style="color:red">*</strong> </label>                                      
+                                                    <label>N° DE INFORME TÉCNICO<strong style="color:red">*</strong> </label>                                      
                                                     <x-adminlte-input type="text" name="numInforme" id="numInforme" required placeholder="0000" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
@@ -111,7 +111,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     {{-- EXPEDIENTE --}}
-                                                    <label>EXPEDIENTE <strong style="color:red">*</strong> </label>                                    
+                                                    <label>N° EXPEDIENTE<strong style="color:red">*</strong> </label>                                    
                                                     <x-adminlte-input type="text" name="numExpediente" id="numExpediente" required  placeholder="0000" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
@@ -127,7 +127,7 @@
                                                 <div class="col-md-12">
                                                     {{-- LOTE --}}
                                                     <label>LOTE <strong style="color:red">*</strong> </label>                                    
-                                                    <x-adminlte-input type="text" name="lote" id="lote" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
+                                                    <x-adminlte-input type="text" name="lote" id="lote" required  placeholder="Ingresar lote" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-id-card text-dark"></i>
@@ -142,7 +142,7 @@
                                                 <div class="col-md-12">
                                                     {{-- MANZANA --}}
                                                     <label>MANZANA <strong style="color:red">*</strong> </label>                                    
-                                                    <x-adminlte-input type="text" name="manzana" id="manzana" required  placeholder="Ingresar Expediente" label-class="text-lightblue">
+                                                    <x-adminlte-input type="text" name="manzana" id="manzana" required  placeholder="Ingresar manzana" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-id-card text-dark"></i>

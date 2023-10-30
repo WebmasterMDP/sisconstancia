@@ -8,7 +8,7 @@
 
 @section('content')
 <br>
-<x-adminlte-card title="LOCAL" class="m-2" theme="dark" icon="fas fa-id-card">
+<x-adminlte-card title="HABILITACIONES DE ESTADO E IMPRESION" class="m-2" theme="dark" icon="fas fa-id-card">
     <div class="col-12">                                         
         <div class="row">
             <div class="col-12">
@@ -121,9 +121,10 @@
                                             @endif
                                             <td>{{ $dato->created_at }}</td>
                                             <td>{{ $dato->updated_at }}</td>
+                                            <input type="hidden" value="{{$dato->estado}}" name=estado>
+                                            <input type="hidden" value="{{$dato->print}}" name=print>
                                         </tr>
-                                        <input type="hidden" value="{{$dato->estado}}" name=estado>
-                                        <input type="hidden" value="{{$dato->print}}" name=print>
+                                        
                                         @endforeach
                                     </tbody>
                                 </table>

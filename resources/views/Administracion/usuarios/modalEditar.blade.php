@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">REGISTRAR USUARIO</h4>
+                <h4 class="modal-title">EDITANDO USUARIO</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -33,7 +33,7 @@
                                     <div class="col-md-12">
                                         {{-- DNI --}}
                                         <label>DOC. NAC. IDENTIDAD <strong style="color:red">*</strong> </label>                                       
-                                        <x-adminlte-input type="text" required value="{{ $dataUser->numdoc }}" name="numdocUpdate" id="numdocUpdate" placeholder="Ingrese dni" label-class="text-lightblue">
+                                        <x-adminlte-input type="text" required value="{{ $dataUser->numdoc }}" name="numdocUpdate" id="numdocUpdate" placeholder="Ingrese dni" readonly="readonly" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user text-dark"></i>
