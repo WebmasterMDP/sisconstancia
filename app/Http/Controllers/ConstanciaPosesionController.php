@@ -133,6 +133,7 @@ class ConstanciaPosesionController extends Controller
 
     public function update($id, Request $request)
     {
+        $usuario = auth()->user()->username;
         $data = ConstanciaPosesion::findOrFail($id);
         $data->nombreCompleto = request('nombreCompleto');
         $data->numdoc = request('numdoc');
@@ -149,6 +150,17 @@ class ConstanciaPosesionController extends Controller
         $data->dniPartner = request('dniPartner');
         $data->areaPredio = request('areaPredio');
         $data->save();
+
+        Seguimiento::create([
+            'id_tramite' => $data->codConstancia,	
+            'estado' => $data->estado,
+            'print' => $data->print,
+            'observacion' => 'Actualizacion de Tramite',
+            'tipo_tramite' => 'Constancia de Posesion',
+            'user' => $usuario,
+            'fecha' => date('d-m-Y'),
+            'hora' => date('H:i:s'),
+        ]);
 
         return redirect()->route('constancia.index')->with('constancia', 'update');
     }

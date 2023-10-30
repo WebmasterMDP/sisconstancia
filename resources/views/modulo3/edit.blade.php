@@ -152,12 +152,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php $fechaInforme = date('Y-m-d', strtotime($data->fechaInforme)); ?>
                                         <div class="col-md-3">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     {{-- FECHA DE INFORME --}}
                                                     <label>FECHA DE INFORME <strong style="color:red">*</strong> </label>                                    
-                                                    <x-adminlte-input type="date" name="fechaInforme" id="fechaInforme" value="{{$data->fechaInforme}}" required label-class="text-lightblue">
+                                                    <x-adminlte-input type="date" name="fechaInforme" id="fechaInforme" value="<?php echo $fechaInforme; ?>" required label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-id-card text-dark"></i>
@@ -167,12 +168,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php $fechaExpediente = date('Y-m-d', strtotime($data->fechaExpediente)); ?>
                                         <div class="col-md-3">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     {{-- FECHA DE EXPEDIENTE --}}
                                                     <label>FECHA DE EXPEDIENTE <strong style="color:red">*</strong> </label>                                    
-                                                    <x-adminlte-input type="date" name="fechaExpediente" id="fechaExpediente" value="{{$data->fechaExpediente}}" required label-class="text-lightblue">
+                                                    <x-adminlte-input type="date" name="fechaExpediente" id="fechaExpediente" value="<?php echo $fechaExpediente; ?>" required label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-id-card text-dark"></i>
@@ -213,12 +215,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php $fechaIngreso = date('Y-m-d', strtotime($data->fechaIngreso)); ?>
                                         <div class="col-md-3">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     {{-- FECHA DE INGRESO --}}
                                                     <label>FECHA DE INGRESO <strong style="color:red">*</strong> </label>                                    
-                                                    <x-adminlte-input type="date" name="fechaIngreso" id="fechaIngreso"  value="{{ $data->fechaIngreso }}" required readonly="readonly" label-class="text-lightblue">
+                                                    <x-adminlte-input type="date" name="fechaIngreso" id="fechaIngreso"  value="<?php echo $fechaIngreso; ?>" required readonly="readonly" label-class="text-lightblue">
                                                         <x-slot name="prependSlot">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-id-card text-dark"></i>

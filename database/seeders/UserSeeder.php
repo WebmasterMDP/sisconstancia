@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
         ])->assignRole('root'); */
 
         User::create([
-            'name'      =>'GIANFRONCO SALVATIERRA CUBA',
+            'name'      =>'GIANFRANCO SALVATIERRA CUBA',
             'username'  =>'gsalvatierra',
             'numdoc' =>'09716894',
             'rol'       =>'admin',
