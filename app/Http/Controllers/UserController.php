@@ -38,7 +38,6 @@ class UserController extends Controller
             return back()->withErrors($validate->errors())->withInput()->with('user', 'empty');
         
         }else{
-
                 User::create([
                     'name'      =>$request->nameCreate,
                     'numdoc'    =>$request->numdocCreate,
@@ -127,7 +126,7 @@ class UserController extends Controller
                 $user->update([
                     'name'      =>$request->nameUpdate,
                     'numdoc'    =>$request->numdocUpdate,
-                    'username'  =>$request->numdocUpdate,
+                    'username'  =>$request->usernameUpdate,
                     'estado'    =>$request->estadoUpdate,
                     'email'     =>$request->emailUpdate,
                     'rol'       =>$request->rolUpdate,

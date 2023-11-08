@@ -23,11 +23,11 @@
                                                 </div>
                                             </x-slot>
                                             <option value="{{ $dato->zona }}"> {{ $dato->zona }} </option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <option value="Z1">1</option>
+                                            <option value="Z2">2</option>
+                                            <option value="Z3">3</option>
+                                            <option value="Z4">4</option>
+                                            <option value="Z5">5</option>
                                             <option value="RE">RETAMAL</option>
                                         </x-adminlte-select>  
                                     </div>

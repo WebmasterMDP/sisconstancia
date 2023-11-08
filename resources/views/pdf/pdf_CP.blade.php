@@ -151,16 +151,16 @@ class PDF extends FPDF
     function Footer()
     {
 
-        $this->Image('vendor/adminlte/dist/img/footer.png',10,247,190);
+        /* $this->Image('vendor/adminlte/dist/img/footer.png',10,247,190); */
         // Posición: a 1,5 cm del final
         $this->SetY(-20);
         // Arial italic 8
         $this->SetFont('Arial','IU',8);
         // Número de página
-        $this->Cell(0, 1, utf8_decode('                                                                                                              '),0,0,'C');
+       /*  $this->Cell(0, 1, utf8_decode('                                                                                                              '),0,0,'C'); */
         $this->Ln(3);
         $this->SetFont('Arial','I',8);
-        $this->Cell(0, 1, utf8_decode('Sello y Firma del Funcionario Municipal que Otorga la Licencia'),0,0,'C');
+        /* $this->Cell(0, 1, utf8_decode('Sello y Firma del Funcionario Municipal que Otorga la Licencia'),0,0,'C'); */
     }
 }
 
@@ -226,11 +226,11 @@ if($showData->estadoCivil == 's'){
     $pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado(a) con DNI N° '.$showData->numdoc.', ejerce posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'" de la zona "'.$zona.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
     $pdf->Ln(6);
 }else if ($showData->estadoCivil == 'c'){
-    $pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado(a) con DNI N° '.$showData->numdoc.' y '.$showData->partner.', identidicado(a) con DNI N° '.$showData->dniPartner.', ejerceN posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'" de la zona "'.$zona.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
+    $pdf->MultiCell(0,5,utf8_decode('Que, el/la Sr(a) '.$showData->nombreCompleto.', identificado(a) con DNI N° '.$showData->numdoc.' y '.$showData->partner.', identidicado(a) con DNI N° '.$showData->dniPartner.', ejercen posesión en forma pacífica, pública, permanente y continua sobre el lote de '.$showData->areaPredio.' m², el cual se encuentra ubicado en el lote "'.$showData->lote.'" Mz. "'.$showData->manzana.'" de la Asociación de Vivienda "'.$showData->ubicacion.'" de la zona "'.$zona.'", en el distrito de Pachacamac, de la provincia y departamento de Lima, con las siguientes medidas perimétricas:'),0,'J',false);
     $pdf->Ln(6);
 }
 
-$pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->numInforme.'-2023/MDP- GDU-SGPUCOPHU-TC, '.$fechaInforme.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
+$pdf->MultiCell(0,5,utf8_decode('Que, en merito a lo señalado en el INFORME TECNICO N° '.$showData->numInforme.'-2023/MDP-GDU-SGPUCOPHU-'.$showData->siglasArquitecto.', '.$fechaInforme.', conteniendo el resultado de inspección ocular solicitado por el administrado para el otorgamiento de Constancia para los Servicios Básicos.'),0,'J',false);
 $pdf->Ln(6);
 $pdf->MultiCell(0,5,utf8_decode('Que, por tales razones anteriormente expuestas se expide la presente CONSTANCIA DE POSESIÓN, únicamente para solicitar el otorgamiento de los SERVICIOS BASICOS, a que se refiere el Artículo Nº 24 de la Ley Nº 28687 "Ley de Desarrollo y Complementaria de Formalización de la Propiedad Informal, Acceso al suelo y Dotación de Servicios Básicos"; articulo 27 y 28 del Decreto Supremo N° 017-2006-VIVIENDA y la Ordenanza N° 313-2023-MDP/C, respectivamente.'),0,'J',false);
 

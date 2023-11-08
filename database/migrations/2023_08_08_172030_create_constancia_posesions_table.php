@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             
             $table->string('codConstancia');
+            $table->string('siglasArquitecto');
             $table->string('nombreCompleto');
             $table->string('numdoc');
             $table->string('numInforme');

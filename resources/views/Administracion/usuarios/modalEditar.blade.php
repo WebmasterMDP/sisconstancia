@@ -9,7 +9,6 @@
             </div>
             <form action="{{ route('user.update', $dataUser->id) }}" method="post" autocomplete="off">
                 @csrf
-                
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="row ">
@@ -31,9 +30,9 @@
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        {{-- DNI --}}
-                                        <label>DOC. NAC. IDENTIDAD <strong style="color:red">*</strong> </label>                                       
-                                        <x-adminlte-input type="text" required value="{{ $dataUser->numdoc }}" name="numdocUpdate" id="numdocUpdate" placeholder="Ingrese dni" readonly="readonly" label-class="text-lightblue">
+                                        {{-- USERNAME --}}
+                                        <label>NOMBRE DE USUARIO <strong style="color:red">*</strong> </label>                                       
+                                        <x-adminlte-input type="text" required value="{{ $dataUser->username }}" name="usernameUpdate" id="usernameUpdate" placeholder="Ingrese nombre de usuario" readonly="readonly" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user text-dark"></i>
@@ -49,6 +48,21 @@
                                         {{-- Correo --}}
                                         <label>CORREO <strong style="color:red">*</strong> </label>                                       
                                         <x-adminlte-input type="text" required value="{{ $dataUser->email }}" name="emailUpdate" id="emailUpdate" placeholder="Ingrese Giro" label-class="text-lightblue">
+                                            <x-slot name="prependSlot">
+                                                <div class="input-group-text">
+                                                    <i class="fas fa-user text-dark"></i>
+                                                </div>
+                                            </x-slot>
+                                        </x-adminlte-input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{-- DNI --}}
+                                        <label>DOC. NAC. IDENTIDAD <strong style="color:red">*</strong> </label>                                       
+                                        <x-adminlte-input type="text" required value="{{ $dataUser->numdoc }}" name="numdocUpdate" id="numdocUpdate" placeholder="Ingrese dni" readonly="readonly" label-class="text-lightblue">
                                             <x-slot name="prependSlot">
                                                 <div class="input-group-text">
                                                     <i class="fas fa-user text-dark"></i>

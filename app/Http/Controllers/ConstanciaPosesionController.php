@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ConstanciaPosesionController extends Controller
 {
-
     public function index()
     {
         $datos = ConstanciaPosesion::all();
@@ -42,6 +41,7 @@ class ConstanciaPosesionController extends Controller
             'partner'=> 'required',
             'dniPartner'=> 'required',
             'areaPredio'=> 'required',
+            'siglasArquitecto' => 'required',
         ],[
             'required' => 'Ingrese datos solicitados',
         ]);
@@ -113,14 +113,8 @@ class ConstanciaPosesionController extends Controller
         }
     }
 
-    public function show(ConstanciaPosesion $constanciaPosesion)
-    {
-
-    }
-
     public function pdf($id)
     {
-        
         $showData = ConstanciaPosesion::select('*')->where('id',$id)->first();
         return view('pdf/pdf_CP', compact('showData'));
     }
@@ -219,4 +213,21 @@ class ConstanciaPosesionController extends Controller
         $data->delete();
         return redirect()->route('constancia.index')->with('constancia', 'disabled');
     }
+
+    /* public function transformarCadena($cadena) {
+
+        $palabras = Str::words($cadena, 1, '');
+
+        // Convierte las palabras en un arreglo de caracteres
+        $primerasLetras = str_split($palabras);
+
+        // Convierte el arreglo de caracteres en una cadena
+        $resultado = implode('', $primerasLetras);
+
+        return $resultado;
+
+        $cadenaOriginal = "Hola Mundo";
+        $cadenaTransformada = $this->transformarCadena($cadenaOriginal);
+
+    } */
 }

@@ -23,8 +23,8 @@ class UbicacionController extends Controller
     public function store(Request $request)
     {
         $datos = new Ubicacion();
-        $datos->zona = $request->zona;
-        $datos->nombreUbicacion = $request->nombreUbicacion;
+        $datos->zona = $request->zonaCreate;
+        $datos->nombreUbicacion = $request->nombreUbicacionCreate;
         $datos->observacion = 'CREADO';
         $datos->usuario = Auth::user()->name;
         $datos->save();

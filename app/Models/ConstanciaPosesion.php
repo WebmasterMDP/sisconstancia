@@ -11,6 +11,7 @@ class ConstanciaPosesion extends Model
 
     protected $fillable = [
         'id',
+        'siglasArquitecto',
         'nombreCompleto',
         'codConstancia',
         'numdoc',
